@@ -25,10 +25,6 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 - Denuncia
 
 ### Funcionalidades del servicio interno:
-- Envio de correos de notificación al usuario:
-                - Denuncia
-                - Publicación
-                - Contratación
-- 
+- Envio de correos de notificación al usuario: Denuncia, Publicación, Contratación
 
 ## Fase 2
