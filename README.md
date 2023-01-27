@@ -24,6 +24,4 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 - Denuncia
 
 ## Funcionalidades del servicio interno:
-- Gestión de las publicaciones, usuarios y contrataciones.
-- Actualización de ofertas.
-- Control de las denuncias. 
+- Envio de correos de notificación al usuario (contrato y denuncia)
