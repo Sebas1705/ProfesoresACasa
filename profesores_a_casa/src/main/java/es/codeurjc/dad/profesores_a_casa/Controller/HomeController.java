@@ -1,4 +1,4 @@
-package es.codeurjc3.dad.profesores_a_casa.controller;
+package es.codeurjc.dad.profesores_a_casa.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

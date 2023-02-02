@@ -1,4 +1,4 @@
-package es.codeurjc3.dad.profesores_a_casa;
+package es.codeurjc.dad.profesores_a_casa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
