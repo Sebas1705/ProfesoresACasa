@@ -17,14 +17,15 @@ public class Contract {
     @Column(name = "CONTRACT_ID", unique = true, nullable=false)
     private long contractId;
 
-    @Column(name = "POST_REFERENCE_ID", nullable=false)
-    private long postReferenceId;
+    @OneToOne
+    @Column(name = "POST", nullable=false)
+    private Post post;
 
-    @Column(name = "TEACHERS_ID", nullable=false)
-    private long teachersId;
+    @Column(name = "TEACHER", nullable=false)
+    private User teacher;
 
-    @Column(name = "ESTUDENTS_ID", nullable=false)
-    private long estudentsId;
+    @Column(name = "ESTUDENT", nullable=false)
+    private User estudent;
 
     public Contract(){}
 }

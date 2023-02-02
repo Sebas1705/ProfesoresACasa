@@ -16,7 +16,7 @@ public class User {
     @Column(name = "CONTRACT_ID", unique = true, nullable=false)
     private long userId;
 
-    @Column(name = "SESSION_ID", unique = true, nullable=false)
+    @Column(name = "SESSION_ID", unique = true, nullable=true)
     private String sesionId;
 
     @Column(name = "LOG_NAME", unique = true, nullable=false)
@@ -30,6 +30,14 @@ public class User {
 
     @Column(name = "PRIVILEGED", nullable=false)
     private boolean privileged;
+
+    @OneToMany
+    @Column(name = "POSTS", nullable=false)
+    private List<Post> posts;
+
+    @OneToMany
+    @Column(name = "REPORTS", nullable=false)
+    private List<Report> reports;
 
     public User(){}
 }

@@ -11,13 +11,14 @@ import lombok.*;
 @Entity
 public class Post {
     
+    @OneToOne
+    @Column(name = "OWNER_USER", nullable = false)
+    private User ownerUser;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "POST_ID", unique = true, nullable=false)
     private long postId;
-
-    @Column(name = "USER_OWNER_ID", nullable=false)
-    private long userOwnerId;
 
     @Column(name = "TITLE", nullable=false)
     private String title;

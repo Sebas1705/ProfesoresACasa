@@ -16,11 +16,12 @@ public class Report {
     @Column(name = "REPORT_ID", unique = true, nullable=false)
     private long reportId;
 
-    @Column(name = "AUTHOR_ID", nullable=false)
-    private long authorId;
+    @Column(name = "AUTHOR", nullable=true)
+    private User author;
 
-    @Column(name = "OFFER_ID", nullable=false)
-    private long offerId;
+    @OneToOne
+    @Column(name = "POST", nullable=false)
+    private Post post;
 
     @Column(name = "MOTIVE", nullable=false)
     private String motive;
