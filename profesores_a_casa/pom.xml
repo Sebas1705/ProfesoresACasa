@@ -63,10 +63,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-<<<<<<< HEAD
-		
-=======
->>>>>>> c81763c92e25181b629713664a96a2c61b11a726
 	</dependencies>
 
 	<build>
