@@ -1,6 +1,6 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
-import javax.persistence.*;
+/*import javax.persistence.*;
 import lombok.*;
 
 @Setter
@@ -30,4 +30,4 @@ public class Post {
     private double price;
 
     public Post(){}
-}
+}*/

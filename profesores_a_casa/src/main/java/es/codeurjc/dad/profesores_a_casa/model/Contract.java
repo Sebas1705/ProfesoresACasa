@@ -1,6 +1,6 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
-import javax.persistence.*;
+/*import javax.persistence.*;
 
 import lombok.*;
 
@@ -28,4 +28,4 @@ public class Contract {
     private User estudent;
 
     public Contract(){}
-}
+}*/

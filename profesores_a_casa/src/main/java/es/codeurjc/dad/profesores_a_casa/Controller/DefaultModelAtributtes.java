@@ -11,8 +11,4 @@ public class DefaultModelAtributtes {
         return "Pagina principal";
     }
 
-    @ModelAttribute("Admin")
-    public String adminHome(){
-        return "Admin";
-    }
 }

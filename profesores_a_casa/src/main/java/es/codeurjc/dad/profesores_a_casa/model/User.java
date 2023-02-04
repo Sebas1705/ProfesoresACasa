@@ -1,6 +1,6 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
-import java.util.List;
+/*import java.util.List;
 
 import javax.persistence.*;
 import lombok.*;
@@ -12,6 +12,8 @@ import lombok.*;
 @ToString
 @Entity
 public class User {
+
+    private static int nextId=1;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,4 +44,10 @@ public class User {
     private List<Report> reports;
 
     public User(){}
-}
+
+    public User(String username,String password){
+        userId=nextId++;
+        logName=username;
+        this.password=password;
+    }
+}*/
