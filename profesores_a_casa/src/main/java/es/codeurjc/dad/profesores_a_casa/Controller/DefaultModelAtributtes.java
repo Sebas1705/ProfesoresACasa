@@ -10,4 +10,9 @@ public class DefaultModelAtributtes {
     public String textoHome(){
         return "Pagina principal";
     }
+
+    @ModelAttribute("Admin")
+    public String adminHome(){
+        return "Admin";
+    }
 }

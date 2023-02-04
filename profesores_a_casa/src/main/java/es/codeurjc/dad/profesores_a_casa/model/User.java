@@ -1,5 +1,7 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 import lombok.*;
 
