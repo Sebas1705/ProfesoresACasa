@@ -1,6 +1,6 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
-/*import javax.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Setter
@@ -14,10 +14,7 @@ public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "REPORT_ID", unique = true, nullable=false)
-    private long reportId;
-
-    @Column(name = "AUTHOR", nullable=true)
-    private User author;
+    private long id;
 
     @OneToOne
     @Column(name = "POST", nullable=false)
@@ -30,4 +27,4 @@ public class Report {
     private String description;
 
     public Report(){}
-}*/
+}

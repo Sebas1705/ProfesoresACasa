@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import es.codeurjc.dad.profesores_a_casa.service.ExampleService;
 
 @Controller
-public class HomeController {
+public class ViewController {
 
     @Autowired
     private ExampleService exampleService;

@@ -1,6 +1,6 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
-/*import java.util.List;
+import java.util.List;
 
 import javax.persistence.*;
 import lombok.*;
@@ -12,13 +12,23 @@ import lombok.*;
 @ToString
 @Entity
 public class User {
-
-    private static int nextId=1;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CONTRACT_ID", unique = true, nullable=false)
-    private long userId;
+    private long id;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @Column(name = "POSTS", nullable=false)
+    private List<Post> posts;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @Column(name = "REPORTS")
+    private List<Report> reports;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @Column(name = "CONTRACT")
+    private List<Contract> contract;
 
     @Column(name = "SESSION_ID", unique = true, nullable=true)
     private String sesionId;
@@ -35,19 +45,5 @@ public class User {
     @Column(name = "PRIVILEGED", nullable=false)
     private boolean privileged;
 
-    @OneToMany
-    @Column(name = "POSTS", nullable=false)
-    private List<Post> posts;
-
-    @OneToMany
-    @Column(name = "REPORTS", nullable=false)
-    private List<Report> reports;
-
     public User(){}
-
-    public User(String username,String password){
-        userId=nextId++;
-        logName=username;
-        this.password=password;
-    }
-}*/
+}
