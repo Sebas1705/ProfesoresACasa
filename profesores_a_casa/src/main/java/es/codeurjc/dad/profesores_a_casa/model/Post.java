@@ -19,19 +19,15 @@ public class Post {
     private long id;
 
     @ManyToOne
-    @Column(name = "OWNER_USER", nullable = false)
     private User ownerUser;
 
     @OneToMany
-    @Column(name = "CONTRACT")
     private List<Contract> contract;
 
     @OneToMany
-    @Column(name = "REPORTS")
     private List<Report> reports;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @Column(name = "RANKING", nullable=false)
     private Ranking ranking;
 
     @Column(name = "TITLE", nullable=false)
@@ -42,7 +38,6 @@ public class Post {
 
     @Column(name = "PRICE", nullable=false)
     private double price;
-
 
     public Post(){}
 }

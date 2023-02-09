@@ -18,15 +18,12 @@ public class Contract {
     private long id;
 
     @ManyToOne
-    @Column(name = "POST", nullable=false)
     private Post post;
 
     @ManyToOne
-    @Column(name = "TEACHER", nullable=false)
     private User teacher;
 
     @ManyToOne
-    @Column(name = "ESTUDENT", nullable=false)
     private User estudent;
 
     public Contract(){}

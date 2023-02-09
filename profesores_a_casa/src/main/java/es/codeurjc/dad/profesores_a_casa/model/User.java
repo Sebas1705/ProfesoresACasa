@@ -23,11 +23,9 @@ public class User {
     private List<Post> posts;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @Column(name = "REPORTS")
     private List<Report> reports;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @Column(name = "CONTRACT")
     private List<Contract> contract;
 
     @Column(name = "SESSION_ID", unique = true, nullable=true)

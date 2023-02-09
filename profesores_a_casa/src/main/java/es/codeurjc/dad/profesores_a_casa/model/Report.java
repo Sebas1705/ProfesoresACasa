@@ -17,7 +17,6 @@ public class Report {
     private long id;
 
     @OneToOne
-    @Column(name = "POST", nullable=false)
     private Post post;
 
     @Column(name = "MOTIVE", nullable=false)

@@ -18,7 +18,6 @@ public class Ranking {
     private long id;
 
     @OneToOne(mappedBy="ranking")
-    @Column(name = "POST_PARENT", nullable=false)
     private Post post;
 
     @Column(name = "SCORE", nullable=false)
