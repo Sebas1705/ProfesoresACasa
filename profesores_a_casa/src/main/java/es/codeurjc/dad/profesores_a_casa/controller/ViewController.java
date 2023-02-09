@@ -16,6 +16,23 @@ public class ViewController {
         return "index";
     }
 
+    @GetMapping("/inicioSesion")
+    public String inicioSesion(Model model){
+        return "formularioInicioSesion";
+    }
+
+    @GetMapping("/registro")
+    public String registro(Model model){
+        return "registro";
+    }
+
+    @GetMapping("/homeLog")
+    public String homeLog(Model model){
+        return "homeLog";
+    }
+
+    
+
     @GetMapping("/pagina")
     public String pagina(Model model){
         model.addAttribute("hola","Buenas");
