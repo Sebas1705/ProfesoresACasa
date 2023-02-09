@@ -5,10 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style_login.css" type="text/css">
 </head>
 <body>
-    <form action="">
+    {{>header}}
+    <section>
+        <div class="login">
+            <h1>Login</h1>
         
-    </form>
+            <form class="form" method="post" action="/login">
+        
+              <p class="field">
+                <input type="text" name="login" placeholder="Username" required/>
+                <i class="fa fa-user"></i>
+              </p>
+        
+              <p class="field">
+                <input type="password" name="password" placeholder="Password" required/>
+                <i class="fa fa-lock"></i>
+              </p>
+        
+              <p class="submit"><input type="submit" name="sent" value="Login"></p>
+        
+              <p class="sub-text">No tienes cuenta? Creala dandole al siguiente link! <a href="/registro">Registro!</a></p>
+
+            </form>
+          </div> <!--/ Login-->
+        
+        <div class="copyright">
+            <p>Copyright &copy; 2014. Created by <a href="http://febbygunawan.com" target="_blank">Febby Gunawan</a></p>
+    </section>
+    {{>footer}}
 </body>
 </html>
