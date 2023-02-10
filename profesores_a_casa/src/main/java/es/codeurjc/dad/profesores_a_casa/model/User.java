@@ -15,11 +15,9 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CONTRACT_ID", unique = true, nullable=false)
     private long id;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @Column(name = "POSTS", nullable=false)
     private List<Post> posts;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -28,20 +26,25 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contract> contract;
 
-    @Column(name = "SESSION_ID", unique = true, nullable=true)
+    @Column(name = "SESSION_ID")
     private String sesionId;
 
-    @Column(name = "LOG_NAME", unique = true, nullable=false)
-    private String logName;
+    @Column(name = "LOGNAME")
+    private String logname;
 
-    @Column(name = "PASSWORD", nullable=false)
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "SELF_DESCRIPTION", nullable=true)
+    @Column(name = "SELF_DESCRIPTION")
     private String selfDescription;
 
-    @Column(name = "PRIVILEGED", nullable=false)
+    @Column(name = "PRIVILEGED")
     private boolean privileged;
 
     public User(){}
+
+    public User(String logname,String password){
+        super();
+        this.logname=logname;this.password=password;
+    }
 }
