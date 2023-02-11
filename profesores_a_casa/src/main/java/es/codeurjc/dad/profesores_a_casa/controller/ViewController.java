@@ -30,6 +30,31 @@ public class ViewController {
         return "homeLog";
     }
 
+    @GetMapping("/perfil")
+    public String perfil(Model model){
+        return "perfil";
+    }
+
+    @GetMapping("/personalizarPerfil")
+    public String personalizarPerfil(Model model){
+        return "personalizarPerfil";
+    }
+
+    @GetMapping("/contratos")
+    public String contratos(Model model){
+        return "contratos";
+    }
+
+    @GetMapping("/oferta")
+    public String oferta(Model model){
+        return "oferta";
+    }
+
+    @GetMapping("/denuncia")
+    public String denuncia(Model model){
+        return "denuncia";
+    }
+
     @GetMapping("/pagina")
     public String pagina(Model model){
         model.addAttribute("hola","Buenas");
