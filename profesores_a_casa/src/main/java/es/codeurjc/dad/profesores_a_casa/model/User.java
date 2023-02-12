@@ -31,7 +31,10 @@ public class User {
 
     @Column(name = "LOGNAME")
     private String logname;
-
+    
+    @Column(name = "EMAIL")
+    private String email;
+    
     @Column(name = "PASSWORD")
     private String password;
 
