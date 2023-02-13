@@ -1,0 +1,19 @@
+{{>header}}
+<section>
+  <div class="formulariosDenuncia"><!--Añadir en stylesheet.css-->
+    <h1>Denuncia</h1>
+    <form class="form" method="post" action="/denuncia">
+      <p class="field">
+        <input type="text" name="logname" placeholder="Username" required/><!--Nombre de usuario o post a denunciar-->
+        <i class="fa fa-user"></i>
+      </p>
+      <p class="sub-text">
+        <input type="text" name="reason" placeholder="Reason" required/>
+        <i class="fa fa-lock"></i>
+      </p>
+      <p class="submit"><input type="submit" name="sent" value="Report"></p>
+    </form>
+    <p class="sub-text">Si quieres ver tus denuncias accede al siguiente link! <a href="/VerPerfil">Perfil!</a></p>
+  </div> <!--Nueva denuncia-->
+</section>
+{{>footer}}
