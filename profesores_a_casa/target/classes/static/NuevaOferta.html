@@ -1,0 +1,19 @@
+{{>header}}
+<section>
+  <div class="formulariosOferta"><!--Añadir en stylesheet.css-->
+    <h1>Oferta</h1>
+    <form class="form" method="post" action="/oferta">
+      <p class="field">
+        <input type="text" name="oferta" placeholder="Título de la oferta" required/><!--Nombre de la oferta-->
+        <i class="fa fa-user"></i>
+      </p>
+      <p class="sub-text">
+        <input type="text" name="descripción" placeholder="descripción" required/>
+        <i class="fa fa-lock"></i>
+      </p>
+      <p class="submit"><input type="submit" name="sent" value="Publicar"></p>
+    </form>
+    <p class="sub-text">Si quieres previsualizar las ofertas, sigue este link! <a href="/Oferta">Oferta!</a></p>
+  </div> <!--Nueva oferta-->
+</section>
+{{>footer}}
