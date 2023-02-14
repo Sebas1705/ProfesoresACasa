@@ -54,4 +54,8 @@ public class PostService {
             return ResponseEntity.ok(post.get());
         }else return ResponseEntity.notFound().build();
     }
+
+    public void save(Post post){
+        posts.save(post);
+    }
 }

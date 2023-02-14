@@ -2,17 +2,19 @@
 <section>
   <div class="formulariosLog">
     <h1>Oferta</h1>
-    <form class="form" method="post" action="/oferta">
+    <form class="form" method="post" action="/Oferta">
       <p class="field">
         <input type="text" name="oferta" placeholder="Título de la oferta" required/><!--Nombre de la oferta-->
         <i class="fa fa-user"></i>
       </p>
       <p class="sub-text">
-        <textarea type="text" name="descripción" placeholder="descripción" required ></textarea>
+        <textarea type="text" name="descripcion" placeholder="descripción" required ></textarea>
         <i class="fa fa-lock"></i>
       </p>
-      <p class="submit"><input type="submit" name="sent" value="Publicar"></p>
-      <p class="sub-text">Si quieres ver las ofertas, sigue este link! <a href="/Oferta">Mis ofertas</a></p>
+      <p class="field">
+        <input type="text" name="precio" placeholder="Precio de la oferta" required/><!--Precio de la oferta-->
+        <i class="fa fa-user"></i>
+        <p class="submit"><input type="submit" name="sent" value="Publicar"></p>
       
     </form>
 
