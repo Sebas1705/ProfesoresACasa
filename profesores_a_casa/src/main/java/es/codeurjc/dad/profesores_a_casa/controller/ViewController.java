@@ -2,35 +2,51 @@ package es.codeurjc.dad.profesores_a_casa.controller;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import es.codeurjc.dad.profesores_a_casa.model.Post;
-import es.codeurjc.dad.profesores_a_casa.service.PostService;
-import es.codeurjc.dad.profesores_a_casa.model.User;
-import es.codeurjc.dad.profesores_a_casa.service.UserService;
+import es.codeurjc.dad.profesores_a_casa.model.*;
+import es.codeurjc.dad.profesores_a_casa.service.*;
 
 @Controller
 public class ViewController {
 
     @Autowired private PostService posts;
     @Autowired private UserService users;
+    @Autowired private ContractService contracts;
+    @Autowired private RankingService rankings;
+    @Autowired private ReportService reports;
 
     @PostConstruct
     public void init(){
+        User ant=null;
         for(int i = 0;i<100;i++){
+            Contract c=null;
+            Report r=null;
             User u=new User("ExampleLogname_"+i,"Examplepassword_"+i);
-            users.save(u);
             Post p=new Post("ExampleTitle"+i,"ExampleDescription"+i,99.99);
+            if(i%5==0){
+                c = new Contract(p,ant,u);
+                contracts.save(c);
+            }
+            if(i%8==0){
+                r=new Report("Motivo"+i,"Description"+i,p);
+            }
+            p.setRanking(new Ranking());
+            rankings.save(p.getRanking());
+            if(i%3==0){
+                p.getRanking().setTotalScore(i*((int)Math.random()*100));
+                p.getRanking().setNumRankings(i);    
+            }
+            if(c!=null)u.getContract().add(c);
+            if(r!=null)u.getReports().add(r);
+            users.save(u);
             p.setOwnerUser(u);
             posts.save(p);
+            ant=u;
         }
     }
 

@@ -27,4 +27,10 @@ public class Contract {
     private User estudent;
 
     public Contract(){}
+
+    public Contract(Post post, User teacher, User estudent){
+        this.post=post;
+        this.teacher=teacher;
+        this.estudent=estudent;
+    }
 }

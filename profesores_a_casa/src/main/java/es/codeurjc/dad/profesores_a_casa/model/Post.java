@@ -46,6 +46,5 @@ public class Post {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.ranking=new Ranking();
     }
 }

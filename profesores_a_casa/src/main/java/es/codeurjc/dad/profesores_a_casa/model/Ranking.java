@@ -1,7 +1,7 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
-
+import java.util.List;
 import lombok.*;
 
 @Setter
@@ -20,8 +20,19 @@ public class Ranking {
     @OneToOne(mappedBy="ranking")
     private Post post;
 
-    @Column(name = "SCORE", nullable=false)
-    private double score;
+    @Column(name = "TOTAL_SCORE", nullable=false)
+    private double totalScore;
 
-    public Ranking(){}
+    @Column(name = "NUM_RANKINGS", nullable=false)
+    private int numRankings;
+
+    public Ranking(){
+        this.totalScore=0.00;
+        this.numRankings=0;
+    }
+
+    public double getAverage(){
+        return totalScore/numRankings;
+    }
+    
 }

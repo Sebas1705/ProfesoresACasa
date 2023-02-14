@@ -16,7 +16,7 @@ public class Report {
     @Column(name = "REPORT_ID", unique = true, nullable=false)
     private long id;
 
-    @OneToOne
+    @ManyToOne
     private Post post;
 
     @Column(name = "MOTIVE", nullable=false)
@@ -26,4 +26,10 @@ public class Report {
     private String description;
 
     public Report(){}
+
+    public Report(String motive,String description,Post post){
+        this.motive=motive;
+        this.description=description;
+        this.post=post;
+    }
 }
