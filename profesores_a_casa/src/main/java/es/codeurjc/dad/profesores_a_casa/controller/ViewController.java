@@ -13,51 +13,63 @@ public class ViewController {
     @GetMapping("/")
     public String home(Model model, HttpSession sesion){
         sesion.getId();
-        return "index";
+        return "Home";
     }
-    @GetMapping("/inicioSesion")
+    @GetMapping("/InicioSesión")
     public String inicioSesion(Model model){
-        return "formularioInicioSesion";
+        return "InicioSesión";
     }
 
-    @GetMapping("/registro")
+    @GetMapping("/Registro")
     public String registro(Model model){
-        return "registro";
+        return "Registro";
     }
 
-    @GetMapping("/homeLog")
+    @GetMapping("/HomeLog")
     public String homeLog(Model model){
-        return "homeLog";
+        return "HomeLog";
     }
 
-    @GetMapping("/perfil")
-    public String perfil(Model model){
-        return "perfil";
-    }
-
-    @GetMapping("/personalizarPerfil")
+    @GetMapping("/PersonalizarPerfil")
     public String personalizarPerfil(Model model){
-        return "personalizarPerfil";
+        return "PersonalizarPerfil";
     }
 
-    @GetMapping("/contratos")
+    @GetMapping("/VerPerfil")
+    public String VerPerfil(Model model){
+        return "VerPerfil";
+    }
+
+    @GetMapping("/Contratos")
     public String contratos(Model model){
-        return "contratos";
+        return "Contratos";
     }
 
-    @GetMapping("/oferta")
+    @GetMapping("/Oferta")
     public String oferta(Model model){
-        return "oferta";
+        return "Oferta";
     }
 
-    @GetMapping("/denuncia")
-    public String denuncia(Model model){
-        return "denuncia";
+    @GetMapping("/Denuncias")
+    public String denuncias(Model model){
+        return "Denuncias";
     }
 
-    @GetMapping("/pagina")
-    public String pagina(Model model){
-        model.addAttribute("hola","Buenas");
-        return "pagina";
+    @GetMapping("/NuevaOferta")
+    public  String NuevaOferta(Model model){
+        return "NuevaOferta";
     }
+
+    @GetMapping("/NuevaDenuncia")
+    public String NuevaDenuncia(Model model){
+        return "NuevaDenuncia";
+    }
+
+    @GetMapping("/NuevoContrato")
+    public String NuevoContrato(Model model){
+        return "NuevoContrato";
+    }
+
+
+
 }
