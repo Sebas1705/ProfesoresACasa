@@ -54,4 +54,8 @@ public class ContractService {
             return ResponseEntity.ok(contract.get());
         }else return ResponseEntity.notFound().build();
     }
+
+    public void save(Contract contract){
+        contracts.save(contract);
+    }
 }

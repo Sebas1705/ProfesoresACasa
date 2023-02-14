@@ -54,4 +54,8 @@ public class ReportService {
             return ResponseEntity.ok(report.get());
         }else return ResponseEntity.notFound().build();
     }
+
+    public void save(Report report){
+        reports.save(report);
+    }
 }

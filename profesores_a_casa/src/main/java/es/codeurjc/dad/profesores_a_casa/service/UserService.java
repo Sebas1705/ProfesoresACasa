@@ -56,4 +56,8 @@ public class UserService {
             return ResponseEntity.ok(user.get());
         }else return ResponseEntity.notFound().build();
     }
+
+    public void save(User user){
+        users.save(user);
+    }
 }

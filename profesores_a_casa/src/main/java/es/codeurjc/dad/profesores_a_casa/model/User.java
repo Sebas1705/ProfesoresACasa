@@ -50,4 +50,5 @@ public class User {
         super();
         this.logname=logname;this.password=password;
     }
+
 }

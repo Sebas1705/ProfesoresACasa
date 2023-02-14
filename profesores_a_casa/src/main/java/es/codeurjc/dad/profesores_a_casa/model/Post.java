@@ -40,4 +40,11 @@ public class Post {
     private double price;
 
     public Post(){}
+
+    public Post(String title, String description, double price){
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.ranking=new Ranking();
+    }
 }

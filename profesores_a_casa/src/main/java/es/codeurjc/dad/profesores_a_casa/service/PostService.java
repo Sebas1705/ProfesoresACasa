@@ -2,8 +2,8 @@ package es.codeurjc.dad.profesores_a_casa.service;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class PostService {
 
     }
 
-    public Page<Post> getPageOfPosts(Pageable pageable){
+    public Page<Post> getPage(Pageable pageable){
         return posts.findAll(pageable);
     }
 
@@ -59,5 +59,9 @@ public class PostService {
             posts.deleteById(id);
             return ResponseEntity.ok(post.get());
         }else return ResponseEntity.notFound().build();
+    }
+
+    public void save(Post post){
+        posts.save(post);
     }
 }

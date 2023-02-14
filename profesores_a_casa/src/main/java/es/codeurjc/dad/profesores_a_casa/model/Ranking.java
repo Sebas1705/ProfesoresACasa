@@ -23,5 +23,5 @@ public class Ranking {
     @Column(name = "SCORE", nullable=false)
     private double score;
 
-
+    public Ranking(){}
 }

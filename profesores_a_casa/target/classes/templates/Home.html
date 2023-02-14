@@ -15,23 +15,39 @@
         {{/Nuevo}}
     </section>
     <section class="Posts">
+
+        {{#hasPrev}}
+	    <a href="/?page={{prevPage}}"><=Prev</a>	
+	    {{/hasPrev}}
+	
+	    {{#hasNext}}
+	    <a href="/?page={{nextPage}}">Next=></a>
+	    {{/hasNext}}
+
         {{#posts}}
-	    <a href="post/{{id}}">{{user}} {{title}}</a><br>
-	    {{/posts}}
+        <div class="PostCard">
+            <hr>
+            <h1>{{title}}</h1>
+            <p>{{description}}</p>
+            <h4>{{price}}</h4>
+	        <a href="/Oferta/{{id}}">Go to!</a><br>
+            <hr>
+	    </div>
+        {{/posts}}
 	
 	    <br>
 	
 	    {{#hasPrev}}
-	    <a href="/?page={{prevPage}}">Prev</a>	
+	    <a href="/?page={{prevPage}}"><=Prev</a>	
 	    {{/hasPrev}}
 	
 	    {{#hasNext}}
-	    <a href="/?page={{nextPage}}">Next</a>
+	    <a href="/?page={{nextPage}}">Next=></a>
 	    {{/hasNext}}
 	
 	    <br>
         {{^Posts}}
-        <h1 class="Mensaje vacio">Actualmente no hay ningun post, ayuda y crealos!</h1>
+        <h1>Actualmente no hay ningun post, ayuda y crealos!</h1>
         {{/Posts}}
     </section>
 {{>footer}}

@@ -54,4 +54,8 @@ public class RankingService {
             return ResponseEntity.ok(ranking.get());
         }else return ResponseEntity.notFound().build();
     }
+
+    public void save(Ranking ranking){
+        rankings.save(ranking);
+    }
 }
