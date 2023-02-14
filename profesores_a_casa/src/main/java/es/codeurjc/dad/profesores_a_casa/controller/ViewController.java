@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.codeurjc.dad.profesores_a_casa.model.Post;
-import es.codeurjc.dad.profesores_a_casa.model.User;
 import es.codeurjc.dad.profesores_a_casa.service.PostService;
+import es.codeurjc.dad.profesores_a_casa.model.User;
 import es.codeurjc.dad.profesores_a_casa.service.UserService;
 
 @Controller
@@ -76,7 +78,7 @@ public class ViewController {
     }
 
     @GetMapping("/Oferta")
-    public String oferta(Model model){
+    public String Oferta(Model model){
         return "Oferta";
     }
 
@@ -90,6 +92,14 @@ public class ViewController {
         return "NuevaOferta";
     }
 
+    @PostMapping("/Oferta")
+    public String guardarOferta(@RequestParam String oferta, @RequestParam String descripcion, @RequestParam double precio){
+        Post post = new Post(oferta, descripcion, precio);
+        posts.save(post);
+        return "Oferta";
+    }
+
+
     @GetMapping("/NuevaDenuncia")
     public String NuevaDenuncia(Model model){
         return "NuevaDenuncia";
@@ -99,6 +109,8 @@ public class ViewController {
     public String NuevoContrato(Model model){
         return "NuevoContrato";
     }
+
+
 
 
 

@@ -41,6 +41,7 @@ public class Post {
 
     public Post(){}
 
+
     public Post(String title, String description, double price){
         this.title = title;
         this.description = description;
