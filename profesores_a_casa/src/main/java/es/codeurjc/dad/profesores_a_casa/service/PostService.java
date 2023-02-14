@@ -2,6 +2,8 @@ package es.codeurjc.dad.profesores_a_casa.service;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class PostService {
     @PostConstruct
     public void init(){
 
+    }
+
+    public Page<Post> getPageOfPosts(Pageable pageable){
+        return posts.findAll(pageable);
     }
 
     public List<Post> getPosts(){

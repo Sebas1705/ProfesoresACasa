@@ -1,18 +1,34 @@
 package es.codeurjc.dad.profesores_a_casa.controller;
 
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import es.codeurjc.dad.profesores_a_casa.model.Post;
+import es.codeurjc.dad.profesores_a_casa.service.PostService;
+
 @Controller
 public class ViewController {
 
-    
+    @Autowired
+    private PostService posts;
 
     @GetMapping("/")
-    public String home(Model model, HttpSession sesion){
-        sesion.getId();
+    public String home(Model model,HttpSession sesion, Pageable pageable){
+        model.addAttribute("Nuevo",sesion.isNew());
+        
+        Page<Post> posts = posts.getPageOfPosts(pageable);
+		model.addAttribute("posts", posts);
+		model.addAttribute("hasPrev", posts.hasPrevious());
+		model.addAttribute("hasNext", posts.hasNext());
+		model.addAttribute("nextPage", posts.getNumber()+1);
+		model.addAttribute("prevPage", posts.getNumber()-1);		
+		
         return "Home";
     }
     @GetMapping("/InicioSesión")

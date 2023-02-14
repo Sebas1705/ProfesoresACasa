@@ -1,15 +1,37 @@
 {{>header}}
     <section class="Intro">
+        {{#Nuevo}}
+        <h1>~~Bienvenido!!~~</h1>
+        <p>
+            {{description}} 
+            <a href="/Registro">Registro!</a> 
+            o incia sesión en 
+            <a href="/InioSesión">InicioSesion!</a>
+        </p>
+        {{/Nuevo}}
 
+        {{^Nuevo}}
+        <h1>Bienvenido de vuelta!!</h1>
+        {{/Nuevo}}
     </section>
     <section class="Posts">
-
-        {{#Posts}}
-
-        {{\Posts}}
-
+        {{#posts}}
+	    <a href="post/{{id}}">{{user}} {{title}}</a><br>
+	    {{/posts}}
+	
+	    <br>
+	
+	    {{#hasPrev}}
+	    <a href="/?page={{prevPage}}">Prev</a>	
+	    {{/hasPrev}}
+	
+	    {{#hasNext}}
+	    <a href="/?page={{nextPage}}">Next</a>
+	    {{/hasNext}}
+	
+	    <br>
         {{^Posts}}
-
+        <h1 class="Mensaje vacio">Actualmente no hay ningun post, ayuda y crealos!</h1>
         {{/Posts}}
     </section>
 {{>footer}}
