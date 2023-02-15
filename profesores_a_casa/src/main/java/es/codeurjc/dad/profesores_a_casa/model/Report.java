@@ -17,6 +17,9 @@ public class Report {
     private long id;
 
     @ManyToOne
+    private User author;
+
+    @ManyToOne
     private Post post;
 
     @Column(name = "MOTIVE", nullable=false)
@@ -27,9 +30,8 @@ public class Report {
 
     public Report(){}
 
-    public Report(String motive,String description,Post post){
+    public Report(String motive,String description){
         this.motive=motive;
         this.description=description;
-        this.post=post;
     }
 }

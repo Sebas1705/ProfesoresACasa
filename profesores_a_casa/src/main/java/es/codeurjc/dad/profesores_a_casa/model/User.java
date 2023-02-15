@@ -1,7 +1,7 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
 import lombok.*;
 
@@ -17,17 +17,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Post> posts;
+    @OneToMany(mappedBy="ownerUser", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Post> posts=new ArrayList<Post>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Report> reports;
+    @OneToMany(mappedBy="author", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Report> reports=new ArrayList<Report>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Contract> contract;
+    @OneToMany(mappedBy="teacher", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Contract> contractsAsTeacher=new ArrayList<Contract>();
 
-    @Column(name = "SESSION_ID")
-    private String sesionId;
+    @OneToMany(mappedBy="student", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Contract> contractsAsStudent=new ArrayList<Contract>();
+
+    // @Column(name = "SESSION_ID")
+    // private String sesionId;
 
     @Column(name = "LOGNAME")
     private String logname;
@@ -41,14 +44,57 @@ public class User {
     @Column(name = "SELF_DESCRIPTION")
     private String selfDescription;
 
-    @Column(name = "PRIVILEGED")
-    private boolean privileged;
+    // @Column(name = "PRIVILEGED")
+    // private boolean privileged;
 
     public User(){}
 
-    public User(String logname,String password){
+    public User(String logname,String password,String email){
         super();
-        this.logname=logname;this.password=password;
+        this.logname=logname;
+        this.password=password;
+        this.selfDescription=null;
+        this.email=email;
+    }
+
+    public void addPost(Post post) {
+        posts.add(post);
+        post.setOwnerUser(this);
+    }
+
+    public void removePost(Post post) {
+        posts.remove(post);
+        post.setOwnerUser(null);
+    }
+
+    public void addReport(Report report){
+        reports.add(report);
+        report.setAuthor(this);
+    }
+
+    public void removeReport(Report report){
+        reports.remove(report);
+        report.setAuthor(null);
+    }
+
+    public void addContractAsTeacher(Contract contract){
+        contractsAsTeacher.add(contract);
+        contract.setTeacher(this);
+    }
+
+    public void removeContractAsTeacher(Contract contract){
+        contractsAsTeacher.remove(contract);
+        contract.setTeacher(null);
+    }
+
+    public void addContractAsStudent(Contract contract){
+        contractsAsStudent.add(contract);
+        contract.setStudent(this);
+    }
+
+    public void removeContractAsStudent(Contract contract){
+        contractsAsStudent.remove(contract);
+        contract.setStudent(null);
     }
 
 }

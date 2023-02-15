@@ -20,9 +20,7 @@ public class UserService {
 
     @PostConstruct
     public void init(){
-        for(int i=0;i<10;i++){
-            users.save(new User("Example_logname"+i,"Example_password"+i));
-        }
+        
     }
 
     public List<User> getUsers(){

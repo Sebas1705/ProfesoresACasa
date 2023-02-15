@@ -24,13 +24,14 @@ public class Contract {
     private User teacher;
 
     @ManyToOne
-    private User estudent;
+    private User student;
+
+    @Column(name="DESCRIPTION")
+    private String description;
 
     public Contract(){}
 
-    public Contract(Post post, User teacher, User estudent){
-        this.post=post;
-        this.teacher=teacher;
-        this.estudent=estudent;
+    public Contract(String description){
+        this.description = description;
     }
 }

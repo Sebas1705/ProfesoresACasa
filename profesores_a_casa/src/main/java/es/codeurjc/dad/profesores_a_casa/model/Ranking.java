@@ -31,6 +31,11 @@ public class Ranking {
         this.numRankings=0;
     }
 
+    public Ranking(double totalScore, int numRankings){
+        this.totalScore=totalScore;
+        this.numRankings=numRankings;
+    }
+
     public double getAverage(){
         return totalScore/numRankings;
     }

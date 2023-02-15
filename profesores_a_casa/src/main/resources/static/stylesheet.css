@@ -7,6 +7,33 @@ body {
 	background: #391034;
 }
 
+/*===HOME===*/
+.Intro {
+	position: relative;
+	background: #0b1940;
+	padding: 20px 10px;
+	border-radius: 50px;
+}
+.Intro h1 {
+	text-align: center;
+	font: 40px "Comic Sans", monospace;
+	color: #ded9cf;
+}
+.Intro p {
+	text-align: justify;
+	background:#1b398b;
+	padding: 20px 10px;
+	border-radius: 20px;
+	color: #ded9cf;
+	
+}
+.PostCard {
+	position: relative;
+	width: 200px;
+	height: 300px;
+}
+/*===HOME===*/
+
 /*===Registro y Login===*/
 .logo {
 	background-position: center;
@@ -102,7 +129,7 @@ body {
 	color: #ded9cf !important;
 	font-family: "Open Sans";
 }
-.form input[type="text"], input[type="password"] {
+.form input[type="text"], input[type="password"], input[type="email"]{
 	font-family: "Open Sans", Calibri, Arial, sans-serif;
 	font-size: 14px;
 	font-weight: 400;
@@ -116,16 +143,16 @@ body {
 	color: #777;
 	transition: color 0.3s ease-out;
 }
-.form input[type="text"] {
+.form input[type="text"], input[type="email"] {
 	margin-bottom: 15px;
 }
-.form input[type="text"]:hover ~ i, .form input[type="password"]:hover ~ i {
+.form input[type="text"]:hover ~ i, .form input[type="password"]:hover ~ i, .form input[type="email"]:hover ~ i {
 	color: #27ae60;
 }
-.form input[type="text"]:focus ~ i, .form input[type="password"]:focus ~ i {
+.form input[type="text"]:focus ~ i, .form input[type="password"]:focus ~ i, .form input[type="email"]:focus ~ i  {
 	color: #27ae60;
 }
-.form input[type="text"]:focus, .form input[type="password"]:focus, .form button[type="submit"]:focus {
+.form input[type="text"]:focus, .form input[type="password"]:focus, .form button[type="submit"]:focus, .form input[type="email"]:focus ~ i {
 	outline: none;
 }
 .form input[type="submit"] {

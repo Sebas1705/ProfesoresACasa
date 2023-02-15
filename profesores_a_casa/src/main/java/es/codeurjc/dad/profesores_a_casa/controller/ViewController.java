@@ -20,33 +20,40 @@ public class ViewController {
     @Autowired private RankingService rankings;
     @Autowired private ReportService reports;
 
+    //Casos 1:1->
+    //  Bidireccional:
+    //      Sin cascade: se guarda cada uno por separado y se hace el set
+    //      Con cascade: se guarda solo el principal tras setear el secundario
+    //Casos N:1->
+    //  Bidireccional:
+    //      Sin cascade: se guarda la entidad secundaria, se setea a la principal y se guarda la principal
+    //      Con cascade: se hace funcion de add en la secundaria que fue mapeada
+
     @PostConstruct
     public void init(){
-        User ant=null;
-        for(int i = 0;i<100;i++){
-            Contract c=null;
-            Report r=null;
-            User u=new User("ExampleLogname_"+i,"Examplepassword_"+i);
-            Post p=new Post("ExampleTitle"+i,"ExampleDescription"+i,99.99);
-            if(i%5==0){
-                c = new Contract(p,ant,u);
-                contracts.save(c);
-            }
-            if(i%8==0){
-                r=new Report("Motivo"+i,"Description"+i,p);
-            }
-            p.setRanking(new Ranking());
-            rankings.save(p.getRanking());
-            if(i%3==0){
-                p.getRanking().setTotalScore(i*((int)Math.random()*100));
-                p.getRanking().setNumRankings(i);    
-            }
-            if(c!=null)u.getContract().add(c);
-            if(r!=null)u.getReports().add(r);
-            users.save(u);
-            p.setOwnerUser(u);
-            posts.save(p);
-            ant=u;
+        for (int i=0;i<100;i++){
+            User student=new User("ExampleLogname_0_"+i,"ExamplePassword_0_"+i,"ExampleEmail_0_"+i);
+            User teacher=new User("ExampleLogname_1_"+i,"ExamplePassword_1_"+i,"ExampleEmail_1_"+i);
+            users.save(student);
+            users.save(teacher);
+            Post post=new Post("ExampleTitle_"+i,"ExampleDescription_"+i,(Math.random()*50));
+            post.setRanking(new Ranking(Math.random()*i,i));
+            posts.save(post);
+            Report report=new Report("ExampleMotive_"+i,"ExampleDescription_"+i);
+            student.addReport(report);
+            post.addReport(report);
+            teacher.addPost(post);
+            reports.save(report);
+            Contract contract=new Contract("ExampleDescription_"+i);
+            contracts.save(contract);
+            student.addContractAsStudent(contract);
+            teacher.addContractAsTeacher(contract);
+            post.addContract(contract);
+            users.save(student);
+            users.save(teacher);
+            posts.save(post);
+            reports.save(report);
+            contracts.save(contract);    
         }
     }
 
@@ -63,7 +70,7 @@ public class ViewController {
 		
         return "Home";
     }
-    @GetMapping("/InicioSesión")
+    @GetMapping("/InicioSesion")
     public String inicioSesion(Model model){
         return "InicioSesión";
     }
@@ -125,9 +132,5 @@ public class ViewController {
     public String NuevoContrato(Model model){
         return "NuevoContrato";
     }
-
-
-
-
 
 }

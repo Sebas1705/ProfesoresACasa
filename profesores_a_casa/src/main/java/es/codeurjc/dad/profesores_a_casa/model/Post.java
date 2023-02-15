@@ -2,6 +2,7 @@ package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.*;
 
@@ -21,13 +22,13 @@ public class Post {
     @ManyToOne
     private User ownerUser;
 
-    @OneToMany
-    private List<Contract> contract;
+    @OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Contract> contracts=new ArrayList<>();
 
-    @OneToMany
-    private List<Report> reports;
+    @OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Report> reports=new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     private Ranking ranking;
 
     @Column(name = "TITLE", nullable=false)
@@ -46,5 +47,25 @@ public class Post {
         this.title = title;
         this.description = description;
         this.price = price;
+    }
+
+    public void addContract(Contract contract){
+        contracts.add(contract);
+        contract.setPost(this);
+    }
+
+    public void removeContract(Contract contract){
+        contracts.remove(contract);
+        contract.setPost(null);
+    }
+
+    public void addReport(Report report){
+        reports.add(report);
+        report.setPost(this);
+    }
+
+    public void removeReport(Report report){
+        reports.remove(report);
+        report.setPost(null);
     }
 }
