@@ -1,24 +1,38 @@
 {{>header}}
-<table id="ofertas">
-    <thead>
-      <tr>
-        <td>Usuario</td>
-        <td>Descripcion</td>
-      </tr>
-    </thead>
-    <tbody>
-        <td>
-            <input type="text" name = --Nombre value = Oferta>
-            <input type="text" value = Descripcion>
+<section class="Posts">
 
-        </td>
-    </tbody>
-  </table>
-  
-  <template id="Usuario">
-    <tr>
-      <td class="Descripcion"></td>
-      <td></td>
-    </tr>
-  </template>
+  {{#hasPrev}}
+<a href="/?page={{prevPage}}"><=Prev</a>	
+{{/hasPrev}}
+
+{{#hasNext}}
+<a href="/?page={{nextPage}}">Next=></a>
+{{/hasNext}}
+
+  {{#posts}}
+  <div class="PostCard">
+      <hr>
+      <h1>{{title}}</h1>
+      <p>{{description}}</p>
+      <h4>{{price}}</h4>
+    <a href="/Oferta/{{id}}">Go to!</a><br>
+      <hr>
+</div>
+  {{/posts}}
+
+<br>
+
+{{#hasPrev}}
+<a href="/?page={{prevPage}}"><=Prev</a>	
+{{/hasPrev}}
+
+{{#hasNext}}
+<a href="/?page={{nextPage}}">Next=></a>
+{{/hasNext}}
+
+<br>
+  {{^posts}}
+  <h1>Actualmente no hay ningun post, ayuda y crealos!</h1>
+  {{/posts}}
+</section>
 {{>footer}}

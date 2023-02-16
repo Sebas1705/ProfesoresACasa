@@ -59,4 +59,7 @@ public class UserService {
         users.save(user);
     }
 
+    public List<User> findUser(String sessionId){
+        return users.findBySessionId(sessionId);
+    }
 }

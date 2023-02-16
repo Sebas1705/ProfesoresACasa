@@ -108,21 +108,6 @@ public class ViewController {
         return "VerPerfil";
     }
 
-    @GetMapping("/Contratos")
-    public String contratos(Model model){
-        return "Contratos";
-    }
-
-    @GetMapping("/Oferta")
-    public String Oferta(Model model){
-        return "Oferta";
-    }
-
-    @GetMapping("/Denuncias")
-    public String denuncias(Model model){
-        return "Denuncias";
-    }
-
     @GetMapping("/NuevaOferta")
     public  String NuevaOferta(Model model){
         return "NuevaOferta";
@@ -135,15 +120,47 @@ public class ViewController {
         return "Oferta";
     }
 
-
+    @GetMapping("/Oferta")
+    public String mostrarOfertas(Model model, HttpSession sesion,Pageable pageable){
+        List<User> usuario = users.findUser(sesion.getId());
+        if(usuario.size() != 0){
+            Page<Post> post=posts.getPage(pageable);
+            model.addAttribute("Posts", usuario.get(0).getPosts());
+            model.addAttribute("hasPrev", post.hasPrevious());
+            model.addAttribute("hasNext", post.hasNext());
+            model.addAttribute("nextPage", post.getNumber()+1);
+            model.addAttribute("prevPage", post.getNumber()-1);	
+        }else{
+            model.addAttribute("Posts", null);
+        }
+        return "Oferta";
+    }
+    
     @GetMapping("/NuevaDenuncia")
     public String NuevaDenuncia(Model model){
         return "NuevaDenuncia";
     }
 
+    @GetMapping("/Denuncias")
+    public String denuncias(Model model){
+        return "Denuncias";
+    }
+
+    @PostMapping("/Denuncias")
+    public String guardarDenuncia(Model model, @RequestParam String motive, @RequestParam String description){
+        Report report = new Report(motive, description);
+        reports.save(report);
+        return "Denuncias";
+    }
+
     @GetMapping("/NuevoContrato")
     public String NuevoContrato(Model model){
         return "NuevoContrato";
+    }
+
+    @GetMapping("/Contratos")
+    public String contratos(Model model){
+        return "Contratos";
     }
 
 }
