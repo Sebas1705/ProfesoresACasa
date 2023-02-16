@@ -97,16 +97,6 @@ public class ViewController {
         return "VerPerfil";
     }
 
-    @GetMapping("/Contratos")
-    public String contratos(Model model){
-        return "Contratos";
-    }
-
-    @GetMapping("/Denuncias")
-    public String denuncias(Model model){
-        return "Denuncias";
-    }
-
     @GetMapping("/NuevaOferta")
     public  String NuevaOferta(Model model){
         return "NuevaOferta";
@@ -140,9 +130,26 @@ public class ViewController {
         return "NuevaDenuncia";
     }
 
+    @GetMapping("/Denuncias")
+    public String denuncias(Model model){
+        return "Denuncias";
+    }
+
+    @PostMapping("/Denuncias")
+    public String guardarDenuncia(Model model, @RequestParam String motive, @RequestParam String description){
+        Report report = new Report(motive, description);
+        reports.save(report);
+        return "Denuncias";
+    }
+
     @GetMapping("/NuevoContrato")
     public String NuevoContrato(Model model){
         return "NuevoContrato";
+    }
+
+    @GetMapping("/Contratos")
+    public String contratos(Model model){
+        return "Contratos";
     }
 
 }
