@@ -24,13 +24,13 @@ public class ViewController {
     
     @PostConstruct
     public void init(){
-        service.autoInitDBTest(100);
+        service.autoInitDBTest(50);
     }
 
 
     @GetMapping("/")
     public String home(Model model,HttpSession session,Pageable pageable){
-        service.setUpOfPosts(model,PageRequest.of(pageable.getPageNumber(),10));
+        service.setUpOfPosts(model,pageable,null,false);
         return "Home";
     }
 

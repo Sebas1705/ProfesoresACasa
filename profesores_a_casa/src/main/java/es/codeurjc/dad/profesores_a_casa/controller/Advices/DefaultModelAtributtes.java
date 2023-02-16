@@ -19,7 +19,7 @@ public class DefaultModelAtributtes {
     @ModelAttribute("Bienvenido")
     public String getBienvenido(){return "~~Bienvenido!!~~";}
 
-    @ModelAttribute("BienevenidoDeVuelta")
+    @ModelAttribute("BienvenidoDeVuelta")
     public String getBienevenidoDeVuelta() {return "Bienvenido de vuelta!!";}
 
 }

@@ -4,7 +4,9 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -18,6 +20,8 @@ public class GeneralService {
     @Autowired private ContractService contracts;
     @Autowired private RankingService rankings;
     @Autowired private ReportService reports;
+
+    private static final int sizePage = 10;
 
 
     //Casos 1:1->
@@ -56,8 +60,13 @@ public class GeneralService {
         }
     }
 
-    public void setUpOfPosts(Model model,Pageable pageable){
-        Page<Post> post=posts.getPage(pageable);
+    public void setUpOfPosts(Model model,Pageable pageable,String sortBy,boolean desc){
+        Page<Post> post;
+        if(sortBy!=null){
+            post=posts.getPage(PageRequest.of(pageable.getPageNumber(),sizePage,(desc)?Sort.by(sortBy).descending():Sort.by(sortBy).ascending()));
+        }else{
+            post=posts.getPage(PageRequest.of(pageable.getPageNumber(),sizePage));
+        }
         model.addAttribute("posts", post);
         model.addAttribute("hasPrev", post.hasPrevious());
         model.addAttribute("hasNext", post.hasNext());	
