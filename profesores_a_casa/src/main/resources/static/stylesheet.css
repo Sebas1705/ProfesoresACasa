@@ -8,6 +8,12 @@ body {
 }
 
 /*===HOME===*/
+.scroller {
+	color:rgba(255, 255, 255, 0.1);
+}
+.containerIndexs{
+	display: flex;
+}
 .Intro {
 	position: relative;
 	background: #0b1940;

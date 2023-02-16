@@ -1,5 +1,6 @@
 package es.codeurjc.dad.profesores_a_casa.controller;
 
+import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ViewController {
 
     @PostConstruct
     public void init(){
-        for (int i=0;i<100;i++){
+        for (int i=0;i<60;i++){
             User student=new User("ExampleLogname_0_"+i,"ExamplePassword_0_"+i,"ExampleEmail_0_"+i);
             User teacher=new User("ExampleLogname_1_"+i,"ExamplePassword_1_"+i,"ExampleEmail_1_"+i);
             users.save(student);
@@ -57,19 +58,31 @@ public class ViewController {
         }
     }
 
+
     @GetMapping("/")
     public String home(Model model,HttpSession sesion,Pageable pageable){
+        
         model.addAttribute("Nuevo",sesion.isNew());
         
         Page<Post> post=posts.getPage(pageable);
 		model.addAttribute("posts", post);
 		model.addAttribute("hasPrev", post.hasPrevious());
-		model.addAttribute("hasNext", post.hasNext());
-		model.addAttribute("nextPage", post.getNumber()+1);
-		model.addAttribute("prevPage", post.getNumber()-1);		
-		
+		model.addAttribute("hasNext", post.hasNext());	
+        model.addAttribute("prevPage",post.getNumber()-1);
+        model.addAttribute("nextPage",post.getNumber()+1);	
+		int totalpages=post.getTotalPages();
+        List<Integer> indexNext=new ArrayList<Integer>();
+        List<Integer> indexPrev=new ArrayList<Integer>();
+        for(int i=post.getNumber()+1;i<totalpages;i++)indexNext.add(i);
+        for(int i=0;i<post.getNumber();i++)indexPrev.add(i);
+        model.addAttribute("actualPage",post.getNumber());
+        model.addAttribute("prevPages",indexPrev);
+        model.addAttribute("nextPages",indexNext);
+
         return "Home";
     }
+
+
     @GetMapping("/InicioSesion")
     public String inicioSesion(Model model){
         return "InicioSesión";

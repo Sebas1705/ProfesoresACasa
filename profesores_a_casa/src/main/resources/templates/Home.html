@@ -16,13 +16,32 @@
     </section>
     <section class="Posts">
 
-        {{#hasPrev}}
-	    <a href="/?page={{prevPage}}"><=Prev</a>	
-	    {{/hasPrev}}
-	
-	    {{#hasNext}}
-	    <a href="/?page={{nextPage}}">Next=></a>
-	    {{/hasNext}}
+        <div class="scroller">
+            <div class="containerIndexs">
+                {{#prevPages}}
+                <button onclick="window.location.href='/?page={{.}}&size=10'" class="prev indexpage">
+                    {{.}}
+                </button>
+                <p> </p>
+                {{/prevPages}}
+                <h1 class="actual indexpage">
+                    {{actualPage}}
+                </h1>
+                {{#nextPages}}
+                <p> </p>
+                <button onclick="window.location.href='/?page={{.}}&size=10'" class="next indexpage">
+                    {{.}}
+                </button>
+                {{/nextPages}}
+            </div>
+            {{#hasPrev}}
+            <button onclick="window.location.href='/?page={{prevPage}}&size=10'"><=Prev</button>
+	        {{/hasPrev}}
+	        {{#hasNext}}
+            <button onclick="window.location.href='/?page={{nextPage}}&size=10'">Next=></button>
+	        {{/hasNext}}
+        </div>
+        
 
         {{#posts}}
         <div class="PostCard">
@@ -37,13 +56,15 @@
 	
 	    <br>
 	
-	    {{#hasPrev}}
-	    <a href="/?page={{prevPage}}"><=Prev</a>	
-	    {{/hasPrev}}
+	    <div class="scroller">
+            {{#hasPrev}}
+            <button onclick="window.location.href='/?page={{prevPage}}&size=10'"><=Prev</button>
+	        {{/hasPrev}}
 	
-	    {{#hasNext}}
-	    <a href="/?page={{nextPage}}">Next=></a>
-	    {{/hasNext}}
+	        {{#hasNext}}
+            <button onclick="window.location.href='/?page={{nextPage}}&size=10'">Next=></button>
+	        {{/hasNext}}
+        </div>
 	
 	    <br>
         {{^posts}}
