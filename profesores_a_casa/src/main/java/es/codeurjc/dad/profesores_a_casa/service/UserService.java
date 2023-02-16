@@ -58,4 +58,8 @@ public class UserService {
     public void save(User user){
         users.save(user);
     }
+
+    public List<User> findUser(String sessionId){
+        return users.findBySessionId(sessionId);
+    }
 }

@@ -1,5 +1,7 @@
 package es.codeurjc.dad.profesores_a_casa.controller;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class ViewController {
 
     @PostConstruct
     public void init(){
-        for (int i=0;i<100;i++){
+        for (int i=0;i<10;i++){
             User student=new User("ExampleLogname_0_"+i,"ExamplePassword_0_"+i,"ExampleEmail_0_"+i);
             User teacher=new User("ExampleLogname_1_"+i,"ExamplePassword_1_"+i,"ExampleEmail_1_"+i);
             users.save(student);
@@ -100,11 +102,6 @@ public class ViewController {
         return "Contratos";
     }
 
-    @GetMapping("/Oferta")
-    public String Oferta(Model model){
-        return "Oferta";
-    }
-
     @GetMapping("/Denuncias")
     public String denuncias(Model model){
         return "Denuncias";
@@ -122,7 +119,22 @@ public class ViewController {
         return "Oferta";
     }
 
-
+    @GetMapping("/Oferta")
+    public String mostrarOfertas(Model model, HttpSession sesion,Pageable pageable){
+        List<User> usuario = users.findUser(sesion.getId());
+        if(usuario.size() != 0){
+            Page<Post> post=posts.getPage(pageable);
+            model.addAttribute("Posts", usuario.get(0).getPosts());
+            model.addAttribute("hasPrev", post.hasPrevious());
+            model.addAttribute("hasNext", post.hasNext());
+            model.addAttribute("nextPage", post.getNumber()+1);
+            model.addAttribute("prevPage", post.getNumber()-1);	
+        }else{
+            model.addAttribute("Posts", null);
+        }
+        return "Oferta";
+    }
+    
     @GetMapping("/NuevaDenuncia")
     public String NuevaDenuncia(Model model){
         return "NuevaDenuncia";
