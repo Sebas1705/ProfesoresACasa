@@ -1,19 +1,24 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
 
-
+/*===GENERAL===*/
 body {
 	font: 13px/20px "Montserrat", Tahoma, Verdana, sans-serif;
 	color: #a799a7;
 	background: #391034;
 }
+/*===GENERAL===*/
 
-/*===HOME===*/
+/*===PAGESINDEXS===*/
 .scroller {
 	color:rgba(255, 255, 255, 0.1);
+	font: 13px Arial;
 }
 .containerIndexs{
 	display: flex;
 }
+/*===PAGESINDEXS===*/
+
+/*===HOME===*/
 .Intro {
 	position: relative;
 	background: #0b1940;

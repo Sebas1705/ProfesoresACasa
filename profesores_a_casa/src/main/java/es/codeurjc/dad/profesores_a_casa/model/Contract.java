@@ -6,7 +6,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Entity
@@ -29,9 +28,7 @@ public class Contract {
     @Column(name="DESCRIPTION")
     private String description;
 
-    public Contract(){}
+    public Contract(){this(null);}
 
-    public Contract(String description){
-        this.description = description;
-    }
+    public Contract(String description){this.description=description;}
 }

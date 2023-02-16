@@ -5,7 +5,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Entity
@@ -28,7 +27,7 @@ public class Report {
     @Column(name = "DESCRIPTION", nullable=true)
     private String description;
 
-    public Report(){}
+    public Report(){this(null,null);}
 
     public Report(String motive,String description){
         this.motive=motive;

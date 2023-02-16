@@ -1,0 +1,15 @@
+{{#posts}}
+<div class="PostCard">
+    <hr>
+    <h1>{{title}}</h1>
+    <p>{{description}}</p>
+    <h4>{{price}}</h4>
+    <p>Created in: {{created_date}}</p>
+	<a href="/Oferta/{{id}}">Go to!</a><br>
+    <hr>
+</div>
+{{/posts}}
+<br>
+{{^posts}}
+<h1>Actualmente no hay ningun post, ayuda y crealos!</h1>
+{{/posts}}

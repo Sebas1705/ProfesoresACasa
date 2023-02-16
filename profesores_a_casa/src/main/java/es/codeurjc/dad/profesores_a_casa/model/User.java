@@ -7,7 +7,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Entity
@@ -44,16 +43,13 @@ public class User {
     @Column(name = "SELF_DESCRIPTION")
     private String selfDescription;
 
-    // @Column(name = "PRIVILEGED")
-    // private boolean privileged;
-
-    public User(){}
+    public User(){this(null,null,null);}
 
     public User(String logname,String password,String email){
-        super();
         this.logname=logname;
         this.password=password;
         this.selfDescription=null;
+        this.sessionId=null;
         this.email=email;
     }
 

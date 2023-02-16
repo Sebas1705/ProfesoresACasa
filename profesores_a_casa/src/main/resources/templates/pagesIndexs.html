@@ -1,0 +1,25 @@
+<div class="scroller">
+    <div class="containerIndexs">
+        {{#prevPages}}
+        <button onclick="window.location.href='/?page={{.}}&size=10'" class="prev indexpage">
+            {{.}}
+        </button>
+        <p> </p>
+        {{/prevPages}}
+        <h1 class="actual indexpage">
+            {{actualPage}}
+        </h1>
+        {{#nextPages}}
+        <p> </p>
+        <button onclick="window.location.href='/?page={{.}}&size=10'" class="next indexpage">
+            {{.}}
+        </button>
+        {{/nextPages}}
+    </div>
+    {{#hasPrev}}
+    <button onclick="window.location.href='/?page={{prevPage}}&size=10'"><=Prev</button>
+    {{/hasPrev}}
+    {{#hasNext}}
+    <button onclick="window.location.href='/?page={{nextPage}}&size=10'">Next=></button>
+    {{/hasNext}}
+</div>

@@ -15,61 +15,9 @@
         {{/Nuevo}}
     </section>
     <section class="Posts">
-
-        <div class="scroller">
-            <div class="containerIndexs">
-                {{#prevPages}}
-                <button onclick="window.location.href='/?page={{.}}&size=10'" class="prev indexpage">
-                    {{.}}
-                </button>
-                <p> </p>
-                {{/prevPages}}
-                <h1 class="actual indexpage">
-                    {{actualPage}}
-                </h1>
-                {{#nextPages}}
-                <p> </p>
-                <button onclick="window.location.href='/?page={{.}}&size=10'" class="next indexpage">
-                    {{.}}
-                </button>
-                {{/nextPages}}
-            </div>
-            {{#hasPrev}}
-            <button onclick="window.location.href='/?page={{prevPage}}&size=10'"><=Prev</button>
-	        {{/hasPrev}}
-	        {{#hasNext}}
-            <button onclick="window.location.href='/?page={{nextPage}}&size=10'">Next=></button>
-	        {{/hasNext}}
-        </div>
-        
-
-        {{#posts}}
-        <div class="PostCard">
-            <hr>
-            <h1>{{title}}</h1>
-            <p>{{description}}</p>
-            <h4>{{price}}</h4>
-	        <a href="/Oferta/{{id}}">Go to!</a><br>
-            <hr>
-	    </div>
-        {{/posts}}
-	
-	    <br>
-	
-	    <div class="scroller">
-            {{#hasPrev}}
-            <button onclick="window.location.href='/?page={{prevPage}}&size=10'"><=Prev</button>
-	        {{/hasPrev}}
-	
-	        {{#hasNext}}
-            <button onclick="window.location.href='/?page={{nextPage}}&size=10'">Next=></button>
-	        {{/hasNext}}
-        </div>
-	
-	    <br>
-        {{^posts}}
-        <h1>Actualmente no hay ningun post, ayuda y crealos!</h1>
-        {{/posts}}
+        {{>pagesIndexs}}
+        {{>postCard}}
+        {{>pagesIndexs}}
     </section>
 {{>footer}}
 

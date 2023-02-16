@@ -2,13 +2,13 @@ package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Entity
@@ -40,13 +40,16 @@ public class Post {
     @Column(name = "PRICE", nullable=false)
     private double price;
 
-    public Post(){}
+    @Column(name = "CREATED_DATE", nullable=false)
+    private String created_date;
 
+    public Post(){this(null,null,0.00);}
 
     public Post(String title, String description, double price){
         this.title = title;
         this.description = description;
         this.price = price;
+        this.created_date=LocalDateTime.now().toString();
     }
 
     public void addContract(Contract contract){

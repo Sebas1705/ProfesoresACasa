@@ -1,16 +1,13 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
-import java.util.List;
 import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Entity
-
 public class Ranking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,10 +23,7 @@ public class Ranking {
     @Column(name = "NUM_RANKINGS", nullable=false)
     private int numRankings;
 
-    public Ranking(){
-        this.totalScore=0.00;
-        this.numRankings=0;
-    }
+    public Ranking(){this(0.00,0);}
 
     public Ranking(double totalScore, int numRankings){
         this.totalScore=totalScore;
