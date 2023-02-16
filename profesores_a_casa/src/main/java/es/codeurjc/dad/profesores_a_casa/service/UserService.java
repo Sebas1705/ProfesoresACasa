@@ -23,6 +23,10 @@ public class UserService {
         
     }
 
+    public User getUser(String logname){
+        return users.findByLogname(logname);
+    }
+
     public List<User> getUsers(){
         return users.findAll();
     }
@@ -59,7 +63,7 @@ public class UserService {
         users.save(user);
     }
 
-    public List<User> findUser(String sessionId){
+    public User findUser(String sessionId){
         return users.findBySessionId(sessionId);
     }
 }

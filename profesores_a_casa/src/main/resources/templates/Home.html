@@ -1,17 +1,12 @@
 {{>header}}
     <section class="Intro">
         {{#Nuevo}}
-        <h1>~~Bienvenido!!~~</h1>
-        <p>
-            {{description}} 
-            <a href="/Registro">Registro!</a> 
-            o incia sesión en 
-            <a href="/InicioSesion">InicioSesion!</a>
-        </p>
+        <h1>{{Bienvenido}}</h1>
+        <p>{{description}}</p>
         {{/Nuevo}}
 
         {{^Nuevo}}
-        <h1>Bienvenido de vuelta!!</h1>
+        <h1>{{BienvenidoDeVuelta}}</h1>
         {{/Nuevo}}
     </section>
     <section class="Posts">

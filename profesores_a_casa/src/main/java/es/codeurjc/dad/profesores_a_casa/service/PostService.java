@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import es.codeurjc.dad.profesores_a_casa.model.Post;
+import es.codeurjc.dad.profesores_a_casa.model.User;
 import es.codeurjc.dad.profesores_a_casa.repository.PostRepository;
 
 import java.net.URI;
@@ -27,6 +28,10 @@ public class PostService {
 
     public Page<Post> getPage(Pageable pageable){
         return posts.findAll(pageable);
+    }
+
+    public Page<Post> getPagefromUser(User user,Pageable pageable){
+        return posts.findByOwnerUser(user,pageable);
     }
 
     public List<Post> getPosts(){

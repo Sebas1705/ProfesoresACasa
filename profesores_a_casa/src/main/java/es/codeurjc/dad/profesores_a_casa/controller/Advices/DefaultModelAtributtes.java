@@ -13,7 +13,13 @@ public class DefaultModelAtributtes {
         "Para ello a lo largo de la app podra encontrar varias ofertas hechas por los propios profesores "+
         "que tienen cuenta en la web, tu como cliente puedes explorar y elegir por estas ofertas o simplemente "+
         "volverte profesor y publicar tus propias ofertas. Para contratar y ofertar tienes que tener una cuenta, por "+
-        "lo que creala en ";
+        "lo que creala en registro o incia sesión si ya tienes una!";
     }
+
+    @ModelAttribute("Bienvenido")
+    public String getBienvenido(){return "~~Bienvenido!!~~";}
+
+    @ModelAttribute("BienevenidoDeVuelta")
+    public String getBienevenidoDeVuelta() {return "Bienvenido de vuelta!!";}
 
 }

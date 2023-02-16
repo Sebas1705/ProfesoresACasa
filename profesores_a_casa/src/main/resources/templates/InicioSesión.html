@@ -2,7 +2,10 @@
 <section>
   <div class="formulariosLog">
     <h1>Login</h1>
-    <form class="form" method="post" action="/login">
+    <form class="form" method="post" action="/log?page=1">
+      {{#Incorrect}}
+      <p class="try again">Try Again</p>
+      {{/Incorrect}}
       <p class="field">
         <input type="text" name="logname" placeholder="Username" required/>
         <i class="fa fa-user"></i>
@@ -11,6 +14,7 @@
         <input type="password" name="password" placeholder="Password" required/>
         <i class="fa fa-lock"></i>
       </p>
+      <label><input type="checkbox" name="record" value="record">Recuerdame!</label><br>
       <p class="submit"><input type="submit" name="sent" value="Login"></p>
     </form>
     <p class="sub-text">No tienes cuenta? Creala dandole al siguiente link! <a href="/Registro">Registro!</a></p>

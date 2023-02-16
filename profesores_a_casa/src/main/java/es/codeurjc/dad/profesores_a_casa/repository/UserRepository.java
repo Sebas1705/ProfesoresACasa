@@ -6,5 +6,6 @@ import es.codeurjc.dad.profesores_a_casa.model.User;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User,Long>{
-    List<User> findBySessionId(String sessionId);
+    User findBySessionId(String sessionId);
+    User findByLogname(String logname);
 }

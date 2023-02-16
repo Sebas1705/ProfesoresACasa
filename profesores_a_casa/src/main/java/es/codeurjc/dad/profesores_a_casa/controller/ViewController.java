@@ -15,71 +15,33 @@ import es.codeurjc.dad.profesores_a_casa.service.*;
 @Controller
 public class ViewController {
 
-    @Autowired private PostService posts;
+    
+    @Autowired private GeneralService service;
     @Autowired private UserService users;
-    @Autowired private ContractService contracts;
-    @Autowired private RankingService rankings;
+    @Autowired private PostService posts;
     @Autowired private ReportService reports;
-
-    //Casos 1:1->
-    //  Bidireccional:
-    //      Sin cascade: se guarda cada uno por separado y se hace el set
-    //      Con cascade: se guarda solo el principal tras setear el secundario
-    //Casos N:1->
-    //  Bidireccional:
-    //      Sin cascade: se guarda la entidad secundaria, se setea a la principal y se guarda la principal
-    //      Con cascade: se hace funcion de add en la secundaria que fue mapeada
-
+    @Autowired private ContractService contracts;
+    
     @PostConstruct
     public void init(){
-        for (int i=0;i<60;i++){
-            User student=new User("ExampleLogname_0_"+i,"ExamplePassword_0_"+i,"ExampleEmail_0_"+i);
-            User teacher=new User("ExampleLogname_1_"+i,"ExamplePassword_1_"+i,"ExampleEmail_1_"+i);
-            users.save(student);
-            users.save(teacher);
-            Post post=new Post("ExampleTitle_"+i,"ExampleDescription_"+i,(Math.random()*50));
-            post.setRanking(new Ranking(Math.random()*i,i));
-            posts.save(post);
-            Report report=new Report("ExampleMotive_"+i,"ExampleDescription_"+i);
-            student.addReport(report);
-            post.addReport(report);
-            teacher.addPost(post);
-            reports.save(report);
-            Contract contract=new Contract("ExampleDescription_"+i);
-            contracts.save(contract);
-            student.addContractAsStudent(contract);
-            teacher.addContractAsTeacher(contract);
-            post.addContract(contract);
-            users.save(student);
-            users.save(teacher);
-            posts.save(post);
-            reports.save(report);
-            contracts.save(contract);    
-        }
+        service.autoInitDBTest(100);
     }
 
 
     @GetMapping("/")
-    public String home(Model model,HttpSession sesion,Pageable pageable){
-        
-        model.addAttribute("Nuevo",sesion.isNew());
-        
-        Page<Post> post=posts.getPage(pageable);
-		model.addAttribute("posts", post);
-		model.addAttribute("hasPrev", post.hasPrevious());
-		model.addAttribute("hasNext", post.hasNext());	
-        model.addAttribute("prevPage",post.getNumber()-1);
-        model.addAttribute("nextPage",post.getNumber()+1);	
-		int totalpages=post.getTotalPages();
-        List<Integer> indexNext=new ArrayList<Integer>();
-        List<Integer> indexPrev=new ArrayList<Integer>();
-        for(int i=post.getNumber()+1;i<totalpages;i++)indexNext.add(i);
-        for(int i=0;i<post.getNumber();i++)indexPrev.add(i);
-        model.addAttribute("actualPage",post.getNumber());
-        model.addAttribute("prevPages",indexPrev);
-        model.addAttribute("nextPages",indexNext);
-
+    public String home(Model model,HttpSession session,Pageable pageable){
+        service.setUpOfPosts(model,PageRequest.of(pageable.getPageNumber(),10));
         return "Home";
+    }
+
+    @PostMapping("/log")
+    public String getLog(Model model,Pageable pageable,String logname,String password,String record){
+        return "log";
+    }
+
+    @GetMapping("/logout")
+    public String getLogout() {
+        return "log";
     }
 
 
@@ -122,10 +84,10 @@ public class ViewController {
 
     @GetMapping("/Oferta")
     public String mostrarOfertas(Model model, HttpSession sesion,Pageable pageable){
-        List<User> usuario = users.findUser(sesion.getId());
-        if(usuario.size() != 0){
-            Page<Post> post=posts.getPage(pageable);
-            model.addAttribute("Posts", usuario.get(0).getPosts());
+        User usuario = users.findUser(sesion.getId());
+        if(usuario!=null){
+            Page<Post> post=posts.getPagefromUser(usuario,pageable);
+            model.addAttribute("Posts", post);
             model.addAttribute("hasPrev", post.hasPrevious());
             model.addAttribute("hasNext", post.hasNext());
             model.addAttribute("nextPage", post.getNumber()+1);

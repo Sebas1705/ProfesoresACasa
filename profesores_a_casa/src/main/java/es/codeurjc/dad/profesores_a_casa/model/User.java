@@ -28,7 +28,7 @@ public class User {
     @OneToMany(mappedBy="student", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Contract> contractsAsStudent=new ArrayList<Contract>();
 
-    @Column(name = "SESSION_ID")
+    @Column(name = "SESSION_ID",unique = true)
     private String sessionId;
 
     @Column(name = "LOGNAME")
