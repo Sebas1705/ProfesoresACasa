@@ -4,25 +4,136 @@
 body {
 	font: 13px/20px "Montserrat", Tahoma, Verdana, sans-serif;
 	color: #a799a7;
-	background: #391034;
+	background: #c3d4d1;
+	margin:0;
 }
+header, footer {
+	background: #f1a94c;
+	width: 100%;
+	min-height: 200px;
+}
+footer {
+	height: 250px;
+}
+header {
+	margin: 0px 0px 10px 0px;
+	border-bottom: 15px solid #000104;
+}
+header .MenuNoUser{
+	display:grid;
+	grid-template-columns: 1fr 1fr 10px 1fr 10px 1fr 10px 1fr;
+	gap: 15px 20px;
+}
+header .MenuNoUser *{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+header .MenuNoUser .noIcon {
+	background-color: whitesmoke;
+	width:70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 5px solid #000000;
+	margin:25% 10% 10px 10px;
+}
+header .MenuNoUser .Link{
+	background: #f1a94c;
+	margin:35% 10% 10px 10px;
+	font-size: 20px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	text-decoration:none;
+}
+
+header .MenuNoUser hr{
+	height: 50%;
+	width: 2px;
+	margin-top:65px;
+	background-color: #a3661d;
+	border-color:#a3661d;
+}
+header .MenuNoUser .Link:hover{
+    color: cornflowerblue;
+}
+footer {
+	margin: 10px 0px 0px 0px;
+	border-top: 15px solid #000104;
+}
+
+
 /*===GENERAL===*/
 
 /*===PAGESINDEXS===*/
 .scroller {
-	color:rgba(255, 255, 255, 0.1);
-	font: 13px Arial;
+	color:rgba(41, 0, 204, 0.1);
+	font-size: 20px;
+	display: grid;
+	grid-template-columns: 10% 1fr 10%;
+	gap: 15px 20px;
+	margin: 10px;
+}
+.scroller .Next:hover{
+	box-shadow: 0 0.1rem 0.4rem rgb(36, 9, 58);
+}
+.scroller .Prev:hover{
+	box-shadow: 0 0.1rem 0.4rem rgb(36, 9, 58);
+}
+.Next, .Prev{
+	display: flex;
+	justify-content: center;
+	border-radius: 25%;
+	text-align: center;
+	cursor:pointer; 
+	align-items: center;
 }
 .containerIndexs{
 	display: flex;
+	gap:0px 10px;
+	justify-content: center;
+	align-items: center;
+}
+.nextIndexpage,.prevIndexpage{
+	cursor: pointer;
+
+}
+.actualIndexpage,.nextIndexpage,.prevIndexpage,.Next,.Prev{
+	font-size: 30px;
+	justify-content: center;
+	text-align: center;
+}
+.actualIndexpage{
+	color:#464954;
 }
 /*===PAGESINDEXS===*/
+
+/*===POSTSCARD===*/
+.containerCards{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 20px;
+	margin: 10px 30px;
+}
+.PostCard {
+	background-color: #254190;
+	border: 2px solid #0f1211;
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 200px;
+}
+.PostCard:hover {
+	box-shadow: 0 0.3rem 0.4rem rgb(67, 15, 110);
+}
+/*===POSTSCARD===*/
 
 /*===HOME===*/
 .Intro {
 	position: relative;
 	background: #0b1940;
 	padding: 20px 10px;
+	margin:0px 10px;
 	border-radius: 50px;
 }
 .Intro h1 {
@@ -36,12 +147,6 @@ body {
 	padding: 20px 10px;
 	border-radius: 20px;
 	color: #ded9cf;
-	
-}
-.PostCard {
-	position: relative;
-	width: 200px;
-	height: 300px;
 }
 /*===HOME===*/
 

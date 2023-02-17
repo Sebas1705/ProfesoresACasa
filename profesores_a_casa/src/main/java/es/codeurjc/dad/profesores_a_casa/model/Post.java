@@ -2,7 +2,7 @@ package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.*;
@@ -49,7 +49,7 @@ public class Post {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.created_date=LocalDateTime.now().toString();
+        this.created_date=LocalDate.now().toString();
     }
 
     public void addContract(Contract contract){

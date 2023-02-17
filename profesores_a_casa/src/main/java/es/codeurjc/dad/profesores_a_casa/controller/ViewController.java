@@ -1,6 +1,5 @@
 package es.codeurjc.dad.profesores_a_casa.controller;
 
-import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class ViewController {
     
     @PostConstruct
     public void init(){
-        service.autoInitDBTest(20);
+        service.autoInitDBTest(25);
     }
 
 
@@ -35,10 +34,6 @@ public class ViewController {
         model.addAttribute("User",u);
         service.setUpOfPosts(model,pageable,null,false);
         return "Home";
-    }
-    @GetMapping("/logout")
-    public String getLogout() {
-        return "log";
     }
 
 

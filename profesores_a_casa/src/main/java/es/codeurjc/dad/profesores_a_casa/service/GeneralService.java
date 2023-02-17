@@ -18,7 +18,6 @@ public class GeneralService {
     @Autowired private PostService posts;
     @Autowired private UserService users;
     @Autowired private ContractService contracts;
-    @Autowired private RankingService rankings;
     @Autowired private ReportService reports;
 
     private static final int sizePage = 10;

@@ -12,22 +12,28 @@
 </head>
 <body>
     <header>
-        <div class="Links">
-            {{#User}}
+        {{#User}}
+        <div class="MenuUser">
+            
             <div class="icon">
                 <h1>{{logname}}</h1>
             </div>
-            {{/User}}
-            {{^User}}
-            <div class="noIcon">
-            
-            </div>
-            {{/User}}
-            <a href="/">Home</a>
-            <a href="/InicioSesion">Inicio Sesion</a>
-            <a href="/Registro">Registro</a>
-            <a href="/logout">Logout</a>
         </div>
+        {{/User}}
+        
+        {{^User}}
+        <div class="MenuNoUser">
+            <div class="noIcon">
+                <img src="images/usuario.png" alt="">
+            </div>
+            <p class="Link"><a href="/">Home</a></p>
+            <hr>
+            <p class="Link"><a href="/InicioSesion">Inicio Sesion</a></p>
+            <hr>
+            <p class="Link"><a href="/Registro">Registro</a></p>
+            <hr>
+            <p class="Link"><a href="/logout">Logout</a></p>
+        </div>
+        {{/User}}
     </header>
-    <hr>
     
