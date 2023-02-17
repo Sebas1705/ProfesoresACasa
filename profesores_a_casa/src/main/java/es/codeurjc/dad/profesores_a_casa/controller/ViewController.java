@@ -24,41 +24,56 @@ public class ViewController {
     
     @PostConstruct
     public void init(){
-        service.autoInitDBTest(50);
+        service.autoInitDBTest(20);
     }
 
 
+    //Home:
     @GetMapping("/")
     public String home(Model model,HttpSession session,Pageable pageable){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
         service.setUpOfPosts(model,pageable,null,false);
         return "Home";
     }
-
-    @PostMapping("/log")
-    public String getLog(Model model,Pageable pageable,String logname,String password,String record){
-        return "log";
-    }
-
     @GetMapping("/logout")
     public String getLogout() {
         return "log";
     }
 
 
+    //LogIn:
     @GetMapping("/InicioSesion")
     public String inicioSesion(Model model){
+        model.addAttribute("Incorrect",false);
+        model.addAttribute("logname","logname");
         return "InicioSesión";
     }
+    @PostMapping("/log")
+    public String getLog(Model model,HttpSession session,String log,String pass){
+        User u=users.findUser(log);
+        if(u!=null&&u.getPassword().equals(pass)){
+            session.setAttribute("User",u);
+            return "succesfullyLogin";
+        }
+        model.addAttribute("logname",log);
+        model.addAttribute("Incorrect",true);
+        return "InicioSesión";
+    }  
+    @GetMapping("/logout")
+    public String getLogout(Model model,HttpSession session,Pageable pageable){
+        session.invalidate();
+        service.setUpOfPosts(model,pageable,null,false);
+        return "Home";
+    }
 
+    //SignUp:
     @GetMapping("/Registro")
     public String registro(Model model){
         return "Registro";
     }
 
-    @GetMapping("/HomeLog")
-    public String homeLog(Model model){
-        return "HomeLog";
-    }
+    
 
     @GetMapping("/PersonalizarPerfil")
     public String personalizarPerfil(Model model){

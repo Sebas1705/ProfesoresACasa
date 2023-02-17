@@ -35,7 +35,7 @@ public class GeneralService {
 
     public void autoInitDBTest(int n){
         for (int i=0;i<n;i++){
-            User student=new User("ExampleLogname_0_"+i,"ExamplePassword_0_"+i,"ExampleEmail_0_"+i);
+            User student=new User("ExampleLogname_0_"+i,"123","ExampleEmail_0_"+i);
             User teacher=new User("ExampleLogname_1_"+i,"ExamplePassword_1_"+i,"ExampleEmail_1_"+i);
             users.save(student);
             users.save(teacher);

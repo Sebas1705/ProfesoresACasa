@@ -1,13 +1,14 @@
 {{>header}}
     <section class="Intro">
-        {{#Nuevo}}
+        {{#User}}
+        <h1>{{BienvenidoDeVuelta}}</h1>
+        <h2>{{logname}}</h2>
+        {{/User}}
+
+        {{^User}}
         <h1>{{Bienvenido}}</h1>
         <p>{{description}}</p>
-        {{/Nuevo}}
-
-        {{^Nuevo}}
-        <h1>{{BienvenidoDeVuelta}}</h1>
-        {{/Nuevo}}
+        {{/User}}
     </section>
     <section class="Posts">
         {{>pagesIndexs}}

@@ -28,9 +28,6 @@ public class User {
     @OneToMany(mappedBy="student", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Contract> contractsAsStudent=new ArrayList<Contract>();
 
-    @Column(name = "SESSION_ID",unique = true)
-    private String sessionId;
-
     @Column(name = "LOGNAME")
     private String logname;
     
@@ -49,7 +46,6 @@ public class User {
         this.logname=logname;
         this.password=password;
         this.selfDescription=null;
-        this.sessionId=null;
         this.email=email;
     }
 
