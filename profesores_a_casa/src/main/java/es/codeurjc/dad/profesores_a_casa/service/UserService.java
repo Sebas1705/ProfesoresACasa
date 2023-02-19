@@ -59,8 +59,12 @@ public class UserService {
         users.save(user);
     }
 
-    public User findUser(String logname){
+    public Optional<User> findUser(String logname){
         return users.findByLogname(logname);
+    }
+
+    public Optional<User> findUser(long id){
+        return users.findById(id);
     }
 
     public boolean exist(User user){

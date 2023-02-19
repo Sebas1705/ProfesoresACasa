@@ -7,7 +7,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.*;
 import es.codeurjc.dad.profesores_a_casa.model.*;
 import es.codeurjc.dad.profesores_a_casa.service.*;
 
@@ -19,7 +19,7 @@ public class ViewController {
     @Autowired private UserService users;
     @Autowired private PostService posts;
     @Autowired private ReportService reports;
-    @Autowired private ContractService contracts;
+    // @Autowired private ContractService contracts;
     
     @PostConstruct
     public void init(){
@@ -41,18 +41,20 @@ public class ViewController {
     @GetMapping("/InicioSesion")
     public String inicioSesion(Model model){
         model.addAttribute("Incorrect",false);
-        model.addAttribute("logname","logname");
+        model.addAttribute("error", null);
         return "InicioSesión";
     }
     @PostMapping("/log")
     public String getLog(Model model,HttpSession session,String log,String pass){
-        User u=users.findUser(log);
-        if(u!=null&&u.getPassword().equals(pass)){
-            session.setAttribute("User",u);
-            return "succesfullyLogin";
+        Optional<User> u=users.findUser(log);
+        if(u.isPresent()&&u.get().getPassword().equals(pass)){
+            session.setAttribute("User",u.get());
+            model.addAttribute("User", u.get());
+            service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
+            return "Home";
         }
-        model.addAttribute("logname",log);
         model.addAttribute("Incorrect",true);
+        model.addAttribute("error","No existe el usuario o la contraseña no es correcta");
         return "InicioSesión";
     }  
     @GetMapping("/logout")
@@ -65,19 +67,38 @@ public class ViewController {
     //SignUp:
     @GetMapping("/Registro")
     public String registro(Model model){
+        model.addAttribute("Incorrect", false);
+        model.addAttribute("error",null);
         return "Registro";
     }
-
-    
-
-    @GetMapping("/PersonalizarPerfil")
-    public String personalizarPerfil(Model model){
-        return "PersonalizarPerfil";
+    @PostMapping("/signIn")
+    public String signIn(Model model,HttpSession session,String email,String log,String pass){
+        Optional<User> u=users.findUser(log);
+        if(u.isPresent()){
+            model.addAttribute("Incorrect",true);
+            model.addAttribute("error","El nombre ya esta en uso");
+            return "Registro";
+        }
+        User newUser=new User(log,pass,email);
+        users.save(newUser);
+        session.setAttribute("User",newUser);
+        model.addAttribute("User",newUser);
+        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
     }
 
-    @GetMapping("/VerPerfil")
-    public String VerPerfil(Model model){
-        return "VerPerfil";
+    //Perfiles:
+    @GetMapping("/MiPerfil/{id}")
+    public String miPerfil(Model model,HttpSession session,@PathVariable long id){
+        Optional<User> user=users.findUser(id);
+        System.out.println(user.isPresent());
+        if(user.isPresent()){
+            model.addAttribute("User", user.get());
+            return "VerPerfil";
+        }
+        session.invalidate();
+        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
     }
 
     @GetMapping("/NuevaOferta")
@@ -93,8 +114,8 @@ public class ViewController {
     }
 
     @GetMapping("/Oferta")
-    public String mostrarOfertas(Model model, HttpSession sesion,Pageable pageable){
-        User usuario = users.findUser(sesion.getId());
+    public String mostrarOfertas(Model model, HttpSession session,Pageable pageable){
+        User usuario=(User)session.getAttribute("User");
         if(usuario!=null){
             Page<Post> post=posts.getPagefromUser(usuario,pageable);
             model.addAttribute("Posts", post);

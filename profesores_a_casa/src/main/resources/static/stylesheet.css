@@ -1,67 +1,118 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
 
-/*===GENERAL===*/
+/*===BODY===*/
 body {
 	font: 13px/20px "Montserrat", Tahoma, Verdana, sans-serif;
 	color: #a799a7;
 	background: #c3d4d1;
 	margin:0;
 }
-header, footer {
+/*===BODY===*/
+
+/*===HEADER===*/
+header {
+	margin: 0px 0px 10px 0px;
 	background: #f1a94c;
 	width: 100%;
 	min-height: 200px;
+	border-top: 10px solid #3a340f;
+	border-bottom: 10px solid #3a340f;
 }
-footer {
-	height: 250px;
-}
-header {
-	margin: 0px 0px 10px 0px;
-	border-bottom: 15px solid #000104;
-}
-header .MenuNoUser{
+header .Menu{
 	display:grid;
-	grid-template-columns: 1fr 1fr 10px 1fr 10px 1fr 10px 1fr;
+	grid-template-columns: 1fr 10px 1fr 10px 1fr 10px 1fr 10px 1fr;
 	gap: 15px 20px;
 }
-header .MenuNoUser *{
+header .Menu *{
+	margin:30px 0 0 0;
 	display:flex;
 	justify-content: center;
 	align-items: center;
 }
-header .MenuNoUser .noIcon {
+header .Menu .noIcon img{
 	background-color: whitesmoke;
 	width:70px;
 	height: 70px;
+	line-height: 200px;
 	border-radius: 50%;
-	border: 5px solid #000000;
-	margin:25% 10% 10px 10px;
+	border: 1px solid #000000;
 }
-header .MenuNoUser .Link{
-	background: #f1a94c;
-	margin:35% 10% 10px 10px;
-	font-size: 20px;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	text-decoration:none;
+header .Menu a img{
+	width: 50px;
+	height: 50px;
+	margin:0px 10px;
+	line-height: 200px;
 }
-
-header .MenuNoUser hr{
-	height: 50%;
+header .Menu hr{
+	top:10px;
 	width: 2px;
-	margin-top:65px;
+	line-height: 200px;
 	background-color: #a3661d;
 	border-color:#a3661d;
 }
-header .MenuNoUser .Link:hover{
+header .Menu .Link:hover{
     color: cornflowerblue;
+	cursor: default;
 }
+#ProfesoresACasaIcon{
+	margin:30px 0 0 0;
+	display:grid;
+	grid-template-rows: calc(512px/5) calc(96px/4);
+	gap:0px;
+}
+#ProfesoresACasaIcon .icon{
+	margin:0px auto;
+	width: calc(512px/5);
+	height: calc(512px/5);
+}
+#ProfesoresACasaIcon .title{
+	top:0;
+	margin:0;
+	width: calc(530px/2);
+	height: calc(96px/2);
+}
+/*===HEADER===*/
+
+/*===FOOTER===*/
 footer {
+	height: 250px;
 	margin: 10px 0px 0px 0px;
-	border-top: 15px solid #000104;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	background: #f1a94c;
+	width: 100%;
+	min-height: 200px;
+	border-top: 10px solid #3a340f;
+	border-bottom: 10px solid #3a340f;
 }
-
-
-/*===GENERAL===*/
+footer .cL .git, footer .cR .git{
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+}
+footer .git a{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+footer .git a img{
+	text-align: center;
+	height: 50px;
+	width: 50px;
+	margin-right: 5px;
+	padding:1px;
+	border-radius: 50%;
+	background-color: #fff;
+	border:3px solid #000000;
+}
+footer .git p{
+	text-align: center;
+	color: black;
+	font: 20px Tahoma, arial, helvetica; 
+}
+/*===FOOTER===*/
 
 /*===PAGESINDEXS===*/
 .scroller {
@@ -182,7 +233,7 @@ footer {
 	position: relative;
 	margin: 100px auto;
 	width: 370px;
-	height: 315px;
+	height: 360px;
 	background: white;
 	border-radius: 3px;
 }
@@ -232,18 +283,9 @@ footer {
 	font-size: 12px;
 	text-decoration: none;
 	font-style: italic;
-	transition: all 0.3s ease-out;
 }
 .formulariosLog p .forgot a:hover {
 	color: #f2672e;
-}
-::-webkit-input-placeholder {
-	color: #ded9cf;
-	font-family: "Open Sans";
-}
-:-moz-placeholder {
-	color: #ded9cf !important;
-	font-family: "Open Sans";
 }
 .form input[type="text"], input[type="password"], input[type="email"]{
 	font-family: "Open Sans", Calibri, Arial, sans-serif;
@@ -257,7 +299,6 @@ footer {
 	border: none;
 	background: #f7f3eb;
 	color: #777;
-	transition: color 0.3s ease-out;
 }
 .form input[type="text"], input[type="email"] {
 	margin-bottom: 15px;
@@ -289,77 +330,16 @@ footer {
 	cursor: pointer;
 	position: relative;
 	margin-bottom: 20px;
-	-webkit-animation: shadowFadeOut 0.4s;
-	-moz-animation: shadowFadeOut 0.4s;
 }
 .form input[type="submit"]:hover, input[type="submit"]:focus {
 	color: #fff;
 	box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
-	-webkit-animation: shadowFade 0.4s;
-	-moz-animation: shadowFade 0.4s;
-}
-@keyframes shadowFade {
-	0% {
-		box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-	100% {
-		box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-}
-@keyframes shadowFadeOut {
-	0% {
-		box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-	100% {
-		box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-}
-@-webkit-keyframes shadowFade {
-	0% {
-		box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-	100% {
-		box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-}
-@-webkit-keyframes shadowFadeOut {
-	0% {
-		box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-	100% {
-		box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-}
-@-moz-keyframes shadowFade {
-	0% {
-		box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-	100% {
-		box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-}
-@-moz-keyframes shadowFadeOut {
-	0% {
-		box-shadow: inset 0px 44px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
-	100% {
-		box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
-		color: #fff;
-	}
 }
 .form input[type="checkbox"] {
 	display: none;
+}
+.form .err{
+	text-align: center;
 }
 .sub-text {
     text-align: center;

@@ -4,10 +4,10 @@
     <h1>Login</h1>
     <form class="form" method="post" action="/log">
       {{#Incorrect}}
-      <p class="try again">Try Again</p>
+      <p class="err">{{error}}</p>
       {{/Incorrect}}
       <p class="field">
-        <input type="text" name="log" placeholder="{{logname}}" required/>
+        <input type="text" name="log" placeholder="logname" required/>
         <i class="fa fa-user"></i>
       </p>
       <p class="field">

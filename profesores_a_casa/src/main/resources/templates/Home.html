@@ -2,12 +2,12 @@
     <section class="Intro">
         {{#User}}
         <h1>{{BienvenidoDeVuelta}}</h1>
-        <h2>{{logname}}</h2>
+        <p class="log">{{logname}}</p>
         {{/User}}
 
         {{^User}}
         <h1>{{Bienvenido}}</h1>
-        <p>{{description}}</p>
+        <p class="unlog">{{description}}</p>
         {{/User}}
     </section>
     <section class="Posts">
