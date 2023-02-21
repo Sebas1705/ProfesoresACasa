@@ -1,0 +1,369 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
+
+/*===BODY===*/
+body {
+	font: 13px/20px "Montserrat", Tahoma, Verdana, sans-serif;
+	color: #a799a7;
+	background: #c3d4d1;
+	margin:0;
+}
+/*===BODY===*/
+
+/*===HEADER===*/
+header {
+	margin: 0px 0px 10px 0px;
+	background: #f1a94c;
+	width: 100%;
+	min-height: 200px;
+	border-top: 10px solid #3a340f;
+	border-bottom: 10px solid #3a340f;
+}
+header .Menu{
+	display:grid;
+	grid-template-columns: 1fr 10px 1fr 10px 1fr 10px 1fr 10px 1fr;
+	gap: 15px 20px;
+}
+header .Menu *{
+	margin:30px 0 0 0;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+header .Menu .noIcon img{
+	background-color: whitesmoke;
+	width:70px;
+	height: 70px;
+	line-height: 200px;
+	border-radius: 50%;
+	border: 1px solid #000000;
+}
+header .Menu a img{
+	width: 50px;
+	height: 50px;
+	margin:0px 10px;
+	line-height: 200px;
+}
+header .Menu hr{
+	top:10px;
+	width: 2px;
+	line-height: 200px;
+	background-color: #a3661d;
+	border-color:#a3661d;
+}
+header .Menu .Link:hover{
+    color: cornflowerblue;
+	cursor: default;
+}
+#ProfesoresACasaIcon{
+	margin:30px 0 0 0;
+	display:grid;
+	grid-template-rows: calc(512px/5) calc(96px/4);
+	gap:0px;
+}
+#ProfesoresACasaIcon .icon{
+	margin:0px auto;
+	width: calc(512px/5);
+	height: calc(512px/5);
+}
+#ProfesoresACasaIcon .title{
+	top:0;
+	margin:0;
+	width: calc(530px/2);
+	height: calc(96px/2);
+}
+/*===HEADER===*/
+
+/*===FOOTER===*/
+footer {
+	height: 250px;
+	margin: 10px 0px 0px 0px;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	background: #f1a94c;
+	width: 100%;
+	min-height: 200px;
+	border-top: 10px solid #3a340f;
+	border-bottom: 10px solid #3a340f;
+}
+footer .cL .git, footer .cR .git{
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+}
+footer .git a{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+footer .git a img{
+	text-align: center;
+	height: 50px;
+	width: 50px;
+	margin-right: 5px;
+	padding:1px;
+	border-radius: 50%;
+	background-color: #fff;
+	border:3px solid #000000;
+}
+footer .git p{
+	text-align: center;
+	color: black;
+	font: 20px Tahoma, arial, helvetica; 
+}
+/*===FOOTER===*/
+
+/*===PAGESINDEXS===*/
+.scroller {
+	color:rgba(41, 0, 204, 0.1);
+	font-size: 20px;
+	display: grid;
+	grid-template-columns: 10% 1fr 10%;
+	gap: 15px 20px;
+	margin: 10px;
+}
+.scroller .Next:hover{
+	box-shadow: 0 0.1rem 0.4rem rgb(36, 9, 58);
+}
+.scroller .Prev:hover{
+	box-shadow: 0 0.1rem 0.4rem rgb(36, 9, 58);
+}
+.Next, .Prev{
+	display: flex;
+	justify-content: center;
+	border-radius: 25%;
+	text-align: center;
+	cursor:pointer; 
+	align-items: center;
+}
+.containerIndexs{
+	display: flex;
+	gap:0px 10px;
+	justify-content: center;
+	align-items: center;
+}
+.nextIndexpage,.prevIndexpage{
+	cursor: pointer;
+
+}
+.actualIndexpage,.nextIndexpage,.prevIndexpage,.Next,.Prev{
+	font-size: 30px;
+	justify-content: center;
+	text-align: center;
+}
+.actualIndexpage{
+	color:#464954;
+}
+/*===PAGESINDEXS===*/
+
+/*===POSTSCARD===*/
+.containerCards{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 20px;
+	margin: 10px 30px;
+}
+.PostCard {
+	background-color: #254190;
+	border: 2px solid #0f1211;
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 200px;
+}
+.PostCard:hover {
+	box-shadow: 0 0.3rem 0.4rem rgb(67, 15, 110);
+}
+/*===POSTSCARD===*/
+
+/*===CONTRACTCARD===*/
+.ContractCard {
+	background-color: #254190;
+	border: 2px solid #0f1211;
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 200px;
+}
+.ContractCard:hover {
+	box-shadow: 0 0.3rem 0.4rem rgb(67, 15, 110);
+}
+/*===CONTRACTCARD===*/
+
+/*===HOME===*/
+.Intro {
+	position: relative;
+	background: #0b1940;
+	padding: 20px 10px;
+	margin:0px 10px;
+	border-radius: 50px;
+}
+.Intro h1 {
+	text-align: center;
+	font: 40px "Comic Sans", monospace;
+	color: #ded9cf;
+}
+.Intro p {
+	text-align: justify;
+	background:#1b398b;
+	padding: 20px 10px;
+	border-radius: 20px;
+	color: #ded9cf;
+}
+/*===HOME===*/
+
+/*===Registro y Login===*/
+.logo {
+	background-position: center;
+	height: 60px;
+	width: 140px;
+	margin: 100px auto 30px auto;
+}
+.form {
+	width: 100%;
+}
+.form .field {
+	position: relative;
+	margin: 0 50px;
+}
+.form .field i {
+	font-size: 18px;
+	left: 0px;
+	top: 0px;
+	position: absolute;
+	height: 44px;
+	width: 44px;
+	color: #f7f3eb;
+	background: #676056;
+	text-align: center;
+	line-height: 44px;
+	transition: all 0.3s ease-out;
+	pointer-events: none;
+}
+.formulariosLog {
+	position: relative;
+	margin: 100px auto;
+	width: 370px;
+	height: 360px;
+	background: white;
+	border-radius: 3px;
+}
+.formulariosLog:before {
+	content: "";
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	bottom: -8px;
+	left: -8px;
+	z-index: -1;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+}
+.formulariosLog h1 {
+	line-height: 55px;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: "Open Sans", sans-serif;
+	text-transform: uppercase;
+	color: #fff;
+	text-align: center;
+	background: #1abc9c;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+.formulariosLog .submit {
+	text-align: center;
+}
+.formulariosLog p:first-child {
+	margin-top: 30px;
+}
+.formulariosLog p .remember {
+	float: left;
+}
+.formulariosLog p .remember label {
+	color: #a7a599;
+	font-size: 12px;
+	cursor: pointer;
+}
+.formulariosLog p .forgot {
+	float: right;
+	margin-right: 50px;
+}
+.formulariosLog p .forgot a {
+	color: #a7a599;
+	font-size: 12px;
+	text-decoration: none;
+	font-style: italic;
+}
+.formulariosLog p .forgot a:hover {
+	color: #f2672e;
+}
+.form input[type="text"], input[type="password"], input[type="email"]{
+	font-family: "Open Sans", Calibri, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	padding: 10px 15px 10px 55px;
+	position: relative;
+	width: 200px;
+	height: 24px;
+	color: #676056;
+	border: none;
+	background: #f7f3eb;
+	color: #777;
+}
+.form input[type="text"], input[type="email"] {
+	margin-bottom: 15px;
+}
+.form input[type="text"]:hover ~ i, .form input[type="password"]:hover ~ i, .form input[type="email"]:hover ~ i {
+	color: #27ae60;
+}
+.form input[type="text"]:focus ~ i, .form input[type="password"]:focus ~ i, .form input[type="email"]:focus ~ i  {
+	color: #27ae60;
+}
+.form input[type="text"]:focus, .form input[type="password"]:focus, .form button[type="submit"]:focus, .form input[type="email"]:focus ~ i {
+	outline: none;
+}
+.form input[type="submit"] {
+	margin-top: 15px;
+	width: 270px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: bold;
+	padding: 12px 0;
+	letter-spacing: 0;
+	box-shadow: inset 0px 0px 0px 0px rgba(26, 188, 156, 1);
+	color: #fff;
+	background-color: #16a085;
+	text-shadow: none;
+	text-transform: uppercase;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	margin-bottom: 20px;
+}
+.form input[type="submit"]:hover, input[type="submit"]:focus {
+	color: #fff;
+	box-shadow: inset 0px 46px 0px 0px rgba(26, 188, 156, 1);
+}
+.form input[type="checkbox"] {
+	display: none;
+}
+.form .err{
+	text-align: center;
+}
+.sub-text {
+    text-align: center;
+}
+/*===Registro y Login===*/
+
+/*===Ver Perfil===*/
+.verPerfil{
+	width: 100%;
+	height: 400px;
+}

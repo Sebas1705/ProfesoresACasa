@@ -1,0 +1,25 @@
+<div class="containerCards">
+    <h1>Tus contratos de profesor:</h1>
+    {{#contractsAsTeacher}}
+    <div class="ContractCard">
+        <p class="description">{{description}}</p>
+        <p>Estudiante: <a href="/Perfil/{{student.id}}">{{student.logname}}</a></p>
+        <p>Post: <a href="/Oferta/{{oferta.id}}">{{post.title}}</a></p>
+    </div>
+    {{/contractsAsTeacher}}
+    {{^contractsAsTeacher}}
+    <h1>Actualmente no hay ningun contrato. Publica tus propios post que interesen a los alumnos!</h1>
+    {{/contractsAsTeacher}}
+    <hr>
+    <h1>Tus contratos de alumno:</h1>
+    {{#contractsAsStudent}}
+    <div class="ContractCard">
+        <p class="description">{{description}}</p>
+        <p>Estudiante: <a href="/Perfil/{{student.id}}">{{student.logname}}</a></p>
+        <p>Post: <a href="/Oferta/{{oferta.id}}">{{post.title}}</a></p>
+    </div>
+    {{/contractsAsStudent}}
+    {{^contractsAsStudent}}
+    <h1>Actualmente no hay ningun post, ayuda y crealos!</h1>
+    {{/contractsAsStudent}}
+</div>

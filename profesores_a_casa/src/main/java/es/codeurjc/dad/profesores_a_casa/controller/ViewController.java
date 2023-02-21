@@ -112,21 +112,19 @@ public class ViewController {
         return service.setUpMiPerfil(model, session);
     } 
 
-    @GetMapping("/Oferta/{id}")
-    public String mostrarOfertas(Model model, HttpSession session,Pageable pageable,@PathVariable long id){
-        User usuario=(User)session.getAttribute("User");
-        if(usuario!=null){
-            Page<Post> post=posts.getPagefromUser(usuario,pageable);
-            model.addAttribute("Posts", post);
-            model.addAttribute("hasPrev", post.hasPrevious());
-            model.addAttribute("hasNext", post.hasNext());
-            model.addAttribute("nextPage", post.getNumber()+1);
-            model.addAttribute("prevPage", post.getNumber()-1);	
-        }else{
-            model.addAttribute("Posts", null);
+    @GetMapping("/Oferta")
+    public String mostrarOfertas(Model model, HttpSession session,Pageable pageable,@RequestParam long id){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        Optional<Post> post = posts.findPost(id);
+        if(post.isPresent()){
+            model.addAttribute("Post", post.get());
+            model.addAttribute("rankingAverage", post.get().getRanking().getAverage());
+            model.addAttribute("id_s", u.getId());
+            return "Oferta";
         }
-        model.addAttribute("User",usuario);
-        return "Oferta";
+        service.setUpOfPosts(model,pageable,null,false);
+        return "Home";
     }
     
     @GetMapping("/NuevaDenuncia")
@@ -141,14 +139,42 @@ public class ViewController {
         model.addAttribute("User",u);
         Report report = new Report(motive, description);
         reports.save(report);
-        return "Denuncias";
+        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
     }
 
-    @GetMapping("/NuevoContrato")
-    public String NuevoContrato(Model model,HttpSession session){
+    @PostMapping("/NuevoContrato")
+    public String NuevoContrato(Model model,HttpSession session, @RequestParam long postId,
+                                     @RequestParam long student, @RequestParam long teacher){
         User u=(User) session.getAttribute("User");
         model.addAttribute("User",u);
-        return "NuevoContrato";
+
+        Optional<User> s = users.findUser(student);
+        Optional<User> t = users.findUser(teacher);
+        Optional<Post> p = posts.findPost(postId);
+        if(s.isPresent() && t.isPresent() && p.isPresent()){
+            Contract contract = new Contract();
+            contracts.save(contract);
+            s.get().addContractAsStudent(contract);
+            t.get().addContractAsTeacher(contract);
+            p.get().addContract(contract);
+            users.save(s.get());
+            users.save(t.get());
+            posts.save(p.get());
+            contracts.save(contract);
+        }
+        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    @PostMapping("/Contratos")
+    public String guardarContrato(Model model,HttpSession session, @RequestParam String motive, @RequestParam String description){
+        Report report = new Report(motive, description);
+        reports.save(report);
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
     }
 
     @GetMapping("/Contratos")

@@ -25,5 +25,15 @@ public class Contract {
     @ManyToOne
     private User student;
 
+<<<<<<< HEAD
     public Contract(){}
+=======
+    
+
+    public Contract(){
+        
+    }
+
+    
+>>>>>>> 52cc13f5d4a034cddff2d31b9d44a8c9b556721e
 }
