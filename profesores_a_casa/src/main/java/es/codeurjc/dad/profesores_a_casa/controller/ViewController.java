@@ -88,12 +88,12 @@ public class ViewController {
     }
 
     //Perfiles:
-    @GetMapping("/MiPerfil/{id}")
-    public String miPerfil(Model model,HttpSession session,@PathVariable long id){
-        Optional<User> user=users.findUser(id);
-        System.out.println(user.isPresent());
-        if(user.isPresent()){
-            model.addAttribute("User", user.get());
+    @GetMapping("/MiPerfil")
+    public String miPerfil(Model model,HttpSession session){
+        User user = (User) session.getAttribute("User");
+        if(user!=null){
+            model.addAttribute("User", user);
+            
             return "VerPerfil";
         }
         session.invalidate();
@@ -106,15 +106,15 @@ public class ViewController {
         return "NuevaOferta";
     }
 
-    @PostMapping("/Oferta")
+    @PostMapping("/Oferta/")
     public String guardarOferta(@RequestParam String oferta, @RequestParam String descripcion, @RequestParam double precio){
         Post post = new Post(oferta, descripcion, precio);
         posts.save(post);
         return "Oferta";
     }
 
-    @GetMapping("/Oferta")
-    public String mostrarOfertas(Model model, HttpSession session,Pageable pageable){
+    @GetMapping("/Oferta/{id}")
+    public String mostrarOfertas(Model model, HttpSession session,Pageable pageable,@PathVariable long id){
         User usuario=(User)session.getAttribute("User");
         if(usuario!=null){
             Page<Post> post=posts.getPagefromUser(usuario,pageable);

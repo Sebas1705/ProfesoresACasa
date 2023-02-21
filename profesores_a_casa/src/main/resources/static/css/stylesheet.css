@@ -179,6 +179,22 @@ footer .git p{
 }
 /*===POSTSCARD===*/
 
+/*===CONTRACTCARD===*/
+.ContractCard {
+	background-color: #254190;
+	border: 2px solid #0f1211;
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 200px;
+}
+.ContractCard:hover {
+	box-shadow: 0 0.3rem 0.4rem rgb(67, 15, 110);
+}
+/*===CONTRACTCARD===*/
+
 /*===HOME===*/
 .Intro {
 	position: relative;
@@ -346,3 +362,8 @@ footer .git p{
 }
 /*===Registro y Login===*/
 
+/*===Ver Perfil===*/
+.verPerfil{
+	width: 100%;
+	height: 400px;
+}

@@ -69,4 +69,8 @@ public class PostService {
     public void save(Post post){
         posts.save(post);
     }
+
+    public Optional<Post> findPost(long id){
+        return posts.findById(id);
+    }
 }
