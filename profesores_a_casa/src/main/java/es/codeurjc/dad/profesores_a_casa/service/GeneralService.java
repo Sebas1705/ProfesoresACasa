@@ -46,7 +46,7 @@ public class GeneralService {
             post.addReport(report);
             teacher.addPost(post);
             reports.save(report);
-            Contract contract=new Contract("ExampleDescription_"+i);
+            Contract contract=new Contract();
             contracts.save(contract);
             student.addContractAsStudent(contract);
             teacher.addContractAsTeacher(contract);

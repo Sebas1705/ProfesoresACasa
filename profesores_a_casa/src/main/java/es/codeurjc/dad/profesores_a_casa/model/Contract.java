@@ -25,10 +25,11 @@ public class Contract {
     @ManyToOne
     private User student;
 
-    @Column(name="DESCRIPTION")
-    private String description;
+    
 
-    public Contract(){this(null);}
+    public Contract(){
+        
+    }
 
-    public Contract(String description){this.description=description;}
+    
 }
