@@ -2,6 +2,8 @@ package es.codeurjc.dad.profesores_a_casa.service;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,7 +48,7 @@ public class GeneralService {
             post.addReport(report);
             teacher.addPost(post);
             reports.save(report);
-            Contract contract=new Contract("ExampleDescription_"+i);
+            Contract contract=new Contract();
             contracts.save(contract);
             student.addContractAsStudent(contract);
             teacher.addContractAsTeacher(contract);
@@ -66,9 +68,10 @@ public class GeneralService {
         }else{
             post=posts.getPage(PageRequest.of(pageable.getPageNumber(),sizePage));
         }
-        model.addAttribute("posts", post);
-        model.addAttribute("hasPrev", post.hasPrevious());
-        model.addAttribute("hasNext", post.hasNext());	
+        model.addAttribute("isPerfil",false);
+        model.addAttribute("posts",post);
+        model.addAttribute("hasPrev",post.hasPrevious());
+        model.addAttribute("hasNext",post.hasNext());	
         model.addAttribute("prevPage",post.getNumber()-1);
         model.addAttribute("nextPage",post.getNumber()+1);	
         int totalpages=post.getTotalPages();
@@ -79,5 +82,23 @@ public class GeneralService {
         model.addAttribute("actualPage",post.getNumber());
         model.addAttribute("prevPages",indexPrev);
         model.addAttribute("nextPages",indexNext);
+    }
+
+    public String setUpMiPerfil(Model model,HttpSession session){
+        User user = (User) session.getAttribute("User");
+        if(user!=null){
+            List<Post> lPosts=posts.findPosts(user);
+            List<Contract> cT=contracts.findContractAsTeacher(user);
+            List<Contract> cS=contracts.findContractAsStudent(user);
+            model.addAttribute("posts",lPosts);
+            model.addAttribute("cT",cT);
+            model.addAttribute("cS",cS);
+            model.addAttribute("User", user);
+            model.addAttribute("isPerfil",true);
+            return "MiPerfil";
+        }
+        session.invalidate();
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
     }
 }

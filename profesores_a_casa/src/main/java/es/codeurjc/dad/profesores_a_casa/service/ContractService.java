@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import es.codeurjc.dad.profesores_a_casa.model.Contract;
+import es.codeurjc.dad.profesores_a_casa.model.*;
 import es.codeurjc.dad.profesores_a_casa.repository.ContractRepository;
 
 import java.net.URI;
@@ -57,5 +57,13 @@ public class ContractService {
 
     public void save(Contract contract){
         contracts.save(contract);
+    }
+
+    public List<Contract> findContractAsStudent(User student){
+        return contracts.findByStudent(student);
+    }
+
+    public List<Contract> findContractAsTeacher(User teacher){
+        return contracts.findByTeacher(teacher);
     }
 }

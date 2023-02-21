@@ -73,4 +73,8 @@ public class PostService {
     public Optional<Post> findPost(long id){
         return posts.findById(id);
     }
+
+    public List<Post> findPosts(User ownerUser){
+        return posts.findByOwnerUser(ownerUser);
+    }
 }

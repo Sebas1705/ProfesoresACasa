@@ -19,7 +19,7 @@ public class ViewController {
     @Autowired private UserService users;
     @Autowired private PostService posts;
     @Autowired private ReportService reports;
-    // @Autowired private ContractService contracts;
+    @Autowired private ContractService contracts;
     
     @PostConstruct
     public void init(){
@@ -90,28 +90,27 @@ public class ViewController {
     //Perfiles:
     @GetMapping("/MiPerfil")
     public String miPerfil(Model model,HttpSession session){
-        User user = (User) session.getAttribute("User");
-        if(user!=null){
-            model.addAttribute("User", user);
-            
-            return "VerPerfil";
-        }
-        session.invalidate();
-        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
-        return "Home";
+        return service.setUpMiPerfil(model,session);
     }
 
-    @GetMapping("/NuevaOferta")
-    public  String NuevaOferta(Model model){
-        return "NuevaOferta";
+    @GetMapping("/NewPost")
+    public String newPostForm(Model model,HttpSession session){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        return "NewPost";
     }
 
-    @PostMapping("/Oferta/")
-    public String guardarOferta(@RequestParam String oferta, @RequestParam String descripcion, @RequestParam double precio){
-        Post post = new Post(oferta, descripcion, precio);
+    @PostMapping("/CreatePost")
+    public String newPost(Model model,HttpSession session,@RequestParam String title, @RequestParam String description, @RequestParam double price){
+        User u=(User) session.getAttribute("User");
+        Post post = new Post(title,description,price);
+        post.setRanking(new Ranking(1,1));
         posts.save(post);
-        return "Oferta";
-    }
+        u.addPost(post);
+        users.save(u);
+        posts.save(post);
+        return service.setUpMiPerfil(model, session);
+    } 
 
     @GetMapping("/Oferta/{id}")
     public String mostrarOfertas(Model model, HttpSession session,Pageable pageable,@PathVariable long id){
@@ -126,33 +125,36 @@ public class ViewController {
         }else{
             model.addAttribute("Posts", null);
         }
+        model.addAttribute("User",usuario);
         return "Oferta";
     }
     
     @GetMapping("/NuevaDenuncia")
-    public String NuevaDenuncia(Model model){
+    public String NuevaDenuncia(Model model,HttpSession session){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
         return "NuevaDenuncia";
     }
-
-    @GetMapping("/Denuncias")
-    public String denuncias(Model model){
-        return "Denuncias";
-    }
-
     @PostMapping("/Denuncias")
-    public String guardarDenuncia(Model model, @RequestParam String motive, @RequestParam String description){
+    public String guardarDenuncia(Model model,HttpSession session,@RequestParam String motive, @RequestParam String description){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
         Report report = new Report(motive, description);
         reports.save(report);
         return "Denuncias";
     }
 
     @GetMapping("/NuevoContrato")
-    public String NuevoContrato(Model model){
+    public String NuevoContrato(Model model,HttpSession session){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
         return "NuevoContrato";
     }
 
     @GetMapping("/Contratos")
-    public String contratos(Model model){
+    public String contratos(Model model,HttpSession session){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
         return "Contratos";
     }
 

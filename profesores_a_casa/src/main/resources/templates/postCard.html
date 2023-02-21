@@ -5,6 +5,7 @@
         <h4 class="price">{{price}}</h4>
         <p class="date">Created in: {{created_date}}</p>
         <a class="link" href="/Oferta/{{id}}">Go to!</a><br>
+        {{#isPerfil}}<button onclick="window.location.href='/deletePost'">Borrar Post</button>{{/isPerfil}}
     </div>
     {{/posts}}
 </div>

@@ -1,17 +1,17 @@
 {{>header}}
-<section class="verPerfil">
+<section class="MiPerfil">
     {{#User}}
     <h1>{{logname}}</h1>
     <p>{{description}}</p>
+    {{/User}}
+
     <div class="colLeft">
         <h2>Publicaciones</h2>
         {{>postCard}}
     </div>
-    
+    <button onclick="window.location.href='/NewPost'">Crear Post</button>
     <div class="colRight">
         {{>contractCard}}
     </div>
-    
-    {{/User}}
 </section>
 {{>footer}}
