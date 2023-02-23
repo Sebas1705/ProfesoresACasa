@@ -77,4 +77,8 @@ public class PostService {
     public List<Post> findPosts(User ownerUser){
         return posts.findByOwnerUser(ownerUser);
     }
+
+    public void deletePost(long id){
+        posts.deleteById(id);
+    }
 }

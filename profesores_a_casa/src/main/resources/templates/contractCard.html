@@ -2,9 +2,8 @@
 <div class="containerCards">    
     {{#cT}}
     <div class="ContractCard">
-        <p class="description">{{description}}</p>
-        <p>Estudiante: <a href="/Perfil/{{student.id}}">{{student.logname}}</a></p>
-        <p>Post: <a href="/Oferta/{{post.id}}">{{post.title}}</a></p>
+        <p>Estudiante: <a href="/otherProfile?userId={{student.id}}">{{student.logname}}</a></p>
+        <p>Post: <a href="/post?postId={{post.id}}">{{post.title}}</a></p>
     </div>
     {{/cT}}
     {{^cT}}
@@ -16,9 +15,8 @@
 <div class="containerCards">
     {{#cS}}
     <div class="ContractCard">
-        <p class="description">{{description}}</p>
-        <p>Estudiante: <a href="/Perfil/{{student.id}}">{{student.logname}}</a></p>
-        <p>Post: <a href="/Oferta/{{post.id}}">{{post.title}}</a></p>
+        <p>Profesor: <a href="/otherProfile?userId={{teacher.id}}">{{teacher.logname}}</a></p>
+        <p>Post: <a href="/post?postId={{post.id}}">{{post.title}}</a></p>
     </div>
     {{/cS}}
     {{^cS}}

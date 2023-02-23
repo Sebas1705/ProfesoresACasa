@@ -41,7 +41,7 @@ public class GeneralService {
             users.save(student);
             users.save(teacher);
             Post post=new Post("ExampleTitle_"+i,"ExampleDescription_"+i,(Math.random()*50));
-            post.setRanking(new Ranking(Math.random()*i,i));
+            post.setRanking(new Ranking((int)(Math.random()*50*(i+1)),i+1));
             posts.save(post);
             Report report=new Report("ExampleMotive_"+i,"ExampleDescription_"+i);
             student.addReport(report);
@@ -95,9 +95,23 @@ public class GeneralService {
             model.addAttribute("cS",cS);
             model.addAttribute("User", user);
             model.addAttribute("isPerfil",true);
-            return "MiPerfil";
+            return "MyProfile";
         }
         session.invalidate();
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    public String setUpPerfil(Model model,HttpSession session,Optional<User> userShow){
+        User user = (User) session.getAttribute("User");
+        model.addAttribute("User", user);
+        if(userShow.isPresent()){
+            User u=userShow.get();
+            List<Post> lPosts=posts.findPosts(u);
+            model.addAttribute("posts",lPosts);
+            model.addAttribute("UserShow",u);
+            return "OtherProfile";
+        }
         setUpOfPosts(model,PageRequest.of(0,10),null,false);
         return "Home";
     }

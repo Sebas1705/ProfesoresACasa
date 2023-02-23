@@ -1,0 +1,28 @@
+{{>header}}
+<section>
+  <div class="formulariosLog">
+    <h1>Nuevo Contrato con info:</h1>
+    
+    {{#Post}}
+    <div class="containerPost">
+      <hr><h4>{{title}}</h4>
+      <p>Precio: {{price}} euros<br>Fecha:{{created_date}}</p>
+    </div>
+    {{/Post}}
+    {{#Student}}
+    <div class="cointenerStudent">
+      <hr><h4>Estudiante:</h4>
+      <p>{{logname}}</p>
+    </div>
+    {{/Student}}
+    {{#Teacher}}
+    <div class="cointenerStudent">
+      <hr><h4>Profesor:</h4>
+      <p>{{logname}}</p>
+    </div>
+    {{/Teacher}}
+    {{#Post}}{{#Student}}{{#Teacher}}<button onclick="window.location.href='/contract?postId={{Post.id}}&studentId={{Student.id}}&teacherId={{Teacher.id}}'">Confirmar Contrato</button>{{/Teacher}}{{/Student}}{{/Post}}
+  </div> 
+</section>
+{{>footer}}
+ 

@@ -18,20 +18,25 @@ public class Ranking {
     private Post post;
 
     @Column(name = "TOTAL_SCORE", nullable=false)
-    private double totalScore;
+    private int totalScore;
 
     @Column(name = "NUM_RANKINGS", nullable=false)
     private int numRankings;
 
-    public Ranking(){this(0.00,0);}
+    public Ranking(){this(0,0);}
 
-    public Ranking(double totalScore, int numRankings){
+    public Ranking(int totalScore, int numRankings){
         this.totalScore=totalScore;
         this.numRankings=numRankings;
     }
 
-    public double getAverage(){
+    public int getAverage(){
         return totalScore/numRankings;
+    }
+
+    public void incrementScore(int punt){
+        this.totalScore+=punt;
+        this.numRankings++;
     }
     
 }

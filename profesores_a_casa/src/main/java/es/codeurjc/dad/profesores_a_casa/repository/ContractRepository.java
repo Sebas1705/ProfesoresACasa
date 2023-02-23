@@ -8,5 +8,7 @@ import es.codeurjc.dad.profesores_a_casa.model.*;
 public interface ContractRepository extends JpaRepository<Contract,Long>{
     List<Contract> findByTeacher(User teacher);
     List<Contract> findByStudent(User student);
+    List<Contract> findByStudentAndPost(User student, Post post);
+    List<Contract> findByTeacherAndPost(User teacher, Post post);
 }
 

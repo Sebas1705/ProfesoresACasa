@@ -1,0 +1,13 @@
+{{>header}}
+<section class="OtherProfile">
+    {{#UserShow}}
+    <h1>{{logname}}</h1>
+    {{#selfDescription}}
+    <p>{{selfDescription}}</p>
+    {{/selfDescription}}
+    {{/UserShow}}
+
+    <h2>Publicaciones</h2>
+    {{>postCard}}
+</section>
+{{>footer}}

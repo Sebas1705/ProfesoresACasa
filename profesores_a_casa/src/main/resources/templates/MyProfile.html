@@ -1,15 +1,17 @@
 {{>header}}
-<section class="MiPerfil">
+<section class="MyProfile">
     {{#User}}
     <h1>{{logname}}</h1>
-    <p>{{description}}</p>
+    {{#selfDescription}}
+    <p>{{selfDescription}}</p>
+    {{/selfDescription}}
     {{/User}}
 
     <div class="colLeft">
         <h2>Publicaciones</h2>
         {{>postCard}}
     </div>
-    <button onclick="window.location.href='/NewPost'">Crear Post</button>
+    <button onclick="window.location.href='/newPost'">Crear Post</button>
     <div class="colRight">
         {{>contractCard}}
     </div>

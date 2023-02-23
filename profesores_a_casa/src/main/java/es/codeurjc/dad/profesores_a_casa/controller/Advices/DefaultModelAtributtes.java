@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class DefaultModelAtributtes {
 
-    @ModelAttribute("description")
+    @ModelAttribute("descriptionIntro")
     public String textoHome(){
         return "ProfesoresACasa es una aplicación wed dirigida a la comuniciación "+
         "entre profesores particulares, que quieran dar clases a domicilio, y clientes. "+

@@ -66,4 +66,12 @@ public class ContractService {
     public List<Contract> findContractAsTeacher(User teacher){
         return contracts.findByTeacher(teacher);
     }
+
+    public List<Contract> findContractByTeacher(User teacher,Post post){
+        return contracts.findByTeacherAndPost(teacher,post);
+    }
+
+    public List<Contract> findContractByStudent(User student,Post post){
+        return contracts.findByTeacherAndPost(student,post);
+    }
 }
