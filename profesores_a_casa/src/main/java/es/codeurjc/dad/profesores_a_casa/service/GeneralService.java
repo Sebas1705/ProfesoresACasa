@@ -40,8 +40,8 @@ public class GeneralService {
             User teacher=new User("ExampleLogname_1_"+i,"ExamplePassword_1_"+i,"ExampleEmail_1_"+i);
             users.save(student);
             users.save(teacher);
-            Post post=new Post("ExampleTitle_"+i,"ExampleDescription_"+i,(Math.random()*50));
-            post.setRanking(new Ranking((int)(Math.random()*50*(i+1)),i+1));
+            Post post=new Post("ExampleTitle_"+i,"ExampleDescription_"+i,(double)Math.round((Math.random()*101)*100d)/100d);
+            post.setRanking(new Ranking((int)(Math.random()*6),1));
             posts.save(post);
             Report report=new Report("ExampleMotive_"+i,"ExampleDescription_"+i);
             student.addReport(report);
@@ -60,7 +60,8 @@ public class GeneralService {
             contracts.save(contract);    
         }
     }
-
+    
+    //Home services:
     public void setUpOfPosts(Model model,Pageable pageable,String sortBy,boolean desc){
         Page<Post> post;
         if(sortBy!=null){
@@ -84,6 +85,52 @@ public class GeneralService {
         model.addAttribute("nextPages",indexNext);
     }
 
+    //LogIn services:
+    public String getLogPage(Model model){
+        model.addAttribute("Incorrect",false);
+        model.addAttribute("error", null);
+        return "LogIn";
+    }
+    public String makeLogIn(Model model,HttpSession session,String logname,String password){
+        Optional<User> u=users.findUser(logname);
+        if(u.isPresent()&&u.get().getPassword().equals(password)){
+            session.setAttribute("User",u.get());
+            model.addAttribute("User", u.get());
+            setUpOfPosts(model,PageRequest.of(0,10),null,false);
+            return "Home";
+        }
+        model.addAttribute("Incorrect",true);
+        model.addAttribute("error","No existe el usuario o la contraseña no es correcta");
+        return "LogIn";
+    }
+    public String makeLogOut(Model model,HttpSession session){
+        session.invalidate();
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    //SignUp services:
+    public String getSignUpPage(Model model){
+        model.addAttribute("Incorrect", false);
+        model.addAttribute("error",null);
+        return "SignUp";
+    }
+    public String makeSignUp(Model model,HttpSession session,String logname,String password,String email){
+        Optional<User> u=users.findUser(logname);
+        if(u.isPresent()){
+            model.addAttribute("Incorrect",true);
+            model.addAttribute("error","El nombre ya esta en uso");
+            return "SignUp";
+        }
+        User newUser=new User(logname,password,email);
+        users.save(newUser);
+        session.setAttribute("User",newUser);
+        model.addAttribute("User",newUser);
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    //Profiles services:
     public String setUpMiPerfil(Model model,HttpSession session){
         User user = (User) session.getAttribute("User");
         if(user!=null){
@@ -101,9 +148,10 @@ public class GeneralService {
         setUpOfPosts(model,PageRequest.of(0,10),null,false);
         return "Home";
     }
-
-    public String setUpPerfil(Model model,HttpSession session,Optional<User> userShow){
-        User user = (User) session.getAttribute("User");
+    public String setUpPerfil(Model model,HttpSession session,long userId){
+        User user=(User)session.getAttribute("User");
+        model.addAttribute("User",user);
+        Optional<User> userShow=users.findUser(userId);
         model.addAttribute("User", user);
         if(userShow.isPresent()){
             User u=userShow.get();
@@ -111,6 +159,125 @@ public class GeneralService {
             model.addAttribute("posts",lPosts);
             model.addAttribute("UserShow",u);
             return "OtherProfile";
+        }
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    //Posts services:
+    public String showPost(Model model,HttpSession session,long postId){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        Optional<Post> post = posts.findPost(postId);
+        if(post.isPresent()){
+            model.addAttribute("Post", post.get());
+            model.addAttribute("rankingAverage",post.get().getRanking().getAverage());
+            return "Post";
+        }
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+    public String getPostPage(Model model,HttpSession session){
+        User u=(User)session.getAttribute("User");
+        model.addAttribute("User",u);
+        return "NewPost";
+    }
+    public String makeNewPost(Model model,HttpSession session,String title,String description,double price){
+        User u=(User) session.getAttribute("User");
+        Post post = new Post(title,description,price);
+        post.setRanking(new Ranking(1,1));
+        posts.save(post);
+        u.addPost(post);
+        users.save(u);
+        posts.save(post);
+        session.setAttribute("User", u);
+        return setUpMiPerfil(model, session);
+    }
+    public String rankPost(Model model,HttpSession session,long postId,int punt){
+        User u=(User)session.getAttribute("User");
+        model.addAttribute("User",u);
+        Optional<Post> post = posts.findPost(postId);
+        if(post.isPresent()){
+            Ranking r = post.get().getRanking();
+            r.incrementScore(punt);
+            post.get().setRanking(r);
+            posts.save(post.get());
+            model.addAttribute("Post", post.get());
+            model.addAttribute("rankingAverage", post.get().getRanking().getAverage());
+            return "Post";
+        }
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    //Reports services:
+    public String getReportPage(Model model,HttpSession session,long postId){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        session.setAttribute("Post",postId);
+        return "NewReport";
+    }
+    public String makeNewReport(Model model,HttpSession session,String motive,String description){
+        User u=(User) session.getAttribute("User");
+        Optional<Post> post=posts.findPost((long)session.getAttribute("Post"));
+        if(post.isPresent()){
+            Post p=post.get();
+            Report report = new Report(motive, description);
+            report.setAuthor(u);
+            p.addReport(report);
+            users.save(u);
+            posts.save(p);
+            reports.save(report);
+        }
+        model.addAttribute("User",u);
+        session.setAttribute("Post",null);
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+
+    //Contract services:
+    public String getContractPage(Model model,HttpSession session,long postId,long studentId,long teacherId){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        Optional<User> s=users.findUser(studentId),t;
+        Optional<Post> p;
+        if(s.isPresent()){
+            t=users.findUser(teacherId);
+            if(t.isPresent()){
+                p=posts.findPost(postId);
+                if(p.isPresent()){
+                    model.addAttribute("Post",p.get());
+                    model.addAttribute("Teacher",t.get());
+                    model.addAttribute("Student",s.get());
+                    return "NewContract";
+                }
+            }
+        }
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+    public String makeNewContract(Model model,HttpSession session,long postId,long studentId,long teacherId){
+        User u=(User) session.getAttribute("User");
+        model.addAttribute("User",u);
+        Optional<User> s=users.findUser(studentId),t;
+        Optional<Post> p;
+        if(s.isPresent()){
+            t=users.findUser(teacherId);
+            if(t.isPresent()){
+                p=posts.findPost(postId);
+                if(p.isPresent()){
+                    Contract contract=new Contract();
+                    contracts.save(contract);
+                    s.get().addContractAsStudent(contract);
+                    t.get().addContractAsTeacher(contract);
+                    p.get().addContract(contract);
+                    users.save(s.get());
+                    users.save(t.get());
+                    posts.save(p.get());
+                    contracts.save(contract); 
+                    setUpMiPerfil(model,session);
+                }
+            } 
         }
         setUpOfPosts(model,PageRequest.of(0,10),null,false);
         return "Home";

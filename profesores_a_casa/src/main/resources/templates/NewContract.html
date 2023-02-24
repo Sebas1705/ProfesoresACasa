@@ -1,26 +1,29 @@
 {{>header}}
 <section>
-  <div class="formulariosLog">
-    <h1>Nuevo Contrato con info:</h1>
+  <div class="cointenerContract">
+    <h1>Info Contract:</h1>
     
     {{#Post}}
-    <div class="containerPost">
-      <hr><h4>{{title}}</h4>
-      <p>Precio: {{price}} euros<br>Fecha:{{created_date}}</p>
+    <div id="postInfoContract">
+      <h4>{{title}}</h4>
+      <p class="des">{{description}}</p>
+      <p class="res"><strong>Precio</strong>: {{price}} euros | <strong>Fecha</strong>: {{created_date}}</p>
     </div>
     {{/Post}}
-    {{#Student}}
-    <div class="cointenerStudent">
-      <hr><h4>Estudiante:</h4>
-      <p>{{logname}}</p>
+    <div class="cointenerST">
+      {{#Student}}
+      <div id="studentInfoContract">
+        <h4>Estudiante:</h4>
+        <p>{{logname}}</p>
+      </div>
+      {{/Student}}
+      {{#Teacher}}
+      <div id="teacherInfoContract">
+        <h4>Profesor:</h4>
+        <p>{{logname}}</p>
+      </div>
+      {{/Teacher}}
     </div>
-    {{/Student}}
-    {{#Teacher}}
-    <div class="cointenerStudent">
-      <hr><h4>Profesor:</h4>
-      <p>{{logname}}</p>
-    </div>
-    {{/Teacher}}
     {{#Post}}{{#Student}}{{#Teacher}}<button onclick="window.location.href='/contract?postId={{Post.id}}&studentId={{Student.id}}&teacherId={{Teacher.id}}'">Confirmar Contrato</button>{{/Teacher}}{{/Student}}{{/Post}}
   </div> 
 </section>
