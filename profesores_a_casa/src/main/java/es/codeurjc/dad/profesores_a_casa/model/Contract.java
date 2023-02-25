@@ -25,6 +25,15 @@ public class Contract {
     @ManyToOne
     private User student;
 
-    public Contract(){}
+    @Column(name="STUDENT_WANT_TO_DELETE")
+    private boolean studentWantToDelete;
+
+    @Column(name="TEACHER_WANT_TO_DELETE")
+    private boolean teacherWantToDelete;
+
+    public Contract(){
+        this.studentWantToDelete=false;
+        this.teacherWantToDelete=false;
+    }
 
 }

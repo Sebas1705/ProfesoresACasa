@@ -67,11 +67,11 @@ public class ContractService {
         return contracts.findByTeacher(teacher);
     }
 
-    public List<Contract> findContractByTeacher(User teacher,Post post){
-        return contracts.findByTeacherAndPost(teacher,post);
+    public List<Contract> findContractByPost(Post post){
+        return contracts.findByPost(post);
     }
 
-    public List<Contract> findContractByStudent(User student,Post post){
-        return contracts.findByTeacherAndPost(student,post);
+    public Optional<Contract> findContract(long contractId){
+        return contracts.findById(contractId);
     }
 }

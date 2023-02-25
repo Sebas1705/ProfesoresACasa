@@ -5,6 +5,7 @@
         <h4 class="price">{{price}}</h4>
         <p class="date">Created in: {{created_date}}</p>
         <button class="link" onclick="window.location.href='/post?postId={{id}}'">Visitar Post</button>
+        {{#isPerfil}}<button class="link" onclick="window.location.href='/deletePost?postId={{id}}'">Borrar post</button>{{/isPerfil}}
     </div>
     {{/posts}}
 </div>

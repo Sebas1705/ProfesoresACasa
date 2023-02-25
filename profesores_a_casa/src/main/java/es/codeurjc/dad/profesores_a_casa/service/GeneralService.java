@@ -163,6 +163,26 @@ public class GeneralService {
         setUpOfPosts(model,PageRequest.of(0,10),null,false);
         return "Home";
     }
+    public String deleteUser(Model model,HttpSession session){
+        User u=(User)session.getAttribute("User");
+        users.delete(u.getId());
+        session.invalidate();
+        setUpOfPosts(model,PageRequest.of(0,10),null,false);
+        return "Home";
+    }
+    public String getChangePage(Model model,HttpSession session){
+        User u=(User)session.getAttribute("User");
+        model.addAttribute("User",u);
+        return "EditUserProfile";
+    }
+    public String changeProfile(Model model,HttpSession session,String logname,String selfDescription){
+        User u=(User)session.getAttribute("User");
+        if(!users.findUser(logname).isPresent())u.setLogname(logname);
+        u.setSelfDescription(selfDescription);
+        users.save(u);
+        session.setAttribute("User",u);
+        return setUpMiPerfil(model,session); 
+    }
 
     //Posts services:
     public String showPost(Model model,HttpSession session,long postId){
@@ -208,6 +228,20 @@ public class GeneralService {
         }
         setUpOfPosts(model,PageRequest.of(0,10),null,false);
         return "Home";
+    }
+    public String deletePost(Model model,HttpSession session,long postId){
+        User u=(User)session.getAttribute("User");
+        Optional<Post> p=posts.findPost(postId);
+        Post post=p.get();
+        if(posts.exists(post)){
+            u=post.getOwnerUser();
+            u.removePost(post);
+            posts.deletePost(post.getId());
+            users.save(u);
+        } 
+        session.setAttribute("User",u);
+        model.addAttribute("User",u);
+        return setUpMiPerfil(model,session);
     }
 
     //Reports services:
@@ -281,5 +315,17 @@ public class GeneralService {
         }
         setUpOfPosts(model,PageRequest.of(0,10),null,false);
         return "Home";
+    }
+    public String deleteContract(Model model,HttpSession session,long contractId,boolean teacher){
+        Optional<Contract> c=contracts.findContract(contractId);
+        if(c.isPresent()){
+            Contract contract=c.get();
+            if(teacher)contract.setTeacherWantToDelete(!contract.isTeacherWantToDelete());
+            else contract.setStudentWantToDelete(!contract.isStudentWantToDelete());
+            contracts.save(contract);
+            if(contract.isTeacherWantToDelete()&&contract.isStudentWantToDelete())contracts.delete(contractId);
+        }
+        setUpMiPerfil(model,session);
+        return "MyProfile";
     }
 }

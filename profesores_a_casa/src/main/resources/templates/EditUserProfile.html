@@ -1,0 +1,13 @@
+{{>header}}
+{{#User}}
+<div class="formProfileChange">
+    <form class="formProfile" method="post" action="/changeProfile">
+        <input type="text" name="logname" value="{{logname}}" required/>
+        <textarea type="text" name="selfDescription" placeholder="Nueva descripcion" required>
+            {{#selfDescription}}{{selfDescription}}{{/selfDescription}}
+        </textarea>
+        <input type="submit" name="sent" value="Publicar">
+    </form>
+</div>
+{{/User}}
+{{>footer}}

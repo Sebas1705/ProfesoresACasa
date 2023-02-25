@@ -22,4 +22,8 @@ public class ContractViewController {
     public String createContract(Model model,HttpSession session,@RequestParam long postId,@RequestParam long studentId,@RequestParam long teacherId){
         return service.makeNewContract(model,session,postId,studentId,teacherId);
     }
+    @GetMapping("/deleteContract")
+    public String deleteContract(Model model,HttpSession session,@RequestParam long contractId,@RequestParam boolean teacher){
+        return service.deleteContract(model,session,contractId,teacher);
+    }
 }

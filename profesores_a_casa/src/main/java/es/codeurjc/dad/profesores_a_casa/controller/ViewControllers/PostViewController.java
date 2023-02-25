@@ -30,4 +30,8 @@ public class PostViewController {
     public String rank(Model model,HttpSession session,@RequestParam int punt,@RequestParam long postId){
         return service.rankPost(model,session,postId,punt);
     }
+    @GetMapping("/deletePost")
+    public String deletePost(Model model,HttpSession session,@RequestParam long postId){
+        return service.deletePost(model,session,postId);
+    }
 }

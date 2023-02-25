@@ -1,19 +1,29 @@
 {{>header}}
 <section class="MyProfile">
     {{#User}}
-    <h1>{{logname}}</h1>
-    {{#selfDescription}}
-    <p>{{selfDescription}}</p>
-    {{/selfDescription}}
+    <div class="InfoUser">
+        <h1>{{logname}}</h1>
+        {{#selfDescription}}
+        <p class="des">{{selfDescription}}</p>
+        {{/selfDescription}}
+        {{^selfDescription}}
+        <p class="noDes">No hay descripcion, añadela!!</p>
+        {{/selfDescription}}
+        <button onclick="window.location.href='/changeDataUser'">Personaliza tu perfil</button>
+        <button onclick="window.location.href='/deleteUser'">Borrar Usuario</button>
+    </div>
     {{/User}}
 
-    <div class="colLeft">
-        <h2>Publicaciones</h2>
-        {{>postCard}}
-    </div>
-    <button onclick="window.location.href='/newPost'">Crear Post</button>
-    <div class="colRight">
-        {{>contractCard}}
+    <div class="columns">
+        <div class="colLeft">
+            <h2>Publicaciones</h2>
+            {{>postCard}}
+            <button onclick="window.location.href='/newPost'">Crear Post</button>
+        </div>
+        
+        <div class="colRight">
+            {{>contractCard}}
+        </div>
     </div>
 </section>
 {{>footer}}

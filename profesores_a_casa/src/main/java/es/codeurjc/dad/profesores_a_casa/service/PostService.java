@@ -78,6 +78,10 @@ public class PostService {
         return posts.findByOwnerUser(ownerUser);
     }
 
+    public boolean exists(Post post){
+        return posts.existsById(post.getId());
+    }
+
     public void deletePost(long id){
         posts.deleteById(id);
     }
