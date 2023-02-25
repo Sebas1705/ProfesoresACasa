@@ -1,9 +1,9 @@
-<h1>Tus contratos de profesor:</h1>
+<h3 class="Tit">Tus contratos de profesor:</h3>
 <div class="containerCards">    
     {{#cT}}
     <div class="ContractCard">
-        <p>Estudiante: <a href="/otherProfile?userId={{student.id}}">{{student.logname}}</a></p>
-        <p>Post: <a href="/post?postId={{post.id}}">{{post.title}}</a></p>
+        <p><strong>Estudiante:</strong> {{student.logname}} <button onclick="window.location.href='/otherProfile?userId={{student.id}}'">Go</button></p>
+        <p><strong>Post:</strong> {{post.title}} <button onclick="window.location.href='/post?postId={{post.id}}'">Go</button></p>
         <p>
             Quiere borrar: 
             Estudiante({{studentWantToDelete}})
@@ -23,16 +23,16 @@
 <h1 class="noRes">Actualmente no hay ningun contrato. Publica tus propios post que interesen a los alumnos!</h1>
 {{/cT}}
 <hr>
-<h1>Tus contratos de alumno:</h1>
+<h3 class="Tit">Tus contratos de alumno:</h3>
 <div class="containerCards">
     {{#cS}}
     <div class="ContractCard">
-        <p>Profesor: <a href="/otherProfile?userId={{teacher.id}}">{{teacher.logname}}</a></p>
-        <p>Post: <a href="/post?postId={{post.id}}">{{post.title}}</a></p>
+        <p><strong>Profesor:</strong> {{teacher.logname}} <button onclick="window.location.href='/otherProfile?userId={{teacher.id}}'">Go</button></p>
+        <p><strong>Post:</strong> {{post.title}} <button onclick="window.location.href='/post?postId={{post.id}}'">Go</button></p>
         <p>
-            Quiere borrar: 
-            Estudiante({{studentWantToDelete}})
-            Profesor({{teacherWantToDelete}})
+            Quiere borrar: <br>
+            Estudiante=>{{#studentWantToDelete}}Si{{/studentWantToDelete}}{{^studentWantToDelete}}No{{/studentWantToDelete}}
+            Profesor=>{{#teacherWantToDelete}}Si{{/teacherWantToDelete}}{{^teacherWantToDelete}}No{{/teacherWantToDelete}}
         </p>
         {{#isPerfil}}
             <button onclick="window.location.href='/deleteContract?contractId={{id}}&teacher=false'">

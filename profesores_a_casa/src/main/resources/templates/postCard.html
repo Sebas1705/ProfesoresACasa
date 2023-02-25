@@ -2,8 +2,8 @@
     {{#posts}}
     <div class="PostCard">
         <h1 class="title">{{title}}</h1>
-        <h4 class="price">{{price}}</h4>
-        <p class="date">Created in: {{created_date}}</p>
+        <h4 class="price"><strong>Precio</strong>: {{price}} euros</h4>
+        <p class="date"><strong>Fecha</strong>: {{created_date}}</p>
         <button class="link" onclick="window.location.href='/post?postId={{id}}'">Visitar Post</button>
         {{#isPerfil}}<button class="link" onclick="window.location.href='/deletePost?postId={{id}}'">Borrar post</button>{{/isPerfil}}
     </div>

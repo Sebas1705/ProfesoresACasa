@@ -1,12 +1,14 @@
 {{>header}}
 <section class="Post">
   {{#Post}}
-    <h1>{{title}}</h1>
-    <h3>{{description}}</h3>
-    <p>{{price}}</p>
-    <p> Created in: {{created_date}}</p>
-    <h1>{{rankingAverage}}</h1>
-    <h1>{{ownerUser.logname}}</h1>
+    <div class="Info">
+      <h1>{{title}}</h1>
+      <h3>{{description}}</h3>
+      <p>{{price}}</p>
+      <p> Created in: {{created_date}}</p>
+      <h1>{{rankingAverage}}</h1>
+      <h1>{{ownerUser.logname}}</h1>
+    </div>
     {{#User}}
       <button onclick= "window.location.href='/newContract?postId={{Post.id}}&studentId={{User.id}}&teacherId={{Post.ownerUser.id}}'">Contratar</button>
       <button onclick= "window.location.href='/newReport?postId={{Post.id}}'">Denunciar</button>
