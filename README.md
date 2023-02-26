@@ -48,4 +48,4 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 
 ### Capturas de navegación
 * Login y Registro
-  - https://raw.githubusercontent.com/Sebas1705/ProfesoresACasa/master/Navegacion/Capturadepantalla2023-02-26alas21.56.34.png
+  - https://raw.githubusercontent.com/Sebas1705/ProfesoresACasa/Navegacion/Capturadepantalla2023-02-26alas21.56.34.png
