@@ -9,18 +9,25 @@
       <h1>{{rankingAverage}}</h1>
       <h1>{{ownerUser.logname}}</h1>
     </div>
-    {{#User}}
-      <button onclick= "window.location.href='/newContract?postId={{Post.id}}&studentId={{User.id}}&teacherId={{Post.ownerUser.id}}'">Contratar</button>
-      <button onclick= "window.location.href='/newReport?postId={{Post.id}}'">Denunciar</button>
-      <h1>Puntúa este post</h1>
-      <button onclick= "window.location.href='/rank?punt=0&postId={{Post.id}}'">0</button>
-      <button onclick= "window.location.href='/rank?punt=1&postId={{Post.id}}'">1</button>
-      <button onclick= "window.location.href='/rank?punt=2&postId={{Post.id}}'">2</button>
-      <button onclick= "window.location.href='/rank?punt=3&postId={{Post.id}}'">3</button>
-      <button onclick= "window.location.href='/rank?punt=4&postId={{Post.id}}'">4</button>
-      <button onclick= "window.location.href='/rank?punt=5&postId={{Post.id}}'">5</button> 
-    {{/User}}
-    <button onclick= "window.location.href='/otherProfile?userId={{ownerUser.id}}'">Su perfil</button>
+    
+    <div class="Buttons">
+      {{#User}}
+      <div class="Use">
+        <button onclick= "window.location.href='/newContract?postId={{Post.id}}&studentId={{User.id}}&teacherId={{Post.ownerUser.id}}'">Contratar</button>
+        <button onclick= "window.location.href='/newReport?postId={{Post.id}}'">Denunciar</button>
+      </div>
+      <div class="Rank">
+        <h1>Puntúa este post</h1>
+        <button onclick= "window.location.href='/rank?punt=0&postId={{Post.id}}'">0</button>
+        <button onclick= "window.location.href='/rank?punt=1&postId={{Post.id}}'">1</button>
+        <button onclick= "window.location.href='/rank?punt=2&postId={{Post.id}}'">2</button>
+        <button onclick= "window.location.href='/rank?punt=3&postId={{Post.id}}'">3</button>
+        <button onclick= "window.location.href='/rank?punt=4&postId={{Post.id}}'">4</button>
+        <button onclick= "window.location.href='/rank?punt=5&postId={{Post.id}}'">5</button> 
+      </div>
+      {{/User}}
+      <button onclick= "window.location.href='/otherProfile?userId={{ownerUser.id}}'">Su perfil</button>
+    </div>
   {{/Post}}
   {{^Post}}
   {{/Post}}
