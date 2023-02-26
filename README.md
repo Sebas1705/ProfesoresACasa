@@ -48,5 +48,5 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 
 ### Capturas de navegación
 * Login y Registro
-  -
+  - Navegacion/Captura de pantalla 2023-02-26 a las 21.56.47.png
   
