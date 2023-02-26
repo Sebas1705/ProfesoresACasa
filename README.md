@@ -44,4 +44,9 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   
   ### Nueva entidades:
   - Ranking
+
+
+### Capturas de navegación
+* Login y Registro
+  -
   
