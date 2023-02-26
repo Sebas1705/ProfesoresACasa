@@ -86,11 +86,15 @@ footer {
 	border-bottom: 10px solid #3a340f;
 }
 footer .cL .git, footer .cR .git{
-	justify-content: center;
-	align-items: center;
 	width: 200px;
 	display:grid;
 	grid-template-columns: 1fr 1fr;
+}
+footer .cL{
+	padding:10% 30%;
+}
+footer .cR{
+	padding:10% 30%;
 }
 footer .git a{
 	display:flex;
@@ -582,16 +586,63 @@ footer .git p{
 
 /*===Post===*/
 .Post{
-	display:grid;
-	grid-template-rows: 1fr 1fr;
+	display:block;
 	margin: 5px 30%;
 }
 .Post .Info{
 	text-align: center;
+	border-radius: 10px;
+	border: 3px groove #0d6969;
+	box-shadow: 5px 5px 5px 5px #07363634;
+	background-color: #1fb6b6;
+	color:#fff;
+	margin-bottom: 15px;
+}
+.Post .Info img,.Post .Info .stars img{
+	width: 50px;
+	height: 50px;
+}
+.Post .Info .stars{
+	display:inline;
+
 }
 .Post .Buttons{
 	display:grid;
 	grid-template-rows: 1fr 2fr 1fr;
 }
+.Post .Buttons .Use{
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	gap:1%;
+}
+.Post .Buttons .Use button,.Post .Buttons button{
+	background-color: #d6b5cb67;
+	border: 2px double #501d3f50;
+	border-radius: 10px;
+}
+.Post .Buttons .Use button:hover,.Post .Buttons button:hover{
+	background-color: #d6b5cb;
+	border: 2px double #501d3f50;
+	transform: translate(-1px,1px);
+	box-shadow: 2px 2px 2px 2px #35132a3d;
+}
+.Post .Buttons .rBs{
+	display:flex;
+	margin: 1% 15%;
+}
+.Post .Buttons .rBs h1{
+	margin-right: 5px;
+	font-size:24px;
+}
+.Post .Buttons .rBs button{
+	margin:5% 5px;
+	border-radius: 50%;
+	min-width: 30px;
+	max-height: 30px;
+}
 /*===Post===*/
+
+/*===PersonalizarPerfil===*/
+
+/*===PersonalizarPerfil===*/
 

@@ -1,13 +1,21 @@
 {{>header}}
-{{#User}}
-<div class="formProfileChange">
-    <form class="formProfile" method="post" action="/changeProfile">
-        <input type="text" name="logname" value="{{logname}}" required/>
-        <textarea type="text" name="selfDescription" placeholder="Nueva descripcion" required>
-            {{#selfDescription}}{{selfDescription}}{{/selfDescription}}
-        </textarea>
-        <input type="submit" name="sent" value="Publicar">
-    </form>
-</div>
-{{/User}}
+<section>
+    {{#User}}
+    <div class="formulariosLog">
+        <h1>Personalizar Perfil</h1>
+        <form class="form" method="post" action="/changeProfile">
+            <p class="field">
+                <input type="text" name="logname" value="{{logname}}" required/>
+                <i class="fa fa-user"></i>
+            </p>
+            <p class="field">
+                <textarea type="text" name="selfDescription" placeholder="Nueva descripcion" required>
+                    {{#selfDescription}}{{selfDescription}}{{/selfDescription}}
+                </textarea>
+            </p>
+            <p class="submit"><input type="submit" name="sent" value="Cambiar"></p>
+        </form>
+    </div>
+    {{/User}}
+</section>
 {{>footer}}

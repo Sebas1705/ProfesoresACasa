@@ -223,7 +223,10 @@ public class GeneralService {
             post.get().setRanking(r);
             posts.save(post.get());
             model.addAttribute("Post", post.get());
-            model.addAttribute("rankingAverage", post.get().getRanking().getAverage());
+            int avg=post.get().getRanking().getAverage();
+            List<Integer> stars=new ArrayList<Integer>();
+            for(int i=1;i<=avg&&i<=5;i++)stars.add(i);
+            model.addAttribute("Stars",stars);
             return "Post";
         }
         setUpOfPosts(model,PageRequest.of(0,10),null,false);

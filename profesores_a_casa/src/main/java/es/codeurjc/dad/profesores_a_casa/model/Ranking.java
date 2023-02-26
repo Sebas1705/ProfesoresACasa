@@ -31,6 +31,7 @@ public class Ranking {
     }
 
     public int getAverage(){
+        if(numRankings==0)return 0;
         return totalScore/numRankings;
     }
 
