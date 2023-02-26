@@ -48,5 +48,5 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 
 ### Capturas de navegación
 * Login y Registro
-  - Navegacion/Captura de pantalla 2023-02-26 a las 21.56.47.png
+  - https://github.com/Sebas1705/ProfesoresACasa/blob/6f97fdc6d99c8f0ea2ca5a0653170635c0bdea14/Navegacion/Captura%20de%20pantalla%202023-02-26%20a%20las%2021.56.47.png
   
