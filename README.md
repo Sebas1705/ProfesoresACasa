@@ -47,5 +47,38 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 
 
 ### Capturas de navegación
-* Login y Registro
+* Home
+  -Aquí podemos ver sin iniciar sesión los post disponibles.
+![Home](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png)
+
+* Login
+  -Página de inicio de sesión
 ![Login](https://github.com/Sebas1705/ProfesoresACasa/blob/de766cbca664a1e8a9287ce5fb02c464d2c545d4/Navegacion/Login.png)
+
+* Registro
+  -Página de registro con formulario normal.
+![Resgistro](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Registro.png)
+
+* Inicio de sesión
+  -Pantalla que muestra lo que se vería al inciar sesión con nuestro usuario
+  ![menú](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Resgistrado.png)
+  
+ * Publicaciones
+  -Pantalla que muestra mis publicaciones
+  ![Publicaciones](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Publicaciones.png)
+  
+ * VerPost
+  - Se puede ver un post en detalle, donde puedes contratar, denunciar, etc...
+ ![Post](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Ver_Post.png)
+ 
+ * Contratar
+  -Acceso a contratar
+ ![Contratar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Contratar.png)
+ 
+ * Denunciar
+  -Acceso a denunciar
+ ![Denunciar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Denunciar.png)
+ 
+ * Cambio de página
+  -Se muestra como se ha pasado a la página 1
+ ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
