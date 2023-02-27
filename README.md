@@ -45,6 +45,16 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   ### Nueva entidades:
   - Ranking
 
+### Capturas de los diagramas de navegación, clases y entidad-relación
+
+* Navegación
+![navegacion](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/navegacion.png)
+
+* Diagrama de clases
+![clases](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/diagrama_clases.png)
+
+* Diagrama modelo entidad-relacion
+![entidad](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/entidad-relacion.png)
 
 ### Capturas de navegación
 * Home
