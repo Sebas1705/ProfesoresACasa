@@ -17,7 +17,7 @@ public class HomeController {
 
     @PostConstruct
     public void init(){
-        service.autoInitDBTest(25);
+        //service.autoInitDBTest(25);
     }
 
     //Home:
