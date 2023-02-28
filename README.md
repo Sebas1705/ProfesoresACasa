@@ -48,6 +48,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 ### Capturas de los diagramas de navegación, clases y entidad-relación
 
 * Navegación
+
 ![navegacion](https://github.com/Sebas1705/ProfesoresACasa/blob/0255de7a38de9a10f00ed54e1423925ff469cf63/assets/navegacion.png)
 
 * Diagrama de clases
