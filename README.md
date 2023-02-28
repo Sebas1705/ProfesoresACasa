@@ -52,10 +52,10 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 ![navegacion](https://github.com/Sebas1705/ProfesoresACasa/blob/0255de7a38de9a10f00ed54e1423925ff469cf63/assets/navegacion.png)
 
 * Diagrama de clases
+
 ![clases](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/diagrama_clases.png)
 
 * Diagrama modelo entidad-relacion
-
 
 ![entidad](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/entidad-relacion.png)
 
