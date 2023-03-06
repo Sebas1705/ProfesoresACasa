@@ -23,8 +23,8 @@ public class HomeController {
     //Home:
     @GetMapping("/")
     public String home(Model model,HttpSession session,Pageable pageable){
-        User u=(User) session.getAttribute("User");
-        model.addAttribute("User",u);
+        User user=(User) session.getAttribute("User");
+        model.addAttribute("User",user);
         service.setUpOfPosts(model,pageable,null,false);
         return "Home";
     }
