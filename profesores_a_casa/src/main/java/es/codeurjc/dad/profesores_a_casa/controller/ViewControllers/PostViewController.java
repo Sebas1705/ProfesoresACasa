@@ -16,7 +16,7 @@ import es.codeurjc.dad.profesores_a_casa.model.*;
 import es.codeurjc.dad.profesores_a_casa.service.*;
 
 @Controller
-public class PostController {
+public class PostViewController {
 
     @Autowired private GeneralService service;
     @Autowired private UserService users;
