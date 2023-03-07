@@ -34,19 +34,31 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
     
-    @Column(name = "PASSWORD")
-    private String password;
+    @Column(name = "ENCODED_PASSWORD")
+    private String encodedPassword;
 
     @Column(name = "SELF_DESCRIPTION")
     private String selfDescription;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
+
     public User(){this(null,null,null);}
 
-    public User(String logname,String password,String email){
+    public User(String logname,String encodedPassword,String email){
         this.logname=logname;
-        this.password=password;
+        this.encodedPassword=encodedPassword;
         this.selfDescription=null;
         this.email=email;
+        this.roles=List.of("USER");
+    }
+
+    public User(String logname,String encodedPassword,String email,String ...roles){
+        this.logname=logname;
+        this.encodedPassword=encodedPassword;
+        this.selfDescription=null;
+        this.email=email;
+        this.roles=List.of(roles);
     }
 
     public void addPost(Post post) {
