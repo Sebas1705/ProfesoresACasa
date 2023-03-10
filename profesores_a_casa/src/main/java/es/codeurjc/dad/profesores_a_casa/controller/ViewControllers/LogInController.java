@@ -26,7 +26,7 @@ public class LogInController {
     @PostMapping("/logIn")
     public String getLogin(Model model,HttpSession session,String logname,String password){
         Optional<User> user=users.findUser(logname);
-        if(user.isPresent()&&user.get().getPassword().equals(password)){
+        if(user.isPresent()&&user.get().getEncodedPassword().equals(password)){
             session.setAttribute("User",user.get());
             model.addAttribute("User", user.get());
             service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
