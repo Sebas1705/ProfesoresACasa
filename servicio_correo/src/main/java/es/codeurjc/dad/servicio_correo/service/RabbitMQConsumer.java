@@ -13,5 +13,26 @@ public class RabbitMQConsumer {
     @RabbitListener(queues="${rabbitmq.queue.name}")
     public void consume(String message){
         log.info(String.format("Recived message -> %s", message));
+        switch(message.charAt(0)){
+            //Nuevo contrato:
+            case 'N':
+                break;
+            //Borrar Contrato:
+            case 'C':
+                break;
+            //Borrar Post:
+            case 'P':
+                break;
+            //Borrar Usuario:
+            case 'D':
+                break;
+            //Registro:
+            case 'S':
+                break;
+            case 'R':
+                break;
+            default:
+                log.info("Not valid message");
+        }
     }
 }

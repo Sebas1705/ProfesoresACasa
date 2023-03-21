@@ -99,12 +99,13 @@ public class PostViewController {
             Optional<Post> post_p=posts.findPost(postId);
             Post post=post_p.get();
             if(posts.exists(post)){
+                notifications.sendMessage("P("+post.getTitle()+
+                                            ","+post.getOwnerUser().getEmail()+")");
                 User user=userP.get();
                 user=post.getOwnerUser();
                 user.removePost(post);
                 posts.deletePost(post.getId());
                 users.save(user);
-                notifications.sendMessage("P("+post.getTitle()+")");
             } 
         }
         return "redirect:/myProfile";
