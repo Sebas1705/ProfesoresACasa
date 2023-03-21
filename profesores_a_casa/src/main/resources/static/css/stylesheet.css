@@ -37,12 +37,20 @@ header .Menu .noIcon img{
 	border-radius: 50%;
 	border: 1px solid #000000;
 }
-header .Menu a img{
+header .Menu a img,header .Menu .Link form button img{
 	width: 50px;
 	height: 50px;
 	margin:0px 10px;
 	line-height: 200px;
 }
+
+header .Menu .Link form button{
+	background-color:#00000000;
+	border-width: 0;
+	margin: 0 0 8px 0;
+	cursor: pointer;
+}
+
 header .Menu hr{
 	top:10px;
 	width: 2px;

@@ -1,11 +1,12 @@
 package es.codeurjc.dad.profesores_a_casa.controller.ViewControllers;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,67 +17,83 @@ import es.codeurjc.dad.profesores_a_casa.model.*;
 
 @Controller
 public class ProfileController {
-    
-    @Autowired private GeneralService service;
+
     @Autowired private UserService users;
     @Autowired private PostService posts;
     @Autowired private ContractService contracts;
 
     @GetMapping("/myProfile")
-    public String miPerfil(Model model,HttpSession session){
-        User user = (User) session.getAttribute("User");
-        if(user!=null){
-            List<Post> lPosts=posts.findPosts(user);
-            List<Contract> cT=contracts.findContractAsTeacher(user);
-            List<Contract> cS=contracts.findContractAsStudent(user);
-            model.addAttribute("posts",lPosts);
-            model.addAttribute("cT",cT);
-            model.addAttribute("cS",cS);
-            model.addAttribute("User", user);
-            model.addAttribute("isPerfil",true);
-            return "MyProfile";
-        }
-        session.invalidate();
-        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
-        return "Home";
+    public String miPerfil(Model model,HttpServletRequest request) throws ServletException{
+        Principal principal = request.getUserPrincipal();
+        if(principal!=null){
+            Optional<User> user=users.findUser(principal.getName());
+            if(user.isPresent()){
+                model.addAttribute("User",user.get());
+                List<Post> lPosts=posts.findPosts(user.get());
+                List<Contract> cT=contracts.findContractAsTeacher(user.get());
+                List<Contract> cS=contracts.findContractAsStudent(user.get());
+                model.addAttribute("posts",lPosts);
+                model.addAttribute("cT",cT);
+                model.addAttribute("cS",cS);
+                model.addAttribute("isPerfil",true);
+                return "MyProfile";
+            }
+        } 
+        request.logout();
+        return "redirect:/";
     }
     @GetMapping("/otherProfile")
-    public String verPerfil(Model model,HttpSession session,@RequestParam long userId){
-        User user=(User)session.getAttribute("User");
-        model.addAttribute("User",user);
+    public String verPerfil(Model model,HttpServletRequest request,@RequestParam long userId){
         Optional<User> userShow=users.findUser(userId);
-        model.addAttribute("User", user);
         if(userShow.isPresent()){
+            Principal principal = request.getUserPrincipal();
+            if(principal!=null) {
+                Optional<User> user=users.findUser(principal.getName());
+                if(user.isPresent()) model.addAttribute("User",user.get());
+            }
             User u=userShow.get();
             List<Post> lPosts=posts.findPosts(u);
             model.addAttribute("posts",lPosts);
             model.addAttribute("UserShow",u);
             return "OtherProfile";
         }
-        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
-        return "Home";
+        return "redirect:/";
     }
     @GetMapping("/deleteUser")
-    public String deleteUser(Model model,HttpSession session){
-        User user=(User)session.getAttribute("User");
-        users.delete(user.getId());
-        session.invalidate();
-        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
-        return "Home";
+    public String deleteUser(Model model,HttpServletRequest request) throws ServletException{
+        Principal principal = request.getUserPrincipal();
+        if(principal!=null) {
+            Optional<User> user=users.findUser(principal.getName());
+            if(user.isPresent()){
+                model.addAttribute("User",user.get());
+                users.delete(user.get().getId());
+                request.logout();
+            }
+        }
+        return "redirect:/";
     }
     @GetMapping("/changeDataUser")
-    public String getChangePage(Model model,HttpSession session){
-        User user=(User)session.getAttribute("User");
-        model.addAttribute("User",user);
+    public String getChangePage(Model model,HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        if(principal!=null) {
+            Optional<User> user=users.findUser(principal.getName());
+            if(user.isPresent()) model.addAttribute("User",user.get());
+        }
         return "EditUserProfile";
     }
     @PostMapping("/changeProfile")
-    public String changeProfile(Model model,HttpSession session,@RequestParam String logname,@RequestParam String selfDescription){
-        User user=(User)session.getAttribute("User");
-        if(!users.findUser(logname).isPresent())user.setLogname(logname);
-        user.setSelfDescription(selfDescription);
-        users.save(user);
-        session.setAttribute("User",user);
-        return service.setUpMiPerfil(model,session); 
+    public String changeProfile(Model model,HttpServletRequest request,@RequestParam String logname,@RequestParam String selfDescription) throws ServletException{
+        Principal principal = request.getUserPrincipal();
+        if(principal!=null) {
+            Optional<User> userP=users.findUser(principal.getName());
+            if(userP.isPresent()){
+                User user = userP.get();
+                if(!users.findUser(logname).isPresent())user.setLogname(logname);
+                user.setSelfDescription(selfDescription);
+                users.save(user);
+                request.logout();
+            } 
+        }  
+        return "redirect:/myProfile"; 
     }
 }

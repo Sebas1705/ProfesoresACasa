@@ -24,7 +24,7 @@
       </div>
       {{/Teacher}}
     </div>
-    {{#Post}}{{#Student}}{{#Teacher}}<button onclick="window.location.href='/contract?postId={{Post.id}}&studentId={{Student.id}}&teacherId={{Teacher.id}}'">Confirmar Contrato</button>{{/Teacher}}{{/Student}}{{/Post}}
+    {{#Post}}{{#Student}}{{#Teacher}}<button onclick="window.location.href='/contract?postId={{Post.id}}&teacherId={{Teacher.id}}'">Confirmar Contrato</button>{{/Teacher}}{{/Student}}{{/Post}}
   </div> 
 </section>
 {{>footer}}

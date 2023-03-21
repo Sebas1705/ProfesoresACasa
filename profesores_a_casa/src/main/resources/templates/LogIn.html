@@ -7,7 +7,7 @@
       <p class="err">{{error}}</p>
       {{/Incorrect}}
       <p class="field">
-        <input type="text" name="logname" placeholder="logname" required/>
+        <input type="text" name="username" placeholder="logname" required/>
         <i class="fa fa-user"></i>
       </p>
       <p class="field">
@@ -15,6 +15,7 @@
         <i class="fa fa-lock"></i>
       </p>
       <p class="submit"><input type="submit" name="sent" value="Login"></p>
+      <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>
   </div> <!--Login-->
 </section>

@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(fetch=FetchType.EAGER,mappedBy="ownerUser", cascade=CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy="ownerUser", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Post> posts=new ArrayList<Post>();
 
     @OneToMany(mappedBy="author", cascade=CascadeType.ALL, orphanRemoval=true)
