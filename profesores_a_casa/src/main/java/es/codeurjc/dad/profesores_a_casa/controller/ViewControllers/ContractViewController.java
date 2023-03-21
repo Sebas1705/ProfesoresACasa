@@ -1,10 +1,11 @@
 package es.codeurjc.dad.profesores_a_casa.controller.ViewControllers;
 
+import java.security.Principal;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,64 +16,61 @@ import es.codeurjc.dad.profesores_a_casa.service.*;
 @Controller
 public class ContractViewController {
     
-    @Autowired private GeneralService service;
     @Autowired private UserService users;
     @Autowired private PostService posts;
     @Autowired private ContractService contracts;
 
     //Contratos:
     @GetMapping("/newContract")
-    public String formContract(Model model,HttpSession session,@RequestParam long postId,@RequestParam long studentId,@RequestParam long teacherId){
-        User u=(User) session.getAttribute("User");
-        model.addAttribute("User",u);
-        Optional<User> student=users.findUser(studentId);
-        Optional<User> teacher;
-        Optional<Post> post;
-        if(student.isPresent()){
-            teacher=users.findUser(teacherId);
-            if(teacher.isPresent()){
-                post=posts.findPost(postId);
-                if(post.isPresent()){
-                    model.addAttribute("Post",post.get());
-                    model.addAttribute("Teacher",teacher.get());
-                    model.addAttribute("Student",student.get());
-                    return "NewContract";
+    public String formContract(Model model,HttpServletRequest request,@RequestParam long postId,@RequestParam long teacherId){
+        Principal principal = request.getUserPrincipal();
+        if(principal!=null) {
+            Optional<User> user=users.findUser(principal.getName());
+            if(user.isPresent()){
+                model.addAttribute("User",user.get());
+                Optional<User> teacher=users.findUser(teacherId);
+                if(teacher.isPresent()){
+                    Optional<Post> post=posts.findPost(postId);
+                    if(post.isPresent()){
+                        model.addAttribute("Post",post.get());
+                        model.addAttribute("Teacher",teacher.get());
+                        model.addAttribute("Student",user.get());
+                        return "NewContract";
+                    }
                 }
             }
         }
-        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
-        return "Home";
+        return "redirect:/";
     }
     @GetMapping("/contract")
-    public String createContract(Model model,HttpSession session,@RequestParam long postId,@RequestParam long studentId,@RequestParam long teacherId){
-        User u=(User) session.getAttribute("User");
-        model.addAttribute("User",u);
-        Optional<User> student=users.findUser(studentId);
-        Optional<User> teacher;
-        Optional<Post> post;
-        if(student.isPresent()){
-            teacher=users.findUser(teacherId);
-            if(teacher.isPresent()){
-                post=posts.findPost(postId);
-                if(post.isPresent()){
-                    Contract contract=new Contract();
-                    contracts.save(contract);
-                    student.get().addContractAsStudent(contract);
-                    teacher.get().addContractAsTeacher(contract);
-                    post.get().addContract(contract);
-                    users.save(student.get());
-                    users.save(teacher.get());
-                    posts.save(post.get());
-                    contracts.save(contract); 
-                    service.setUpMiPerfil(model,session);
+    public String createContract(Model model,HttpServletRequest request,@RequestParam long postId,@RequestParam long teacherId) throws ServletException{
+        Principal principal = request.getUserPrincipal();
+        if(principal!=null) {
+            Optional<User> user=users.findUser(principal.getName());
+            if(user.isPresent()){
+                model.addAttribute("User",user.get());
+                Optional<User> teacher=users.findUser(teacherId);
+                if(teacher.isPresent()){
+                    Optional<Post> post=posts.findPost(postId);
+                    if(post.isPresent()){
+                        Contract contract=new Contract();
+                        contracts.save(contract);
+                        user.get().addContractAsStudent(contract);
+                        teacher.get().addContractAsTeacher(contract);
+                        post.get().addContract(contract);
+                        users.save(user.get());
+                        users.save(teacher.get());
+                        posts.save(post.get());
+                        contracts.save(contract); 
+                        return "redirect:/myProfile";
+                    } 
                 }
-            } 
+            }
         }
-        service.setUpOfPosts(model,PageRequest.of(0,10),null,false);
-        return "Home";    
+        return "redirect:/";    
     }
     @GetMapping("/deleteContract")
-    public String deleteContract(Model model,HttpSession session,@RequestParam long contractId,@RequestParam boolean teacher){
+    public String deleteContract(@RequestParam long contractId,@RequestParam boolean teacher) throws ServletException{
         Optional<Contract> contract_p=contracts.findContract(contractId);
         if(contract_p.isPresent()){
             Contract contract=contract_p.get();
@@ -81,7 +79,6 @@ public class ContractViewController {
             contracts.save(contract);
             if(contract.isTeacherWantToDelete()&&contract.isStudentWantToDelete())contracts.delete(contractId);
         }
-        service.setUpMiPerfil(model,session);
-        return "MyProfile";
+        return "redirect:/myProfile";
     }
 }
