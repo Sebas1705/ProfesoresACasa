@@ -21,6 +21,7 @@ public class PostViewController {
 
     @Autowired private UserService users;
     @Autowired private PostService posts;
+    @Autowired private RabbitMQProducer notifications;
 
     @GetMapping("/post")
     public String showPost(Model model,HttpServletRequest request,@RequestParam long postId){
@@ -103,6 +104,7 @@ public class PostViewController {
                 user.removePost(post);
                 posts.deletePost(post.getId());
                 users.save(user);
+                notifications.sendMessage("P("+post.getTitle()+")");
             } 
         }
         return "redirect:/myProfile";

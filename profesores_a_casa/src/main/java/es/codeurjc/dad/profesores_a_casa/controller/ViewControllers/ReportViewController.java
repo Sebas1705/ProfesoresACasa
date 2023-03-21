@@ -20,6 +20,7 @@ public class ReportViewController {
     @Autowired private ReportService reports;
     @Autowired private PostService posts;
     @Autowired private UserService users;
+    @Autowired private RabbitMQProducer notifications;
 
     @GetMapping("/newReport")
     public String formReport(Model model,HttpServletRequest request,@RequestParam long postId){
@@ -48,6 +49,7 @@ public class ReportViewController {
                     users.save(user);
                     posts.save(p);
                     reports.save(report);
+                    notifications.sendMessage("R("+p.getTitle()+")");
                 }
             }
         }

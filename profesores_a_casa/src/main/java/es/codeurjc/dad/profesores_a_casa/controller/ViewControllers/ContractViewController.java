@@ -19,6 +19,7 @@ public class ContractViewController {
     @Autowired private UserService users;
     @Autowired private PostService posts;
     @Autowired private ContractService contracts;
+    @Autowired private RabbitMQProducer notifications;
 
     //Contratos:
     @GetMapping("/newContract")
@@ -61,7 +62,10 @@ public class ContractViewController {
                         users.save(user.get());
                         users.save(teacher.get());
                         posts.save(post.get());
-                        contracts.save(contract); 
+                        contracts.save(contract);
+                        notifications.sendMessage("N("+contract.getTeacher().getLogname()+
+                                            ","+contract.getStudent()+
+                                            ","+contract.getPost().getTitle()+")"); 
                         return "redirect:/myProfile";
                     } 
                 }
@@ -77,7 +81,12 @@ public class ContractViewController {
             if(teacher)contract.setTeacherWantToDelete(!contract.isTeacherWantToDelete());
             else contract.setStudentWantToDelete(!contract.isStudentWantToDelete());
             contracts.save(contract);
-            if(contract.isTeacherWantToDelete()&&contract.isStudentWantToDelete())contracts.delete(contractId);
+            if(contract.isTeacherWantToDelete()&&contract.isStudentWantToDelete()){
+                notifications.sendMessage("C("+contract.getTeacher().getLogname()+
+                                            ","+contract.getStudent()+
+                                            ","+contract.getPost().getTitle()+")");
+                contracts.delete(contractId);
+            }
         }
         return "redirect:/myProfile";
     }

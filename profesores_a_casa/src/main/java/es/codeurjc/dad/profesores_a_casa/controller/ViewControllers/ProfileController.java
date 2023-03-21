@@ -21,6 +21,7 @@ public class ProfileController {
     @Autowired private UserService users;
     @Autowired private PostService posts;
     @Autowired private ContractService contracts;
+    @Autowired private RabbitMQProducer notifications;
 
     @GetMapping("/myProfile")
     public String miPerfil(Model model,HttpServletRequest request) throws ServletException{
@@ -65,8 +66,11 @@ public class ProfileController {
         if(principal!=null) {
             Optional<User> user=users.findUser(principal.getName());
             if(user.isPresent()){
+                String email=user.get().getEmail();
+                String name=user.get().getLogname();
                 model.addAttribute("User",user.get());
                 users.delete(user.get().getId());
+                notifications.sendMessage("D("+email+","+name+")");
                 request.logout();
             }
         }
