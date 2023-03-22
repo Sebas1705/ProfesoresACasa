@@ -70,7 +70,7 @@ public class ProfileController {
                 String name=user.get().getLogname();
                 model.addAttribute("User",user.get());
                 users.delete(user.get().getId());
-                notifications.sendMessage("D("+email+","+name+")");
+                notifications.sendMessage("D-"+email+"-"+name);
                 request.logout();
             }
         }

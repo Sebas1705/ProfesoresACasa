@@ -64,6 +64,10 @@ public class PostViewController {
                 user.addPost(post);
                 users.save(user);
                 posts.save(post);
+                notifications.sendMessage("I-"+title+
+                                            "-"+description+
+                                            "-"+price+
+                                            "-"+post.getOwnerUser().getEmail());
             }
         }
         return "redirect:/myProfile";
@@ -99,8 +103,8 @@ public class PostViewController {
             Optional<Post> post_p=posts.findPost(postId);
             Post post=post_p.get();
             if(posts.exists(post)){
-                notifications.sendMessage("P("+post.getTitle()+
-                                            ","+post.getOwnerUser().getEmail()+")");
+                notifications.sendMessage("P-"+post.getTitle()+
+                                            "-"+post.getOwnerUser().getEmail());
                 User user=userP.get();
                 user=post.getOwnerUser();
                 user.removePost(post);
