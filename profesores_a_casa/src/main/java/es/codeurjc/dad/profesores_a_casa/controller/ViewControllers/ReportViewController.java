@@ -49,10 +49,10 @@ public class ReportViewController {
                     users.save(user);
                     posts.save(p);
                     reports.save(report);
-                    notifications.sendMessage("R-"+p.getTitle()+
+                    notifications.sendMessage("R-"+user.getEmail()+
+                                                "-"+p.getTitle()+
                                                 "-"+motive+
-                                                "-"+description+
-                                                "-"+user.getEmail());
+                                                "-"+description);
                 }
             }
         }

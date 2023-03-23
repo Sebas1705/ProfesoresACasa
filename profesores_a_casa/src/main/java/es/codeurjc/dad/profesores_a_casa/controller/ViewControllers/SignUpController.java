@@ -37,7 +37,7 @@ public class SignUpController {
         }
         User newUser=new User(logname,passwordEncoder.encode(password),email);
         users.save(newUser);
-        notifications.sendMessage("S("+email+","+logname+")");
+        notifications.sendMessage("S-"+email+"-"+logname);
         request.login(logname, passwordEncoder.encode(password));
         return "redirect:/";
     }

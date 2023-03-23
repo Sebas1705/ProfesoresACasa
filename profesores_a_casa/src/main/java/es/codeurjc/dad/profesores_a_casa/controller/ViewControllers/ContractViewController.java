@@ -63,10 +63,10 @@ public class ContractViewController {
                         users.save(teacher.get());
                         posts.save(post.get());
                         contracts.save(contract);
-                        notifications.sendMessage("N-"+teacher.get().getLogname()+
+                        notifications.sendMessage("N-"+user.get().getEmail()+
+                                            "-"+teacher.get().getLogname()+
                                             "-"+user.get().getLogname()+
-                                            "-"+contract.getPost().getTitle()+
-                                            "-"+user.get().getEmail()); 
+                                            "-"+contract.getPost().getTitle()); 
                         return "redirect:/myProfile";
                     } 
                 }
@@ -83,10 +83,10 @@ public class ContractViewController {
             else contract.setStudentWantToDelete(!contract.isStudentWantToDelete());
             contracts.save(contract);
             if(contract.isTeacherWantToDelete()&&contract.isStudentWantToDelete()){
-                notifications.sendMessage("C-"+contract.getTeacher().getLogname()+
+                notifications.sendMessage("C-"+((teacher)?contract.getTeacher().getEmail():contract.getStudent().getEmail())+
+                                            "-"+contract.getTeacher().getLogname()+
                                             "-"+contract.getStudent().getLogname()+
-                                            "-"+contract.getPost().getTitle()+
-                                            "-"+((teacher)?contract.getTeacher().getEmail():contract.getStudent().getEmail()));
+                                            "-"+contract.getPost().getTitle());
                 contracts.delete(contractId);
             }
         }
