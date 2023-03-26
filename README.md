@@ -110,3 +110,20 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 *Relación con templates
   -Esquema con los controladores y las templates que relaciona.
   ![Templates](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/Templates.png)
+  
+*Instrucciones para desplegar la aplicación
+ -En primer lugar, generamos el rar de ambos proyectos desde la consola, con el comando mvn packge desde la carpeta main de cada proyecto.
+ -Una vez generados los jar los subiremos a openstack, ejecutaremos desde terminal el comando scp -i la ruta dónde se encuentra nuestra clave privada ubuntu@ip:/home/ubuntu la última ruta puede ser cualquiera en la que tengamos permisos de ejecución. 
+ -Posteriormente nos vamos a conectar a openStack con nuestras credenciales con el comando ssh -i ruta donde tenemos el certificado de nuestra clave privada + ubuntu@ipInstancia
+ -Posteriormente, necesitaremos dos consolas para ejecutar ambas aplicaciones. Primero en una, ejecutaremos los siguientes comandos para instalar los paquetes necesarios. 
+-JDK: sudo apt install default-jre
+-MySQL-server: sudo apt install mysql-server
+-Config mysql: sudo mysql
+-CREATE USER 'test'@'localhost' IDENTIFIED BY 'test.profesoresACasa';
+-GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+-CREATE SCHEMA profesoresACasa;
+-exit
+-Rabbitmq: sudo apt-get install rabbitmq-server
+-Una vez tengamos esto instalado, en ambas consolas ejecutaremos java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar y en la otra java -jar servicio_correo-0.0.1-SNAPSHOT.jar
+-Cuando busquemos en internet ip de la instancia seguida de :8443, estará nuestra aplicación corriendo. 
+-En la instancia hemos añadido un grupo de seguridad TCP de entrada con puerto 8443.
