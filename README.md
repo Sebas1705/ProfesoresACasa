@@ -100,23 +100,23 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
  ## Fase 3
  
  
-*Diagrama de clases y relación con templates
+* Diagrama de clases y relación con templates
 
-*UML
+* UML
   -Diagrama ordenado, con leyenda de colores. 
   -Amarillo-->Controller; Morado-->Repository; Azul-->Seguridad; Verde-->Model; Naranja-->Config; Rosa-->Servicios
   ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/UML.png)
 
-*Relación con templates
+* Relación con templates
   -Esquema con los controladores y las templates que relaciona.
   ![Templates](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/Templates.png)
   
 
-*Documentación del servicio interno
+* Documentación del servicio interno
   Nuestro servicio interno envía mensajes por diferentes acciones, por ejmplo cuando contratas un post el servicio interno se encarga de mandar un correo avisando de esta nueva contratación. También recibiremos un correo con diferentes acciones como cuando se borra un mensaje o cuando nos registramos en la página.
   Este servicio requiere un consumidor que en este caso van a ser los usuarios que registren o interactuen con la aplicación.
   
-*Instrucciones para desplegar la aplicación
+* Instrucciones para desplegar la aplicación
 
  -En primer lugar, generamos el rar de ambos proyectos desde la consola, con el comando mvn packge desde la carpeta main de cada proyecto.
  
