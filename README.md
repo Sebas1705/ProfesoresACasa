@@ -111,7 +111,9 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   -Esquema con los controladores y las templates que relaciona.
   ![Templates](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/Templates.png)
   
+  
 ##Instrucciones para desplegar la aplicación
+
 
  -En primer lugar, generamos el rar de ambos proyectos desde la consola, con el comando mvn packge desde la carpeta main de cada proyecto.
  -Una vez generados los jar los subiremos a openstack, ejecutaremos desde terminal el comando scp -i la ruta dónde se encuentra nuestra clave privada ubuntu@ip:/home/ubuntu la última ruta puede ser cualquiera en la que tengamos permisos de ejecución. 
