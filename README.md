@@ -100,7 +100,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
  ## Fase 3
  
  
-### Diagrama de clases y relación con templates
+*Diagrama de clases y relación con templates
 
 *UML
   -Diagrama ordenado, con leyenda de colores. 
