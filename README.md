@@ -105,7 +105,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 * UML
   -Diagrama ordenado, con leyenda de colores.
   
-  -Naranja-->Controller; Verde-->Templates; Morado-->Repository; Azul-->Seguridad; Verde-->Model; Naranja-->Config; Amarillo-->Servicios
+  -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
   ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/UML.png)
 
 * Documentación del servicio interno
