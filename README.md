@@ -106,6 +106,8 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   -Diagrama ordenado, con leyenda de colores.
   
   -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
+  
+  * ProfesoresACasa 
   ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
 
 * Documentación del servicio interno
