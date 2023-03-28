@@ -110,6 +110,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   * ProfesoresACasa 
   ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
   
+  
   * ServicioCorreo
   ![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
 
