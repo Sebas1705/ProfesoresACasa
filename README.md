@@ -128,13 +128,21 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
  -Posteriormente nos vamos a conectar a openStack con nuestras credenciales con el comando ssh -i ruta donde tenemos el certificado de nuestra clave privada + ubuntu@ipInstancia.
  
  -Posteriormente, necesitaremos dos consolas para ejecutar ambas aplicaciones. Primero en una, ejecutaremos los siguientes comandos para instalar los paquetes necesarios. 
+ 
 -JDK: sudo apt install default-jre
+
 -MySQL-server: sudo apt install mysql-server
+
 -Config mysql: sudo mysql
+
 -CREATE USER 'test'@'localhost' IDENTIFIED BY 'test.profesoresACasa';
+
 -GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+
 -CREATE SCHEMA profesoresACasa;
+
 -exit
+
 -Rabbitmq: sudo apt-get install rabbitmq-server
 
 -Una vez tengamos esto instalado, en una consola ejecutaremos java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar y en la otra java -jar servicio_correo-0.0.1-SNAPSHOT.jar
