@@ -106,7 +106,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   -Diagrama ordenado, con leyenda de colores.
   
   -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
-  ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/UML.png)
+  ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
 
 * Documentación del servicio interno
   Nuestro servicio interno envía mensajes por diferentes acciones, por ejemplo cuando contratas un post el servicio interno se encarga de mandar un correo avisando de esta nueva contratación. También recibiremos un correo con diferentes acciones como cuando se borra un post o cuando nos registramos en la página.
