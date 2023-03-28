@@ -112,6 +112,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   
   
   * ServicioCorreo
+  
   ![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
 
 * Documentación del servicio interno
