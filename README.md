@@ -146,3 +146,33 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 -Cuando busquemos en internet ip de la instancia seguida de :8443, estará nuestra aplicación corriendo.
 
 -En la instancia hemos añadido un grupo de seguridad TCP de entrada con puerto 8443.
+
+### Capturas de navegación
+* Home
+![Home](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png)
+
+* Login
+![Login](https://github.com/Sebas1705/ProfesoresACasa/blob/de766cbca664a1e8a9287ce5fb02c464d2c545d4/Navegacion/Login.png)
+
+* Registro
+![Resgistro](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Registro.png)
+
+* Inicio de sesión
+  ![menú](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Resgistrado.png)
+  
+ * Publicaciones
+  ![Publicaciones](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Publicaciones.png)
+  
+ * VerPost
+ ![Post](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Ver_Post.png)
+ 
+ * Contratar
+ ![Contratar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Contratar.png)
+ 
+ * Denunciar
+ ![Denunciar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Denunciar.png)
+ 
+ * Cambio de página
+ ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
+ 
+ 
