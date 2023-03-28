@@ -103,7 +103,13 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 * Diagrama de clases y relación con templates
 
 * UML
-  -Diagrama ordenado, con leyenda de colores. 
+  -Diagrama ordenado, con leyenda de colores.
+  -Las relaciones que mantienen entre ellos son las siguientes: 
+  Los controladores de cada entidad necesitan del modelo(entidad) y su servicio.
+  Por lo tanto existe una relación de asociación entre los modelos y servicios con los controladores.
+  Los modelos tienen entre ellos una relación de composición, ya que por ejemplo un post está formado por un ranking, un usuario...
+  Los repositorios tienen una relación de asociación con los modelos.
+  Los servicios tienen una relación de asociación con los modelos y los repositorios.
   -Amarillo-->Controller; Morado-->Repository; Azul-->Seguridad; Verde-->Model; Naranja-->Config; Rosa-->Servicios
   ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/UML.png)
 
