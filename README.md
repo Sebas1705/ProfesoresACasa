@@ -95,3 +95,73 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
  * Cambio de página
   -Se muestra como se ha pasado a la página 1
  ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
+ 
+ 
+ ## Fase 3
+ 
+ 
+* Diagrama de clases y relación con templates
+
+* UML
+  -Diagrama ordenado, con leyenda de colores.
+  
+  -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
+  ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/9a6b259d93bc74b73826a9f0a50e5348dc642bfc/assets/UML.png)
+
+* Documentación del servicio interno
+  Nuestro servicio interno envía mensajes por diferentes acciones, por ejemplo cuando contratas un post el servicio interno se encarga de mandar un correo avisando de esta nueva contratación. También recibiremos un correo con diferentes acciones como cuando se borra un post o cuando nos registramos en la página.
+  Este servicio requiere un consumidor que en este caso van a ser los usuarios que registren o interactuen con la aplicación.
+  
+* Instrucciones para desplegar la aplicación
+
+ -En primer lugar, generamos el rar de ambos proyectos desde la consola, con el comando mvn packge desde la carpeta main de cada proyecto.
+ 
+ -Una vez generados los jar los subiremos a openstack, ejecutaremos desde terminal el comando scp -i la ruta dónde se encuentra nuestra clave privada ubuntu@ip:/home/ubuntu la última ruta puede ser cualquiera en la que tengamos permisos de ejecución. 
+ 
+ -Posteriormente nos vamos a conectar a openStack con nuestras credenciales con el comando ssh -i ruta donde tenemos el certificado de nuestra clave privada + ubuntu@ipInstancia.
+ 
+ -Posteriormente, necesitaremos dos consolas para ejecutar ambas aplicaciones. Primero en una, ejecutaremos los siguientes comandos para instalar los paquetes necesarios. 
+-JDK: sudo apt install default-jre
+-MySQL-server: sudo apt install mysql-server
+-Config mysql: sudo mysql
+-CREATE USER 'test'@'localhost' IDENTIFIED BY 'test.profesoresACasa';
+-GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+-CREATE SCHEMA profesoresACasa;
+-exit
+-Rabbitmq: sudo apt-get install rabbitmq-server
+
+-Una vez tengamos esto instalado, en una consola ejecutaremos java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar y en la otra java -jar servicio_correo-0.0.1-SNAPSHOT.jar
+
+-Cuando busquemos en internet ip de la instancia seguida de :8443, estará nuestra aplicación corriendo.
+
+-En la instancia hemos añadido un grupo de seguridad TCP de entrada con puerto 8443.
+
+### Capturas de navegación
+* Home
+![Home](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png)
+
+* Login
+![Login](https://github.com/Sebas1705/ProfesoresACasa/blob/de766cbca664a1e8a9287ce5fb02c464d2c545d4/Navegacion/Login.png)
+
+* Registro
+![Resgistro](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Registro.png)
+
+* Inicio de sesión
+  ![menú](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Resgistrado.png)
+  
+ * Publicaciones
+  ![Publicaciones](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Publicaciones.png)
+  
+ * VerPost
+ ![Post](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Ver_Post.png)
+ 
+ * Contratar
+ ![Contratar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Contratar.png)
+ 
+ * Denunciar
+ ![Denunciar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Denunciar.png)
+ 
+ * Cambio de página
+ ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
+ 
+ 
