@@ -113,7 +113,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   
 
 * Documentación del servicio interno
-  Nuestro servicio interno envía mensajes por diferentes acciones, por ejmplo cuando contratas un post el servicio interno se encarga de mandar un correo avisando de esta nueva contratación. También recibiremos un correo con diferentes acciones como cuando se borra un mensaje o cuando nos registramos en la página.
+  Nuestro servicio interno envía mensajes por diferentes acciones, por ejemplo cuando contratas un post el servicio interno se encarga de mandar un correo avisando de esta nueva contratación. También recibiremos un correo con diferentes acciones como cuando se borra un post o cuando nos registramos en la página.
   Este servicio requiere un consumidor que en este caso van a ser los usuarios que registren o interactuen con la aplicación.
   
 * Instrucciones para desplegar la aplicación
@@ -134,7 +134,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 -exit
 -Rabbitmq: sudo apt-get install rabbitmq-server
 
--Una vez tengamos esto instalado, en ambas consolas ejecutaremos java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar y en la otra java -jar servicio_correo-0.0.1-SNAPSHOT.jar
+-Una vez tengamos esto instalado, en una consolas ejecutaremos java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar y en la otra java -jar servicio_correo-0.0.1-SNAPSHOT.jar
 
 -Cuando busquemos en internet ip de la instancia seguida de :8443, estará nuestra aplicación corriendo.
 
