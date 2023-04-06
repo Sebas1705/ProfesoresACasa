@@ -3,6 +3,9 @@ package es.codeurjc.dad.profesores_a_casa.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 @Setter
@@ -16,15 +19,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @JsonIgnore
     @OneToMany(mappedBy="ownerUser", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Post> posts=new ArrayList<Post>();
 
+    @JsonIgnore
     @OneToMany(mappedBy="author", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Report> reports=new ArrayList<Report>();
 
+    @JsonIgnore
     @OneToMany(mappedBy="teacher", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Contract> contractsAsTeacher=new ArrayList<Contract>();
 
+    @JsonIgnore
     @OneToMany(mappedBy="student", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Contract> contractsAsStudent=new ArrayList<Contract>();
 
@@ -40,6 +47,7 @@ public class User {
     @Column(name = "SELF_DESCRIPTION")
     private String selfDescription;
 
+    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 

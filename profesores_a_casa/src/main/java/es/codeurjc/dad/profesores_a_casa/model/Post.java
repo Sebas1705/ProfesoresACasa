@@ -2,6 +2,8 @@ package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +21,15 @@ public class Post {
     @Column(name = "POST_ID", unique = true, nullable=false)
     private long id;
 
+    @JsonIgnore
     @ManyToOne
     private User ownerUser;
 
+    @JsonIgnore
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Contract> contracts=new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Report> reports=new ArrayList<>();
 
