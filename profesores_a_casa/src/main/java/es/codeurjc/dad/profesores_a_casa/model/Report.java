@@ -1,6 +1,9 @@
 package es.codeurjc.dad.profesores_a_casa.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 @Setter
@@ -15,9 +18,11 @@ public class Report {
     @Column(name = "REPORT_ID", unique = true, nullable=false)
     private long id;
 
+    @JsonIgnore
     @ManyToOne
     private User author;
 
+    @JsonIgnore
     @ManyToOne
     private Post post;
 

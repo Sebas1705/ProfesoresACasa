@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.codeurjc.dad</groupId>
 	<artifactId>servicio_correo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>servicio_correo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

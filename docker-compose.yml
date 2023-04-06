@@ -1,0 +1,42 @@
+version: '3'
+services:
+
+  db: 
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=profesores_a_casa
+
+  web:
+    build: web/.
+    expose: 
+      - "8443"
+    restart: unless-stopped
+    environment:
+      - SPRING_RABBITMQ_HOST=broker
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/books
+      - APP_SERVICIO_REST=loadbalancer
+    deploy:
+      mode: replicated
+      replicas: 2
+
+  broker:
+    image: rabbitmq
+
+  rabbitmq:
+    build: servicio-interno-rabbitmq/.
+    environment:
+      - SPRING_RABBITMQ_HOST=broker
+    deploy:
+      mode: replicated
+      replicas: 2
+
+  loadbalancer:
+    image: haproxy:2.7.3
+    ports:
+      - "9443:443" # Only service that is exposed to the host is the lb
+      - "8181:8181" # Haproxy Stats
+      - "9090:80" # http (should not work)
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    restart: unless-stopped
