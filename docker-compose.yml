@@ -1,32 +1,32 @@
 version: '3'
 services:
-
   db: 
     image: mysql:8
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=profesores_a_casa
+      - MYSQL_DATABASE=profesoresacasa
 
   web:
-    build: web/.
+    build: profesores_a_casa/.
     expose: 
       - "8443"
     restart: unless-stopped
     environment:
-      - SPRING_RABBITMQ_HOST=broker
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db/books
-      - APP_SERVICIO_REST=loadbalancer
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
     deploy:
       mode: replicated
       replicas: 2
 
-  broker:
+  rabbitmq:
     image: rabbitmq
 
-  rabbitmq:
-    build: servicio-interno-rabbitmq/.
+  servicio_correo:
+    build: servicio_correo/.
     environment:
-      - SPRING_RABBITMQ_HOST=broker
+      - SPRING_RABBITMQ_HOST=rabbitmq
     deploy:
       mode: replicated
       replicas: 2
