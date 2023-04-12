@@ -8,6 +8,7 @@ services:
 
   web:
     build: profesores_a_casa/.
+    hostname: web
     expose: 
       - "8443"
     restart: unless-stopped
@@ -25,6 +26,7 @@ services:
 
   servicio_correo:
     build: servicio_correo/.
+    hostname: service
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
     deploy:
@@ -35,7 +37,7 @@ services:
     image: haproxy:2.7.3
     ports:
       - "9443:443" # Only service that is exposed to the host is the lb
-      - "8181:8181" # Haproxy Stats
+      - "9080:8080" # Haproxy Stats
       - "9090:80" # http (should not work)
     volumes:
       - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
