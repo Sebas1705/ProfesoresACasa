@@ -5,30 +5,30 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=profesoresacasa
-
+  
+  rabbitmq:
+    image: rabbitmq
+  
   web:
     build: profesores_a_casa/.
-    hostname: web
     expose: 
       - "8443"
     restart: unless-stopped
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=password
     deploy:
       mode: replicated
       replicas: 2
 
-  rabbitmq:
-    image: rabbitmq
-
   servicio_correo:
     build: servicio_correo/.
-    hostname: service
+    expose:
+      - "8080"
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
+      - MAIL.ORIGIN=asistente.profesoresacasa@gmail.com
+      - MAIL.PASSWORD=omzxpsrdfltkeged
     deploy:
       mode: replicated
       replicas: 2
@@ -37,8 +37,9 @@ services:
     image: haproxy:2.7.3
     ports:
       - "9443:443" # Only service that is exposed to the host is the lb
-      - "9080:8080" # Haproxy Stats
+      - "8181:8181" # Haproxy Stats
       - "9090:80" # http (should not work)
     volumes:
       - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+      - "./mydomain.pem:/etc/cert/server.pem:ro"
     restart: unless-stopped
