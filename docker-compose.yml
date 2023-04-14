@@ -17,6 +17,8 @@ services:
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
     deploy:
       mode: replicated
       replicas: 2
@@ -41,5 +43,4 @@ services:
       - "9090:80" # http (should not work)
     volumes:
       - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
-      - "./mydomain.pem:/etc/cert/server.pem:ro"
     restart: unless-stopped
