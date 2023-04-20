@@ -9,19 +9,29 @@ services:
   rabbitmq:
     image: rabbitmq
   
-  web:
+  web-1:
     build: profesores_a_casa/.
     expose: 
       - "8443"
     restart: unless-stopped
     environment:
+      - HAZEL_IP_OTHER-WEB=web-2
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
-    deploy:
-      mode: replicated
-      replicas: 2
+
+  web-2:
+    build: profesores_a_casa/.
+    expose: 
+      - "8443"
+    restart: unless-stopped
+    environment:
+      - HAZEL_IP_OTHER-WEB=web-1
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
 
   servicio_correo:
     build: servicio_correo/.
