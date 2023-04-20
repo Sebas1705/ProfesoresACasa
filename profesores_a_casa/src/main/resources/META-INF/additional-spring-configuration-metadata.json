@@ -13,5 +13,10 @@
     "name": "rabbitmq.routingKey.name",
     "type": "java.lang.String",
     "description": "A description for 'rabbitmq.routingKey.name'"
+  },
+  {
+    "name": "hazel.ip.other-web",
+    "type": "java.lang.String",
+    "description": "A description for 'hazel.ip.other-web'"
   }
 ]}
