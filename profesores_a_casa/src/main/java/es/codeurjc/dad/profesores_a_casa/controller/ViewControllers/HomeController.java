@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,14 +18,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import es.codeurjc.dad.profesores_a_casa.model.Post;
 import es.codeurjc.dad.profesores_a_casa.model.User;
-import es.codeurjc.dad.profesores_a_casa.service.DataBaseInitialazer;
+//import es.codeurjc.dad.profesores_a_casa.service.DataBaseInitialazer;
 import es.codeurjc.dad.profesores_a_casa.service.PostService;
 import es.codeurjc.dad.profesores_a_casa.service.UserService;
 
 @Controller
 public class HomeController {
     
-    @Autowired private DataBaseInitialazer service;
+    //@Autowired private DataBaseInitialazer service;
     @Autowired private UserService users;
     @Autowired private PostService posts;
 
