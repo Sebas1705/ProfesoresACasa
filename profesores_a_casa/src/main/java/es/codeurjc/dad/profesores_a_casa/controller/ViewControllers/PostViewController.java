@@ -70,7 +70,7 @@ public class PostViewController {
                                             "-"+price);       
             }
         }
-        return "redirect:/myProfile";
+        return "redirect:/";
     } 
     @GetMapping("/rank")
     public String rank(Model model,HttpServletRequest request,@RequestParam int punt,@RequestParam long postId){

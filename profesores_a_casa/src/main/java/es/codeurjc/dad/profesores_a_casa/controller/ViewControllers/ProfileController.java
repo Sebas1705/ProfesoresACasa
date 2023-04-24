@@ -98,6 +98,6 @@ public class ProfileController {
                 request.logout();
             } 
         }  
-        return "redirect:/myProfile"; 
+        return "redirect:/"; 
     }
 }

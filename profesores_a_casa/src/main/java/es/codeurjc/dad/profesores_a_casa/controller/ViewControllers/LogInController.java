@@ -18,4 +18,5 @@ public class LogInController {
         model.addAttribute("error", "No existe el usuario o la contraseña no es correcta");
         return "LogIn";
     } 
+
 }

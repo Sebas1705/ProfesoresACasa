@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeHttpRequests(requests -> requests.antMatchers("/otherProfile").permitAll());
         http.authorizeHttpRequests(requests -> requests.antMatchers("/signUp").permitAll());
         http.authorizeHttpRequests(requests -> requests.antMatchers("/cache").permitAll());
+        http.authorizeHttpRequests(requests -> requests.antMatchers("/error").permitAll());
 
         //Private pages:
         http.authorizeHttpRequests(requests -> requests.antMatchers("/logout").hasAnyRole("USER"));
