@@ -10,7 +10,6 @@ import java.util.Optional;
 import es.codeurjc.dad.profesores_a_casa.model.Post;
 import es.codeurjc.dad.profesores_a_casa.model.User;
 
-
 public interface PostRepository extends JpaRepository<Post,Long>{
 
     Post save(Post post);
