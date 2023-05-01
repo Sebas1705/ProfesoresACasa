@@ -181,3 +181,24 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
  ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
  
  
+ ## Fase 4
+ 
+ 
+* Diagrama de clases y relación con templates
+
+* UML
+  -Diagrama ordenado, con leyenda de colores.
+  
+  -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
+  
+  * ProfesoresACasa 
+  ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
+  
+  
+  * ServicioCorreo
+  
+  ![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
+
+* Diagrama de la insfraestructura
+  -Infraestructura
+  
