@@ -201,4 +201,5 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
 
 * Diagrama de la insfraestructura
   -Infraestructura
+  
   ![Infra](https://github.com/Sebas1705/ProfesoresACasa/blob/ab5b5dbe4a01ca5e9c8f254df7f9e79fb9ad7194/assets/Infraestructura.png)
