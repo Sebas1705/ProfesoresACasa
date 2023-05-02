@@ -200,6 +200,7 @@ Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la 
   ![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
 
 * Diagrama de la insfraestructura
+
   -Infraestructura
   
   ![Infra](https://github.com/Sebas1705/ProfesoresACasa/blob/ab5b5dbe4a01ca5e9c8f254df7f9e79fb9ad7194/assets/Infraestructura.png)
