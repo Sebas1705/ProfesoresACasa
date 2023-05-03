@@ -1,6 +1,6 @@
 # ProfesoresACasa
 
-[![Alt text](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png)](https://www.youtube.com/watch?v=qjc6L4i1CjM)
+[![Alt text](https://github.com/Sebas1705/ProfesoresACasa/blob/955cb624999d4453fc0e3773a787c494e9d5357c/assets/Miniatura.png)](https://www.youtube.com/watch?v=qjc6L4i1CjM)
 
 
 Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la Universidad Rey Juan Carlos. Aplicación web que gestiona la contratación de profesores particulares a domicilio por parte de los cliente, y la publicación de ofertas por parte de los profesores. Para simplificar la base de datos y el numero de entidades el profesor actua a la vez de alumno, es decir que un usuario puede publicar ofertas y contratarlas al mismo tiempo.
