@@ -1,5 +1,8 @@
 # ProfesoresACasa
 
+[![Alt text]](https://www.youtube.com/watch?v=qjc6L4i1CjM)
+
+
 Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la Universidad Rey Juan Carlos. Aplicación web que gestiona la contratación de profesores particulares a domicilio por parte de los cliente, y la publicación de ofertas por parte de los profesores. Para simplificar la base de datos y el numero de entidades el profesor actua a la vez de alumno, es decir que un usuario puede publicar ofertas y contratarlas al mismo tiempo.
 
 ## Fase 1 
