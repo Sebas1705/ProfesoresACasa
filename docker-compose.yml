@@ -6,8 +6,10 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=profesoresacasa
   
-  rabbitmq:
+  message_broker:
     image: rabbitmq
+    ports:
+      - "5672:5672"
   
   web1:
     build: profesores_a_casa/.
@@ -16,7 +18,7 @@ services:
     restart: unless-stopped
     environment:
       - HAZEL_IP_OTHER-WEB=web2
-      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_HOST=message_broker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
@@ -28,7 +30,8 @@ services:
     restart: unless-stopped
     environment:
       - HAZEL_IP_OTHER-WEB=web1
-      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_HOST=message_broker
+      - SPRING_RABBITMQ_PORT=5672
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
@@ -38,12 +41,10 @@ services:
     expose:
       - "8080"
     environment:
-      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_HOST=message_broker
+      - SPRING_RABBITMQ_PORT=5672
       - MAIL.ORIGIN=asistente.profesoresacasa@gmail.com
       - MAIL.PASSWORD=omzxpsrdfltkeged
-    deploy:
-      mode: replicated
-      replicas: 2
 
   loadbalancer:
     image: haproxy:2.7.3
