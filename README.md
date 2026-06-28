@@ -1,211 +1,166 @@
-# ProfesoresACasa
+# TutorsAtHome (ProfesoresACasa)
 
-* ENLACE AL VIDEO
+[![Demo Video](https://github.com/Sebas1705/ProfesoresACasa/blob/955cb624999d4453fc0e3773a787c494e9d5357c/assets/Miniatura.png)](https://www.youtube.com/watch?v=qjc6L4i1CjM)
 
-[![ENLACE AL VIDEO](https://github.com/Sebas1705/ProfesoresACasa/blob/955cb624999d4453fc0e3773a787c494e9d5357c/assets/Miniatura.png)](https://www.youtube.com/watch?v=qjc6L4i1CjM)
+A distributed web application built for the **Distributed Applications Development** course at Universidad Rey Juan Carlos. The platform connects private tutors who publish lesson offers with students looking to hire them. Users can act as both tutor and student simultaneously.
 
+## Features
 
-Proyecto público para trabajo de Desarrollo de Aplicaciones Distribuidas en la Universidad Rey Juan Carlos. Aplicación web que gestiona la contratación de profesores particulares a domicilio por parte de los cliente, y la publicación de ofertas por parte de los profesores. Para simplificar la base de datos y el numero de entidades el profesor actua a la vez de alumno, es decir que un usuario puede publicar ofertas y contratarlas al mismo tiempo.
+### Public (unauthenticated)
+- Browse tutor posts with pagination
+- View tutor profiles and their offers
+- Register a new account
 
-## Fase 1 
+### Private (authenticated)
+- Publish and manage your own lesson offers
+- Book a tutor by creating a contract
+- Manage your contracts (as teacher or student)
+- Report posts for policy violations
+- Rate posts (1–5 stars)
+- Edit your profile name and bio
+- Delete your account
 
-### Funcionalidades:
-* Privadas:
-  - Editar y ver la información del usuario.
-  - Gestionar nuestros contratos.
-  - Publicar ofertas de profesor.
-  - Contratar ofertas de profesores.
+## Data Model
 
-* Públicas:
-  - Registro de usuario.
-  - Ver información reducida de profesores.
-  - Explorar las ofertas.
-  - Denunciar irregularidades.
+| Entity | Description |
+|--------|-------------|
+| `User` | Platform account — can act as both tutor and student |
+| `Post` | A tutor's lesson offer with title, description, price, and rating |
+| `Contract` | A hiring agreement between a student and a tutor for a specific post |
+| `Report` | A policy violation report on a post |
+| `Ranking` | Running average star rating for a post |
 
+## Architecture
 
-### Entidades:
-- Usuario
-- Publicación
-- Contratación
-- Denuncia
+```
+┌───────────────────────────────────────────────────────────┐
+│                      HAProxy (port 443)                   │
+│                    Round-robin load balancer               │
+└──────────────────┬────────────────────┬──────────────────┘
+                   │                    │
+          ┌────────▼───────┐   ┌────────▼───────┐
+          │  web1 (:8443)  │   │  web2 (:8443)  │
+          │  Spring Boot   │   │  Spring Boot   │
+          │  + Hazelcast   │◄──►  + Hazelcast   │
+          └────────┬───────┘   └────────┬───────┘
+                   │                    │
+       ┌───────────▼────────────────────▼──────────┐
+       │               MySQL 8                      │
+       └────────────────────────────────────────────┘
+                   │
+          ┌────────▼───────┐
+          │    RabbitMQ    │
+          └────────┬───────┘
+                   │
+          ┌────────▼───────┐
+          │  email-service │  (consumes queue, sends Gmail notifications)
+          └────────────────┘
+```
 
-### Funcionalidades del servicio interno:
-- Envio de correos de notificación al usuario: Denuncia, Publicación, Contratación
+**Key technologies:** Spring Boot 2.7, Spring Security, Spring Data JPA, Mustache templates, Hazelcast distributed sessions, RabbitMQ (AMQP), MySQL 8, HAProxy, Docker Compose.
 
-## Fase 2
+## Notification Events
 
-### Cambios funcionalidades:
-* Privadas:
-  - Editar y ver la información del usuario. (igual)
-  - Gestionar nuestros contratos. (igual)
-  - Publicar ofertas de profesor. (igual)
-  - Contratar ofertas de profesores. (igual)
-  - Denunciar posts (antes publico y regularidades)
+The email microservice (`servicio_correo`) listens on a RabbitMQ queue and sends Gmail notifications for:
 
-* Públicas:
-  - Registro de usuario.
-  - Ver información de profesores. (antes reducida)
-  - Explorar las ofertas.
-  
-  ### Nueva entidades:
-  - Ranking
+| Code | Event |
+|------|-------|
+| `S`  | User registration |
+| `I`  | New post published |
+| `P`  | Post deleted |
+| `N`  | New contract created |
+| `C`  | Contract cancelled |
+| `R`  | Report submitted |
+| `D`  | Account deleted |
 
-### Capturas de los diagramas de navegación, clases y entidad-relación
+## Architecture Diagrams
 
-* Navegación
+### UML — Main app (ProfesoresACasa)
+![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
 
-![navegacion](https://github.com/Sebas1705/ProfesoresACasa/blob/0255de7a38de9a10f00ed54e1423925ff469cf63/assets/navegacion.png)
+> Legend: Orange = Controller · Green = Template · Purple = Repository · Blue = Model · Violet = Config · Yellow = Service
 
-* Diagrama de clases
+### UML — Email service (ServicioCorreo)
+![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
 
-![clases](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/diagrama_clases.png)
+### Navigation diagram
+![Navigation](https://github.com/Sebas1705/ProfesoresACasa/blob/0255de7a38de9a10f00ed54e1423925ff469cf63/assets/navegacion.png)
 
-* Diagrama modelo entidad-relacion
+### Infrastructure
+![Infrastructure](https://github.com/Sebas1705/ProfesoresACasa/blob/ab5b5dbe4a01ca5e9c8f254df7f9e79fb9ad7194/assets/Infraestructura.png)
 
-![entidad](https://github.com/Sebas1705/ProfesoresACasa/blob/baabaf14d160bf022c64a0d6b54a8db999c25f5a/entidad-relacion.png)
+## Running with Docker Compose
 
-### Capturas de navegación
-* Home
-  -Aquí podemos ver sin iniciar sesión los post disponibles.
-![Home](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png)
+### Prerequisites
+- Docker and Docker Compose installed
+- A Gmail account with an [App Password](https://support.google.com/accounts/answer/185833) configured
 
-* Login
-  -Página de inicio de sesión
-![Login](https://github.com/Sebas1705/ProfesoresACasa/blob/de766cbca664a1e8a9287ce5fb02c464d2c545d4/Navegacion/Login.png)
+### Configuration
 
-* Registro
-  -Página de registro con formulario normal.
-![Resgistro](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Registro.png)
+Before running, set the required environment variables. Either edit `docker-compose.yml` or export them in your shell:
 
-* Inicio de sesión
-  -Pantalla que muestra lo que se vería al inciar sesión con nuestro usuario
-  ![menú](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Resgistrado.png)
-  
- * Publicaciones
-  -Pantalla que muestra mis publicaciones
-  ![Publicaciones](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Publicaciones.png)
-  
- * VerPost
-  - Se puede ver un post en detalle, donde puedes contratar, denunciar, etc...
- ![Post](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Ver_Post.png)
- 
- * Contratar
-  -Acceso a contratar
- ![Contratar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Contratar.png)
- 
- * Denunciar
-  -Acceso a denunciar
- ![Denunciar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Denunciar.png)
- 
- * Cambio de página
-  -Se muestra como se ha pasado a la página 1
- ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
- 
- 
- ## Fase 3
- 
- 
-* Diagrama de clases y relación con templates
+```bash
+export GMAIL_ADDRESS=your.email@gmail.com
+export GMAIL_APP_PASSWORD=your_16_char_app_password
+```
 
-* UML
-  -Diagrama ordenado, con leyenda de colores.
-  
-  -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
-  
-  * ProfesoresACasa 
-  ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
-  
-  
-  * ServicioCorreo
-  
-  ![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
+> ⚠️ **Never commit real credentials to source control.** The `docker-compose.yml` in this repo uses placeholder values — replace them with your own before running.
 
-* Documentación del servicio interno
+### Start
 
-  Nuestro servicio interno envía mensajes por diferentes acciones, por ejemplo cuando contratas un post el servicio interno se encarga de mandar un correo avisando de esta nueva contratación. También recibiremos un correo con diferentes acciones como cuando se borra un post o cuando nos registramos en la página.
-  Este servicio requiere un consumidor que en este caso van a ser los usuarios que registren o interactuen con la aplicación.
-  
-* Instrucciones para desplegar la aplicación
+```bash
+docker compose up --build
+```
 
- -En primer lugar, generamos el rar de ambos proyectos desde la consola, con el comando mvn packge desde la carpeta main de cada proyecto.
- 
- -Una vez generados los jar los subiremos a openstack, ejecutaremos desde terminal el comando scp -i la ruta dónde se encuentra nuestra clave privada ubuntu@ip:/home/ubuntu la última ruta puede ser cualquiera en la que tengamos permisos de ejecución. 
- 
- -Posteriormente nos vamos a conectar a openStack con nuestras credenciales con el comando ssh -i ruta donde tenemos el certificado de nuestra clave privada + ubuntu@ipInstancia.
- 
- -Posteriormente, necesitaremos dos consolas para ejecutar ambas aplicaciones. Primero en una, ejecutaremos los siguientes comandos para instalar los paquetes necesarios. 
- 
--JDK: sudo apt install default-jre
+Access the app at **https://localhost:9443** (self-signed certificate — accept the browser warning).
 
--MySQL-server: sudo apt install mysql-server
+## Manual Setup (without Docker)
 
--Config mysql: sudo mysql
+### 1. Install prerequisites
 
--CREATE USER 'test'@'localhost' IDENTIFIED BY 'test.profesoresACasa';
+```bash
+sudo apt install default-jre mysql-server rabbitmq-server
+```
 
--GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+### 2. Configure MySQL
 
--CREATE SCHEMA profesoresACasa;
+```bash
+sudo mysql
+```
+```sql
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'test.profesoresACasa';
+GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+CREATE SCHEMA profesoresACasa;
+exit
+```
 
--exit
+### 3. Build the JARs
 
--Rabbitmq: sudo apt-get install rabbitmq-server
+```bash
+cd profesores_a_casa && mvn clean package -DskipTests && cd ..
+cd servicio_correo   && mvn clean package -DskipTests && cd ..
+```
 
--Una vez tengamos esto instalado, en una consola ejecutaremos java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar y en la otra java -jar servicio_correo-0.0.1-SNAPSHOT.jar
+### 4. Run both services (in separate terminals)
 
--Cuando busquemos en internet ip de la instancia seguida de :8443, estará nuestra aplicación corriendo.
+```bash
+java -jar profesores_a_casa/target/profesores_a_casa-1.0.jar
+java -jar servicio_correo/target/servicio_correo-1.0.jar
+```
 
--En la instancia hemos añadido un grupo de seguridad TCP de entrada con puerto 8443.
+Browse to **https://localhost:8443** once both services are running.
 
-### Capturas de navegación
-* Home
-![Home](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png)
+## Screenshots
 
-* Login
-![Login](https://github.com/Sebas1705/ProfesoresACasa/blob/de766cbca664a1e8a9287ce5fb02c464d2c545d4/Navegacion/Login.png)
+| Home | Login | Sign Up |
+|------|-------|---------|
+| ![Home](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Home.png) | ![Login](https://github.com/Sebas1705/ProfesoresACasa/blob/de766cbca664a1e8a9287ce5fb02c464d2c545d4/Navegacion/Login.png) | ![SignUp](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Registro.png) |
 
-* Registro
-![Resgistro](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Registro.png)
+| My Profile | Post Detail | Book a Tutor |
+|------------|-------------|--------------|
+| ![Profile](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Resgistrado.png) | ![Post](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Ver_Post.png) | ![Contract](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Contratar.png) |
 
-* Inicio de sesión
-  ![menú](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Resgistrado.png)
-  
- * Publicaciones
-  ![Publicaciones](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Publicaciones.png)
-  
- * VerPost
- ![Post](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Ver_Post.png)
- 
- * Contratar
- ![Contratar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Contratar.png)
- 
- * Denunciar
- ![Denunciar](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Denunciar.png)
- 
- * Cambio de página
- ![Cambio](https://github.com/Sebas1705/ProfesoresACasa/blob/51c43629d4d50a709ad37b0c0c42cfbfbc075981/Navegacion/Cambio_de_pagina.png)
- 
- 
- ## Fase 4
- 
- 
-* Diagrama de clases y relación con templates
+## Authors
 
-* UML
-  -Diagrama ordenado, con leyenda de colores.
-  
-  -Naranja-->Controller; Verde-->Templates; Verde oscuro-->Parte de template; Morado-->Repository; Azul-->Model; Violeta-->Config; Amarillo-->Servicios
-  
-  * ProfesoresACasa 
-  ![UML](https://github.com/Sebas1705/ProfesoresACasa/blob/36033e31ac6c0ef8987258aa91a1566acb89fa97/assets/DiagramaClasesYTemplates.png)
-  
-  
-  * ServicioCorreo
-  
-  ![Rabbit](https://github.com/Sebas1705/ProfesoresACasa/blob/0b1e814538304a8e1ddf9b920971147571b7668d/assets/DiagramaClasesYTemplates2.png)
-
-* Diagrama de la insfraestructura
-
-  -Infraestructura
-  
-  ![Infra](https://github.com/Sebas1705/ProfesoresACasa/blob/ab5b5dbe4a01ca5e9c8f254df7f9e79fb9ad7194/assets/Infraestructura.png)
+- [Sebas1705](https://github.com/Sebas1705)
+- [AHoyasR](https://github.com/AHoyasR)
