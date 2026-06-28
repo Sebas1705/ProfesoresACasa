@@ -12,7 +12,7 @@
 	<artifactId>profesores_a_casa</artifactId>
 	<version>1.0</version>
 	<name>profesores_a_casa</name>
-	<description>Demo project for Spring Boot</description>
+	<description>TutorsAtHome — Spring Boot web app connecting private tutors with students</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
