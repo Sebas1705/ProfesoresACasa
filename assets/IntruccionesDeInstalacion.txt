@@ -1,12 +1,12 @@
-#JDK:
+# JDK:
 
 sudo apt install default-jre
 
-#MySQL-server:
+# MySQL server:
 
 sudo apt install mysql-server
 
-#Config mysql:
+# Configure MySQL:
 
 sudo mysql
 
@@ -15,12 +15,11 @@ GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
 CREATE SCHEMA profesoresACasa;
 exit
 
-#Rabbitmq:
+# RabbitMQ:
 
 sudo apt-get install rabbitmq-server
 
-#Jars:
+# Run the JARs (in separate terminals):
 
-Ejecutar en consolas separadas
-	java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar
-	java -jar servicio_correo-0.0.1-SNAPSHOT.jar
+java -jar profesores_a_casa-0.0.1-SNAPSHOT.jar
+java -jar servicio_correo-0.0.1-SNAPSHOT.jar
