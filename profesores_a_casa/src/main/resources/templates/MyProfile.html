@@ -7,24 +7,24 @@
         <p class="des">{{selfDescription}}</p>
         {{/selfDescription}}
         {{^selfDescription}}
-        <p class="des">No hay descripcion, añadela!!</p>
+        <p class="des">No description yet — add one!</p>
         {{/selfDescription}}
         <div class="cButtons">
-            <button onclick="window.location.href='/changeDataUser'">Personaliza tu perfil</button>
-            <button onclick="window.location.href='/deleteUser'">Borrar Usuario</button>
+            <button onclick="window.location.href='/changeDataUser'">Customize profile</button>
+            <button onclick="window.location.href='/deleteUser'">Delete account</button>
         </div>
     </div>
     {{/User}}
 
     <div class="columns">
         <div class="colLeft">
-            <h2>Publicaciones</h2>
+            <h2>Posts</h2>
             <button class="mas" onclick="window.location.href='/newPost'">+</button>
             {{>postCard}}
         </div>
         
         <div class="colRight">
-            <h2>Contratos<h1>
+            <h2>Contracts</h2>
             {{>contractCard}}
         </div>
     </div>
