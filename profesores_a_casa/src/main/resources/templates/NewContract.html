@@ -1,30 +1,30 @@
 {{>header}}
 <section>
   <div class="cointenerContract">
-    <h1>Info Contrato:</h1>
+    <h1>Contract Info:</h1>
     
     {{#Post}}
     <div id="postInfoContract">
       <h4>{{title}}</h4>
       <p class="des">{{description}}</p>
-      <p class="res"><strong>Precio</strong>: {{price}} euros | <strong>Fecha</strong>: {{created_date}}</p>
+      <p class="res"><strong>Price</strong>: {{price}} EUR | <strong>Date</strong>: {{created_date}}</p>
     </div>
     {{/Post}}
     <div class="cointenerST">
       {{#Student}}
       <div id="studentInfoContract">
-        <h4>Estudiante:</h4>
+        <h4>Student:</h4>
         <p>{{logname}}</p>
       </div>
       {{/Student}}
       {{#Teacher}}
       <div id="teacherInfoContract">
-        <h4>Profesor:</h4>
+        <h4>Teacher:</h4>
         <p>{{logname}}</p>
       </div>
       {{/Teacher}}
     </div>
-    {{#Post}}{{#Student}}{{#Teacher}}<button onclick="window.location.href='/contract?postId={{Post.id}}&teacherId={{Teacher.id}}'">Confirmar Contrato</button>{{/Teacher}}{{/Student}}{{/Post}}
+    {{#Post}}{{#Student}}{{#Teacher}}<button onclick="window.location.href='/contract?postId={{Post.id}}&teacherId={{Teacher.id}}'">Confirm Contract</button>{{/Teacher}}{{/Student}}{{/Post}}
   </div> 
 </section>
 {{>footer}}
