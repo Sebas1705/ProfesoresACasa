@@ -32,7 +32,7 @@ public class SignUpController {
         Optional<User> user=users.findUser(logname);
         if(user.isPresent()){
             model.addAttribute("Incorrect",true);
-            model.addAttribute("error","El nombre ya esta en uso");
+            model.addAttribute("error","Username is already taken");
             return "SignUp";
         }
         User newUser=new User(logname,passwordEncoder.encode(password),email);
