@@ -1,20 +1,20 @@
 {{>header}}
 <section>
   <div class="formulariosLog">
-    <h1>Denuncia</h1>
+    <h1>Report</h1>
     <form class="form" method="post" action="/report?postId={{Post}}">
       <p class="field">
-        <input type="text" name="motive" placeholder="Motivo" required/><!--Motivo de la denuncia-->
+        <input type="text" name="motive" placeholder="Reason" required/>
         <i class="fa fa-user"></i>
       </p>
       <p class="sub-text">
-        <textarea type="text" name="description" placeholder="descripción" required ></textarea><!--Descripción de la-->
+        <textarea type="text" name="description" placeholder="Description" required ></textarea>
         <i class="fa fa-lock"></i>
       </p>
-      <p class="submit"><input type="submit" name="sent" value="Denunciar"></p>
+      <p class="submit"><input type="submit" name="sent" value="Submit Report"></p>
       <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>
-  </div> <!--Nueva denuncia-->
+  </div> 
 </section>
 {{>footer}}
  
