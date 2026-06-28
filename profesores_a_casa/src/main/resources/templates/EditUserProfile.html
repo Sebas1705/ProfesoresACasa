@@ -2,18 +2,18 @@
 <section>
     {{#User}}
     <div class="formulariosLog">
-        <h1>Personalizar Perfil</h1>
+        <h1>Edit Profile</h1>
         <form class="form" method="post" action="/changeProfile">
             <p class="field">
                 <input type="text" name="logname" value="{{logname}}" required/>
                 <i class="fa fa-user"></i>
             </p>
             <p class="field">
-                <textarea type="text" name="selfDescription" placeholder="Nueva descripcion" required>
+                <textarea type="text" name="selfDescription" placeholder="New description" required>
                     {{#selfDescription}}{{selfDescription}}{{/selfDescription}}
                 </textarea>
             </p>
-            <p class="submit"><input type="submit" name="sent" value="Cambiar"></p>
+            <p class="submit"><input type="submit" name="sent" value="Save"></p>
             <input type="hidden" name="_csrf" value="{{token}}"/>
         </form>
     </div>
