@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LogInController {
 
     @GetMapping("/logIn")
-    public String inicioSesion(Model model){
+    public String logIn(Model model){
         model.addAttribute("Incorrect",false);
         model.addAttribute("error", null);
         return "LogIn";
@@ -15,7 +15,7 @@ public class LogInController {
     @GetMapping("/logInError")
     public String logInError(Model model){
         model.addAttribute("Incorrect",true);
-        model.addAttribute("error", "No existe el usuario o la contraseña no es correcta");
+        model.addAttribute("error", "User not found or incorrect password");
         return "LogIn";
     } 
 
