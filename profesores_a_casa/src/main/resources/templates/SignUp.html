@@ -1,7 +1,7 @@
 {{>header}}
 <section>
   <div class="formulariosLog">
-    <h1>Registro</h1>
+    <h1>Sign Up</h1>
     <form class="form" method="post" action="/signUp">
       {{#Incorrect}}
       <p class="err">{{error}}</p>
@@ -18,9 +18,9 @@
         <input type="password" name="password" placeholder="Password" required/>
         <i class="fa fa-lock"></i>
       </p>
-      <p class="submit"><input type="submit" name="sent" value="Registrate"></p>
+      <p class="submit"><input type="submit" name="sent" value="Sign Up"></p>
       <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>
-  </div> <!--Registro-->
+  </div> 
 </section>
 {{>footer}}
