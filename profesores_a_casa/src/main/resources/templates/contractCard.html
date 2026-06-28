@@ -1,50 +1,49 @@
-<h3 class="Tit">Tus contratos de profesor:</h3>
-<div class="containerCards">    
+<h3 class="Tit">Your contracts as teacher:</h3>
+<div class="containerCards">
     {{#cT}}
     <div class="ContractCard">
-        <p><strong>Estudiante:</strong> {{student.logname}} <button onclick="window.location.href='/otherProfile?userId={{student.id}}'">Go</button></p>
+        <p><strong>Student:</strong> {{student.logname}} <button onclick="window.location.href='/otherProfile?userId={{student.id}}'">Go</button></p>
         <p><strong>Post:</strong> {{post.title}} <button onclick="window.location.href='/post?postId={{post.id}}'">Go</button></p>
         <p>
-            Quiere borrar: 
-            Estudiante({{studentWantToDelete}})
-            Profesor({{teacherWantToDelete}})
+            Wants to cancel:
+            Student({{studentWantToDelete}})
+            Teacher({{teacherWantToDelete}})
         </p>
         {{#isPerfil}}
             <button onclick="window.location.href='/deleteContract?contractId={{id}}&teacher=true'">
-                {{#teacherWantToDelete}}Cancelar{{/teacherWantToDelete}} 
-                {{^teacherWantToDelete}}Votar{{/teacherWantToDelete}} 
-                borrado
+                {{#teacherWantToDelete}}Undo{{/teacherWantToDelete}}
+                {{^teacherWantToDelete}}Vote{{/teacherWantToDelete}}
+                cancel
             </button>
         {{/isPerfil}}
     </div>
     {{/cT}}
 </div>
 {{^cT}}
-<h1 class="noRes">Actualmente no hay ningun contrato. Publica tus propios post que interesen a los alumnos!</h1>
+<h1 class="noRes">No contracts yet. Post your own offers to attract students!</h1>
 {{/cT}}
 <hr>
-<h3 class="Tit">Tus contratos de alumno:</h3>
+<h3 class="Tit">Your contracts as student:</h3>
 <div class="containerCards">
     {{#cS}}
     <div class="ContractCard">
-        <p><strong>Profesor:</strong> {{teacher.logname}} <button onclick="window.location.href='/otherProfile?userId={{teacher.id}}'">Go</button></p>
+        <p><strong>Teacher:</strong> {{teacher.logname}} <button onclick="window.location.href='/otherProfile?userId={{teacher.id}}'">Go</button></p>
         <p><strong>Post:</strong> {{post.title}} <button onclick="window.location.href='/post?postId={{post.id}}'">Go</button></p>
         <p>
-            Quiere borrar: <br>
-            Estudiante=>{{#studentWantToDelete}}Si{{/studentWantToDelete}}{{^studentWantToDelete}}No{{/studentWantToDelete}}
-            Profesor=>{{#teacherWantToDelete}}Si{{/teacherWantToDelete}}{{^teacherWantToDelete}}No{{/teacherWantToDelete}}
+            Wants to cancel:<br>
+            Student=>{{#studentWantToDelete}}Yes{{/studentWantToDelete}}{{^studentWantToDelete}}No{{/studentWantToDelete}}
+            Teacher=>{{#teacherWantToDelete}}Yes{{/teacherWantToDelete}}{{^teacherWantToDelete}}No{{/teacherWantToDelete}}
         </p>
         {{#isPerfil}}
             <button onclick="window.location.href='/deleteContract?contractId={{id}}&teacher=false'">
-                {{#studentWantToDelete}}Cancelar{{/studentWantToDelete}} 
-                {{^studentWantToDelete}}Votar{{/studentWantToDelete}} 
-                borrado
+                {{#studentWantToDelete}}Undo{{/studentWantToDelete}}
+                {{^studentWantToDelete}}Vote{{/studentWantToDelete}}
+                cancel
             </button>
         {{/isPerfil}}
     </div>
     {{/cS}}
 </div>
 {{^cS}}
-<h1 class="noRes">Actualmente no hay ningun post, ayuda y crealos!</h1>
+<h1 class="noRes">No contracts yet. Browse available posts and book a tutor!</h1>
 {{/cS}}
-
