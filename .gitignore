@@ -1,0 +1,30 @@
+# Build artifacts
+target/
+*.jar
+*.war
+*.class
+
+# Maven wrapper cache
+.mvn/repository/
+
+# IDE files
+.idea/
+*.iml
+.eclipse/
+.classpath
+.project
+.settings/
+
+# Sensitive files
+*.pem
+*.jks
+*.key
+*.p12
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
