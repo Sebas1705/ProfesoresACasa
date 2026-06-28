@@ -2,13 +2,13 @@
     {{#posts}}
     <div class="PostCard">
         <h1 class="title">{{title}}</h1>
-        <h4 class="price"><strong>Precio</strong>: {{price}} euros</h4>
-        <p class="date"><strong>Fecha</strong>: {{created_date}}</p>
-        <button class="link" onclick="window.location.href='/post?postId={{id}}'">Visitar Post</button>
-        {{#isPerfil}}<button class="link" onclick="window.location.href='/deletePost?postId={{id}}'">Borrar post</button>{{/isPerfil}}
+        <h4 class="price"><strong>Price</strong>: {{price}} EUR</h4>
+        <p class="date"><strong>Date</strong>: {{created_date}}</p>
+        <button class="link" onclick="window.location.href='/post?postId={{id}}'">View Post</button>
+        {{#isPerfil}}<button class="link" onclick="window.location.href='/deletePost?postId={{id}}'">Delete post</button>{{/isPerfil}}
     </div>
     {{/posts}}
 </div>
 {{^posts}}
-<h1>Actualmente no hay ningun post, ayuda y crealos!</h1>
+<h1>No posts yet. Be the first to publish an offer!</h1>
 {{/posts}}
