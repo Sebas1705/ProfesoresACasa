@@ -19,13 +19,13 @@
     <div class="Buttons">
       {{#User}}
       <div class="Use">
-        <button onclick= "window.location.href='/newContract?postId={{Post.id}}&teacherId={{Post.ownerUser.id}}'">Contratar</button>
-        <button onclick= "window.location.href='/newReport?postId={{Post.id}}'">Denunciar</button>
+        <button onclick= "window.location.href='/newContract?postId={{Post.id}}&teacherId={{Post.ownerUser.id}}'">Book</button>
+        <button onclick= "window.location.href='/newReport?postId={{Post.id}}'">Report</button>
       </div>
       <div class="Rank">
         
         <div class="rBs">
-          <h1>Puntúa este post:</h1>
+          <h1>Rate this post:</h1>
           <button onclick= "window.location.href='/rank?punt=0&postId={{Post.id}}'">0</button>
           <button onclick= "window.location.href='/rank?punt=1&postId={{Post.id}}'">1</button>
           <button onclick= "window.location.href='/rank?punt=2&postId={{Post.id}}'">2</button>
@@ -35,7 +35,7 @@
         </div>
       </div>
       {{/User}}
-      <button onclick= "window.location.href='/otherProfile?userId={{ownerUser.id}}'">Ir {{ownerUser.logname}}</button>
+      <button onclick= "window.location.href='/otherProfile?userId={{ownerUser.id}}'">View {{ownerUser.logname}}</button>
     </div>
   {{/Post}}
   {{^Post}}
