@@ -1,0 +1,21 @@
+# Normalize line endings
+* text=auto
+*.cmd text eol=crlf
+mvnw text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jar binary
+*.jks binary
+
+# Violet UML Editor exports: generated HTML wrappers around the diagrams.
+# Exclude them from GitHub language statistics so Java shows as the main language.
+assets/*.violet.html linguist-generated=true linguist-documentation=true
+
+# Maven wrapper is third-party tooling
+**/.mvn/** linguist-vendored=true
+mvnw linguist-vendored=true
+mvnw.cmd linguist-vendored=true
+**/mvnw linguist-vendored=true
+**/mvnw.cmd linguist-vendored=true
