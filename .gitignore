@@ -1,8 +1,15 @@
 # Build artifacts
 target/
+build/
+out/
 *.jar
 *.war
 *.class
+HELP.md
+node_modules/
+
+# Keep the Maven wrapper bootstrap jar
+!**/.mvn/wrapper/maven-wrapper.jar
 
 # Maven wrapper cache
 .mvn/repository/
@@ -14,6 +21,9 @@ target/
 .classpath
 .project
 .settings/
+.vscode/
+.factorypath
+.sts4-cache/
 
 # Sensitive files
 *.pem
