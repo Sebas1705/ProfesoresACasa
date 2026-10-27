@@ -97,14 +97,28 @@ The email microservice (`servicio_correo`) listens on a RabbitMQ queue and sends
 
 ### Configuration
 
-Before running, set the required environment variables. Either edit `docker-compose.yml` or export them in your shell:
+No secrets live in the repository. `docker-compose.yml` reads them from a `.env` file next to it (git-ignored):
 
 ```bash
-export GMAIL_ADDRESS=your.email@gmail.com
-export GMAIL_APP_PASSWORD=your_16_char_app_password
+cp .env.example .env
+# then edit .env:
+#   SSL_KEYSTORE_PASSWORD  any password for the HTTPS keystore
+#   MAIL_ORIGIN            Gmail address the email service sends from
+#   MAIL_PASSWORD          its 16-character App Password
 ```
 
-> ⚠️ **Never commit real credentials to source control.** The `docker-compose.yml` in this repo uses placeholder values — replace them with your own before running.
+`docker compose` refuses to start if any of them is missing.
+
+**HTTPS keystore.** Both web replicas read `certs/keystore.jks` (git-ignored, mounted at `/app/certs`). If it does not exist, the first replica generates a self-signed one with `SSL_KEYSTORE_PASSWORD`. To create it yourself beforehand (recommended, so both replicas start with the same certificate):
+
+```bash
+mkdir -p certs
+keytool -genkeypair -alias profesoresacasa -keyalg RSA -keysize 2048 -validity 365 \
+  -dname "CN=localhost" -storetype JKS -keystore certs/keystore.jks \
+  -storepass "$SSL_KEYSTORE_PASSWORD" -keypass "$SSL_KEYSTORE_PASSWORD"
+```
+
+> ⚠️ **Never commit real credentials to source control.** `.env`, `certs/` and `*.jks` are git-ignored.
 
 ### Start
 
@@ -141,10 +155,29 @@ cd profesores_a_casa && mvn clean package -DskipTests && cd ..
 cd servicio_correo   && mvn clean package -DskipTests && cd ..
 ```
 
-### 4. Run both services (in separate terminals)
+### 4. Create a local HTTPS keystore
+
+The main app serves HTTPS and reads its keystore from `SSL_KEYSTORE` (default `classpath:keystore.jks`) with the password in `SSL_KEYSTORE_PASSWORD`. Generate a self-signed one outside the repository and point the app at it:
 
 ```bash
+export SSL_KEYSTORE_PASSWORD=choose-a-password
+keytool -genkeypair -alias profesoresacasa -keyalg RSA -keysize 2048 -validity 365 \
+  -dname "CN=localhost" -storetype JKS -keystore ~/profesoresacasa-keystore.jks \
+  -storepass "$SSL_KEYSTORE_PASSWORD" -keypass "$SSL_KEYSTORE_PASSWORD"
+export SSL_KEYSTORE=file:$HOME/profesoresacasa-keystore.jks
+```
+
+`SSL_KEY_PASSWORD` defaults to `SSL_KEYSTORE_PASSWORD`; set it only if the key has its own password.
+
+### 5. Run both services (in separate terminals)
+
+```bash
+# terminal 1 (with SSL_KEYSTORE and SSL_KEYSTORE_PASSWORD exported)
 java -jar profesores_a_casa/target/profesores_a_casa-1.0.jar
+
+# terminal 2
+export MAIL_ORIGIN=your.address@gmail.com
+export MAIL_PASSWORD=your-16-char-app-password
 java -jar servicio_correo/target/servicio_correo-1.0.jar
 ```
 
