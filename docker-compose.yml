@@ -16,18 +16,23 @@ services:
     expose: 
       - "8443"
     restart: unless-stopped
+    volumes:
+      - "./certs:/app/certs"
     environment:
       - HAZEL_IP_OTHER-WEB=web2
       - SPRING_RABBITMQ_HOST=message_broker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
+      - SSL_KEYSTORE_PASSWORD=${SSL_KEYSTORE_PASSWORD:?Set SSL_KEYSTORE_PASSWORD in .env}
 
   web2:
     build: profesores_a_casa/.
     expose: 
       - "8443"
     restart: unless-stopped
+    volumes:
+      - "./certs:/app/certs"
     environment:
       - HAZEL_IP_OTHER-WEB=web1
       - SPRING_RABBITMQ_HOST=message_broker
@@ -35,6 +40,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/profesoresacasa
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
+      - SSL_KEYSTORE_PASSWORD=${SSL_KEYSTORE_PASSWORD:?Set SSL_KEYSTORE_PASSWORD in .env}
 
   servicio_correo:
     build: servicio_correo/.
@@ -43,8 +49,8 @@ services:
     environment:
       - SPRING_RABBITMQ_HOST=message_broker
       - SPRING_RABBITMQ_PORT=5672
-      - MAIL.ORIGIN=asistente.profesoresacasa@gmail.com
-      - MAIL.PASSWORD=omzxpsrdfltkeged
+      - MAIL_ORIGIN=${MAIL_ORIGIN:?Set MAIL_ORIGIN in .env}
+      - MAIL_PASSWORD=${MAIL_PASSWORD:?Set MAIL_PASSWORD in .env}
 
   loadbalancer:
     image: haproxy:2.7.3

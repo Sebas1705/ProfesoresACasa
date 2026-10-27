@@ -38,3 +38,6 @@ Thumbs.db
 # Logs
 *.log
 logs/
+# Secrets and local certificates
+.env
+certs/
